@@ -8,3 +8,7 @@ __pycache__/
 .tmp/
 credentials.json
 token.json
+
+# Next.js / TypeScript
+.next/
+tsconfig.tsbuildinfo
