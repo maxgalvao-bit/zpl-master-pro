@@ -1,0 +1,116 @@
+{
+  "title": "ZPLMaster Pro",
+  "welcome": "Hello, ZPLMaster!",
+  "copyright": "© 2026 G-Max Solutions. All rights reserved.",
+  "shopeeFixer": {
+    "btnDiagnose": "DIAGNOSE",
+    "btnFix": "FIX CODE",
+    "btnCopy": "COPY FIXED CODE",
+    "btnCopied": "COPIED!",
+    "statusOkTitle": "No Errors Found",
+    "statusOkMsg": "The label has no detected bitmap errors. Ready to print.",
+    "statusWarnTitle": "Warning: Large Images",
+    "statusWarnMsg": "The label contains large GFA images. This may cause slowness on Shopee.",
+    "statusErrorTitle": "Critical Bitmap Error",
+    "statusErrorMsg": "Incompatible GFB bitmap for Shopee detected. Fix before printing.",
+    "invalidFormatTitle": "Invalid ZPL Code",
+    "invalidFormatMsg": "Incomplete or invalid ZPL code. Make sure to copy the entire original text (must contain ^XA and ^XZ).",
+    "btnValidator": "Analyze in Syntax Validator"
+  },
+  "tools": {
+    "homeEditor": "Home / Editor",
+    "syntaxValidator": "Syntax Validator",
+    "shopeeFixer": "Shopee Fixer",
+    "bulkSplitter": "Bulk Splitter",
+    "homeEditorDesc": "Edit, refine and preview labels in real-time.",
+    "syntaxValidatorDesc": "Magic Fix for raw ZPL code.",
+    "shopeeFixerDesc": "Smart bitmap injection and scaling.",
+    "bulkSplitterDesc": "Split chained ZPL labels into multiple images."
+  },
+  "editor": {
+    "placeholder": "Paste your ZPL code here or drag .txt / .zpl files",
+    "renderButton": "Render / Preview",
+    "previewTitle": "Label Preview",
+    "dropZone": "Drag and drop your file here",
+    "errorMsg": "Error rendering label.",
+    "labelsRendered": "{count} labels rendered",
+    "btnThermalPrint": "Thermal Print",
+    "btnPdf4x6": "PDF 4x6 BATCH",
+    "btnPdfA4": "PDF A4 (2x2)",
+    "processing": "Processing...",
+    "clear": "Clear",
+    "renderSingle": "Render Label",
+    "renderMulti": "Render {count} Labels"
+  },
+  "ui": {
+    "codeEditor": "CODE EDITOR",
+    "loadZplFile": "LOAD .ZPL FILE",
+    "renderLabelsBtn": "RENDER LABELS",
+    "toolsSectionTitle": "ZPL MASTER TOOLS",
+    "privacyGuarantee": "Privacy Guaranteed: Processing is 100% volatile. No label data or ZPL code is stored on our servers.",
+    "adTop": "ADVERTISEMENT - TOP AD",
+    "adSidebar": "ADVERTISEMENT - SIDEBAR AD",
+    "waitingZpl": "Waiting for ZPL code batch...",
+    "ecommerceUltimate": "THE ULTIMATE TOOL FOR E-COMMERCE",
+    "reportError": "REPORT AN ERROR",
+    "clearCode": "CLEAR CODE"
+  },
+  "explore": {
+    "title": "Explore Tools",
+    "toolZplPdf": "ZPL to PDF Converter",
+    "toolZplPdfDesc": "Convert ZPL code to 4x6 or A4 PDF.",
+    "toolShopeeFix": "Shopee Image Fix",
+    "toolShopeeFixDesc": "Fix giant bitmaps and resize Shopee labels.",
+    "toolValidator": "ZPL Syntax Validator",
+    "toolValidatorDesc": "Check for syntax errors in ZPL code.",
+    "toolSplitter": "Bulk Splitter",
+    "toolSplitterDesc": "Split files with multiple labels.",
+    "active": "Active",
+    "comingSoon": "Coming soon",
+    "supportProject": "Support the Project",
+    "supportDesc": "Help keep the tool online.",
+    "premiumTitle": "ZPLMaster Premium",
+    "premiumDesc": "Advanced features and no ads.",
+    "adSidebar": "ADVERTISEMENT - SIDEBAR AD"
+  },
+  "seo": {
+    "zplToPdf": {
+      "title": "ZPL to PDF Converter | ZPLMaster",
+      "h1": "Free Online ZPL to PDF Converter",
+      "desc": "Convert raw ZPL code into print-ready PDF files in seconds. Supports 4x6 thermal and A4 formats, directly in your browser — no installation required. 100% free and private."
+    },
+    "shopeeFix": {
+      "title": "Shopee ZPL Image Fix | ZPLMaster",
+      "h1": "Shopee ZPL Label Image Fixer",
+      "desc": "Paste your Shopee label ZPL code, the system will diagnose bitmap errors and auto-fix the code with one click. Free and 100% in-browser."
+    },
+    "validator": {
+      "title": "ZPL Syntax Validator | ZPLMaster",
+      "h1": "Free Online ZPL Syntax Validator",
+      "desc": "Analyze your ZPL code and identify structural errors, semantic issues and formatting best practices. Free and 100% in-browser."
+    }
+  },
+  "validator": {
+    "btnValidate": "VALIDATE",
+    "btnClear": "CLEAR",
+    "statusValid": "Valid Code",
+    "statusWarning": "Warning",
+    "statusInvalid": "Invalid Code",
+    "statusValidMsg": "No errors or warnings found. The code is ready to use.",
+    "layerStructure": "Structure Errors",
+    "layerSemantic": "Semantic Warnings",
+    "layerBestPractice": "Best Practices",
+    "E001": "Opening tag `^XA` not found",
+    "E002": "Closing tag `^XZ` not found",
+    "E003": "`^XA` appears after `^XZ` — inverted structure",
+    "E004": "Graphic referenced (`^XGR`) without definition (`~DGR`) in the code",
+    "W001": "Inline image (`^GFA`) without page dimensions (`^PW`/`^LL`) — may misconfigure the printer",
+    "W002": "`^GFB` format detected — incompatible with Shopee and some printers",
+    "W003": "Image origin (`^FO`) is not at 0,0 — may cause visual offset",
+    "W004": "{count} label blocks (`^XA...^XZ`) detected in the code",
+    "W005": "Open label block (`^XA`) without a matching closing tag (`^XZ`)",
+    "I001": "Recommended: define explicit page dimensions (`^PW` and `^LL`)",
+    "I002": "Consider defining media handling behavior with `^MN`",
+    "I003": "Print quantity (`^PQ`) is not 1 — verify if intentional"
+  }
+}

@@ -1,0 +1,35 @@
+# Diretriz 01: Setup Inicial Next.js + Tailwind (G-Max Standard) + i18n
+**Fase 3 do Protocolo V.L.A.E.G.**
+
+## Objetivo
+Inicializar a estrutura limpa do Next.js, configurando estritamente os estilos globais baseados na filosofia G-Max Standard (sombras, arredondamentos e cores), além de montar a estrutura atômica para múltiplos idiomas (i18n).
+
+## Passo a Passo de Execução
+
+1. **Limpeza do Boilerplate Vercel:**
+   - Como o repositório atual na pasta `src/app/` já possui uma instalação padrão inicializada do Next.js, primeiro o Agente (Layer 2) deverá apagar os arquivos legados desnecessários (`page.tsx`, `layout.tsx` e `globals.css`) para injetarmos o nosso modelo.
+
+2. **Reconfiguração do TailwindCSS (G-Max Standard):**
+   - Editar/Criar `tailwind.config.ts` para adicionar as estensões temáticas:
+     - Cores baseadas em `slate` e acentos em `blue`.
+     - Padronização de botões usando classes `rounded-3xl` e `shadow-xl`.
+   - Recriar o arquivo `src/app/globals.css` limpo e apenas definindo diretivas do Tailwind e as variáveis (CSS customizado focado em `dark/light mode` limpo).
+
+3. **Arquitetura de Idiomas (Invariante ZPLMaster):**
+   - O Agente DEVE criar no diretório raiz do frontend a pasta `src/locales/` ou `src/i18n/`.
+   - Arquivos JSON Dicionários obrigatórios a serem criados inicialmente, contendo as chaves globais da HomePage e copyrights `G-Max Solutions`:
+     - `pt-br.json`
+     - `en.json`
+     - `es.json`
+     - `zh.json`
+
+4. **Recriação do Container Base `src/app/`:**
+   - Inserir um novo `layout.tsx` provendo metadados (Title: ZPLMaster Pro) e estrutura local para intercepção dos idiomas.
+   - Inserir um novo `page.tsx` estéril contendo o layout global e importando o título temporário centralizado (teste "Hello ZPLMaster").
+
+## Saídas Esperadas
+- Next.js expurgado da Splash inicial da Vercel.
+- Estrutura CSS suportando dark mode e o layout padrão.
+- 4 arquivos de idiomas populados com as chaves mais básicas da home.
+
+**Regra Estrita (Layer 3):** Não crie scripts Pythons para setup ainda. Inicialize estes 4 passos manualmente ou via comandos CLI direto no subagent da arquitetura após aprovação do plano.

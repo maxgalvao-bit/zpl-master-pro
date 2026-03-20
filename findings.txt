@@ -1,0 +1,7 @@
+# Findings (ZPLMaster)
+
+## Handshake e Pesquisa Repositório (Fase 2)
+1. **Conexão MCP GitHub:** Sucesso. O repositório `maxgalvao-bit/zpl-master` foi acessado.
+   - Foram listados arquivos base de um projeto Next.js recém-criado (ex: `package.json`, `layout.tsx`, `page.tsx`).
+2. **Lógica Legada ZPL:** O repositório na branch `main` possui *apenas 1 commit inicial*. Nele não há bibliotecas ZPL antigas nem matemática/lógica heurística de processamento em `src/`, `utils/` ou `components/`. Apenas o código boilerplate (página de boas-vindas do Vercel `create-next-app`).
+3. **Conclusão:** Nenhuma lógica de negócio antiga pôde ser herdada, o que corrobora com a diretriz de iniciar um Next.js limpo e criar o algoritmo de Client-Side puro e determinístico desde o Zero, sem poluição de bibliotecas legadas.

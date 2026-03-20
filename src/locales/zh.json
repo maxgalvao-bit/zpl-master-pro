@@ -1,0 +1,116 @@
+{
+  "title": "ZPLMaster Pro",
+  "welcome": "你好，ZPLMaster！",
+  "copyright": "© 2026 G-Max Solutions。版权所有。",
+  "shopeeFixer": {
+    "btnDiagnose": "诊断",
+    "btnFix": "修复代码",
+    "btnCopy": "复制已修复代码",
+    "btnCopied": "已复制！",
+    "statusOkTitle": "未发现错误",
+    "statusOkMsg": "标签没有检测到位图错误，准备打印。",
+    "statusWarnTitle": "警告：图像过大",
+    "statusWarnMsg": "标签包含大型 GFA 图像，可能导致 Shopee 打印缓慢。",
+    "statusErrorTitle": "位图严重错误",
+    "statusErrorMsg": "检测到与 Shopee 不兼容的 GFB 位图，请修复后再打印。",
+    "invalidFormatTitle": "ZPL代码无效",
+    "invalidFormatMsg": "ZPL代码不完整或无效。请确保复制完整的原始文本（必须包含 ^XA 和 ^XZ）。",
+    "btnValidator": "在语法验证器中分析"
+  },
+  "tools": {
+    "homeEditor": "主页 / 编辑器",
+    "syntaxValidator": "语法验证器",
+    "shopeeFixer": "Shopee Fixer",
+    "bulkSplitter": "批量分割器",
+    "homeEditorDesc": "实时编辑、润色并预览标签。",
+    "syntaxValidatorDesc": "针对原始ZPL代码的ZPL Magic Fix。",
+    "shopeeFixerDesc": "智能位图注入和缩放。",
+    "bulkSplitterDesc": "将串联的ZPL标签分割成多张图像。"
+  },
+  "editor": {
+    "placeholder": "在此处粘贴ZPL代码或拖放.txt / .zpl文件",
+    "renderButton": "渲染 / 预览",
+    "previewTitle": "标签预览",
+    "dropZone": "将文件拖放到此处",
+    "errorMsg": "渲染标签时出错。",
+    "labelsRendered": "已渲染 {count} 张标签",
+    "btnThermalPrint": "热敏打印",
+    "btnPdf4x6": "PDF 批量 4x6",
+    "btnPdfA4": "PDF A4 (2x2排版)",
+    "processing": "处理中...",
+    "clear": "清除",
+    "renderSingle": "渲染标签",
+    "renderMulti": "渲染 {count} 张标签"
+  },
+  "ui": {
+    "codeEditor": "代码编辑器",
+    "loadZplFile": "加载 .ZPL 文件",
+    "renderLabelsBtn": "渲染标签",
+    "toolsSectionTitle": "ZPL MASTER 工具",
+    "privacyGuarantee": "隐私保证：处理过程 100% 易失。我们的服务器上不会存储任何标签数据或 ZPL 代码。",
+    "adTop": "广告 - 顶部广告",
+    "adSidebar": "广告 - 侧边栏广告",
+    "waitingZpl": "等待ZPL代码批处理...",
+    "ecommerceUltimate": "电子商务的终极工具",
+    "reportError": "报告错误",
+    "clearCode": "清除代码"
+  },
+  "explore": {
+    "title": "探索工具",
+    "toolZplPdf": "ZPL to PDF Converter",
+    "toolZplPdfDesc": "将 ZPL 代码转换为 4x6 或 A4 PDF。",
+    "toolShopeeFix": "Shopee Image Fix",
+    "toolShopeeFixDesc": "修复巨大的位图并调整 Shopee 标签大小。",
+    "toolValidator": "ZPL Syntax Validator",
+    "toolValidatorDesc": "检查 ZPL 代码中的语法错误。",
+    "toolSplitter": "Bulk Splitter",
+    "toolSplitterDesc": "分割包含多个标签的文件。",
+    "active": "活跃",
+    "comingSoon": "快来了",
+    "supportProject": "支持项目",
+    "supportDesc": "帮助保持工具在线。",
+    "premiumTitle": "ZPLMaster Premium",
+    "premiumDesc": "高级功能且无广告。",
+    "adSidebar": "广告 - 侧边栏广告"
+  },
+  "seo": {
+    "zplToPdf": {
+      "title": "ZPL转PDF转换器 | ZPLMaster",
+      "h1": "免费在线ZPL转PDF转换工具",
+      "desc": "将ZPL代码在几秒内转换为可打印的PDF文件。支持 4x6 热敏格式和 A4 格式，直接在浏览器中运行，无需安装。100%免费且私密。"
+    },
+    "shopeeFix": {
+      "title": "Shopee ZPL图像修复工具 | ZPLMaster",
+      "h1": "Shopee ZPL标签图像修复工具",
+      "desc": "粘贴您的Shopee标签 ZPL 代码，系统将诊断位图错误并一键自动修复代码。免费且全在浏览器内运行。"
+    },
+    "validator": {
+      "title": "ZPL语法验证器 | ZPLMaster",
+      "h1": "免费在线ZPL语法验证器",
+      "desc": "分析您的ZPL代码，识别结构错误、语义问题和格式最佳实践。免费且全在浏览器内运行。"
+    }
+  },
+  "validator": {
+    "btnValidate": "验证",
+    "btnClear": "清除",
+    "statusValid": "代码有效",
+    "statusWarning": "警告",
+    "statusInvalid": "代码无效",
+    "statusValidMsg": "未发现错误或警告，代码可以使用。",
+    "layerStructure": "结构错误",
+    "layerSemantic": "语义警告",
+    "layerBestPractice": "最佳实践",
+    "E001": "未找到开始标签 `^XA`",
+    "E002": "未找到结束标签 `^XZ`",
+    "E003": "`^XA` 出现在 `^XZ` 之后 — 结构颠倒",
+    "E004": "引用了图形 (`^XGR`)，但代码中没有对应定义 (`~DGR`)",
+    "W001": "内嵌图像 (`^GFA`) 没有页面尺寸 (`^PW`/`^LL`) — 可能导致打印机设置错误",
+    "W002": "检测到 `^GFB` 格式 — 与 Shopee 及部分打印机不兼容",
+    "W003": "图像起点 (`^FO`) 不在 0,0 — 可能导致视觉偏移",
+    "W004": "代码中检测到 {count} 个标签块 (`^XA...^XZ`)",
+    "W005": "标签块已开启 (`^XA`) 但缺少对应的关闭标签 (`^XZ`)",
+    "I001": "建议明确定义页面尺寸 (`^PW` 和 `^LL`)",
+    "I002": "建议使用 `^MN` 定义介质处理行为",
+    "I003": "打印数量 (`^PQ`) 不为 1 — 请确认是否有意为之"
+  }
+}

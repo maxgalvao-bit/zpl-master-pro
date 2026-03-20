@@ -1,0 +1,32 @@
+# Task Plan (ZPLMaster V.L.A.E.G.)
+
+--------------------------------------------------
+### FASE 1: VISÃO (E Lógica) -> CONCLUÍDA
+- [x] Respostas de Descoberta preenchidas e aprovadas.
+- [x] Json Data Schema definido (`gemini.txt`).
+
+--------------------------------------------------
+### FASE 2: LINK (Conectividade e Integrações) 
+- [x] Handshake e Pesquisa no repósitorio MCP (maxgalvao-bit/zpl-master).
+- [x] Mapear bibliotecas para o processamento Base64 e renderização PDF/Client-side no package.json.
+
+--------------------------------------------------
+### FASE 3: ARQUITETURA (Camadas Ocultas e UI Base)
+- [x] Boilerplate do Next.js Local (Limpeza/Adequação da nova base limpa `src/app`).
+- [ ] Criação dos *Tools* (Scripts Layer 3 em Python/Node/Bash) para inicialização ou automatização do ambiente.
+- [x] Layout e Estética "G-Max Standard" (Configuração do Tailwind).
+- [x] Fundação de Internacionalização i18n (Suporte PT, EN, ES, ZH) atrelado ao Invariante ZPLMaster.
+- [x] Componente: ToolNavigator (grid 2x2) + Feedbacks de Sistema.
+
+--------------------------------------------------
+### FASE 4: ESTILO (Regras de Negócio e Processamento ZPL)
+- [x] Action: Preview/Validation (Lógica para injetar e ler o raw_zpl na UI).
+- [ ] Action: Fix & Heurística ZPL (Shopee Fixer, Bitmaps e Escala para 100mm).
+- [ ] Action: ZPL Splitter (Bulk Split de massa ZPL).
+- [x] Action: Export PDF (Geração client-side do pdf_data para A4).
+
+--------------------------------------------------
+### FASE 5: GATILHO (Testes Finais e Entrega)
+- [ ] Slot AdSense e estrutura de monetização orgânica preparada.
+- [ ] Revisar fluxos determinísticos, rodar Testes E2E via browser subagent.
+- [ ] Deploy Final/Commit.

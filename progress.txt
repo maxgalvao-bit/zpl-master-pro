@@ -1,0 +1,26 @@
+# Progress Tracker (ZPLMaster)
+
+## Ciclo Realizado: Fase 3 - Boilerplate e i18n
+*   **Limpeza Next.js:** Os arquivos base `page.tsx`, `layout.tsx` e `globals.css` foram recriados com estrutura limpa e interceptação simples focado n UI.
+*   **TailwindCSS Configurado:** As variáveis base da estética G-Max foram definidas no `tailwind.config.ts` (cores e grids baseados na cor slate/blue e estilizações de botões shadow-xl e rounded-3xl preparadas para uso futuro).
+*   **i18n (Invariante) Implementado:** A pasta `src/locales/` foi gerada. Os arquivos `pt-br.json`, `en.json`, `es.json` e `zh.json` foram criados simultaneamente e possuem a chave fixa de Copyright (*© 2026 G-Max Solutions*) como exigido. A Home provisória já aponta para a interceptação em pt-br como teste.
+*   **Ferramentas Instaladas:** `jspdf` e `zpl-renderer-js` injetadas no projeto via npm install (script base rodou da pasta `tools/01_setup.ps1`).
+
+**Status:** Ambiente perfeitamente apto a receber a primeira UI interativa na próxima etapa.
+
+## Ciclo Realizado: Correção e Componente UI (ToolNavigator)
+*   **Correção do Ambiente:** Foi detectado a ausência da engine do framework. Rescrevemos o `.scripts` adicionando `"dev": "next dev"` e restauramos `react` e `next` via npm install. Constatamos também a exclusão acidental do motor CSS na limpeza: o `postcss.config.mjs` foi recriado para desbloquear a visualização G-Max Standard no front-end.
+*   **Avanço Invariante:** As 4 linguagens do i18n (`pt-br`, `en`, `es`, `zh`) receberam o bloco de subchave `"tools"` com a tradução completa descritiva sobre os 4 cartões funcionais exigidos.
+*   **ToolNavigator.tsx (Estrutural):** Componente recriado focando essencialmente no posicionamento interno dos 4 blocos em estrutura Grid 2x2. Estilos complexos removidos para favorecer a injeção posterior na Fase 4 (Google Stitch). Manteve-se a injeção i18n via Props.
+*   **Página Central (`page.tsx`):** Container principal simplificado, ToolNavigator inserido e alinhado ao centro com margens básicas.
+
+## Ciclo Realizado: ZplEngine (Fase 4 - Início)
+*   **Criação do ZplEngine (`src/services/ZplEngine.ts`):** O Motor principal agnóstico foi codificado. O parser `zpl-renderer-js` nativo do client foi injetado (via promise await `zplToBase64MultipleAsync`), tipado severamente a partir do JSON Schema estabelecido e retornando os PNGs englobando suporte nativo a etiquetas múltiplas e Data URI formatado.
+*   **Editor UI e Drag&Drop (`src/components/ZplEditor.tsx`):** A UI do motor foi criada (substituindo o antigo navegador na Homepage). A interface 100% Client-Side é dividida em duas colunas (G-Max style). A API FileReader nativa do React foi embutida no Input via eventos de estado, permitindo colar código-texto ou largar aquivos `.txt`/`.zpl` na textarea e renderizar base64 nativo na lateral.
+*   **Skill Customizada:** A skill de `i18n-localization` foi desmembrada do Github e instalada via linha de comando seguindo a arquitetura em 3 camadas (O `SKILL.md` foi convertido em `directives/02_i18n_localization.md` e o script validador alocado em `tools/i18n_checker.py`).
+
+## Ciclo Realizado: Action Bar e Motor PDF (ExportEngine)
+*   **Serviço Agnóstico (ExportEngine):** Classes estáticas construídas usando o `jspdf` via `window.print` (Termal) e download instantâneo (PDF A4 - Calculado Grid 2x2 centrado - e PDF 4x6 unitário). Tudo estritamente contido no navegador para proteção de dados do cliente G-Max.
+*   **UI Adicionada:** Interface Action Bar instalada com contador dinâmico de labels rastreado no payload, embutida no rodápé de preview do ZplEditor. Strings foram atreladas e atualizadas simultaneamente por todo o array JSON da invariante i18n (`pt-br`, `es`, `en`, `zh`).
+*   **Ajustes Críticos de UX (PDF e Preview):** Escalou-se a matemática do grid A4 para 95x142mm evitando cortes na sangria física da impressora de destino. A UI de print Térmico foi equipada com self-destroy no `onafterprint()`. O ZplEditor recebeu Loading States robustos e bloqueio preventivo de múltiplos gatilhos simultâneos. Botões ganharam peso G-Max (height/padding aumentados e SVGs nativos).
+*   **Correção de Layout (Action Bar):** Os botões que estavam preenchendo erraticamente a tela foram contidos em um Grid Responsivo CSS (`grid-cols-3`). Os ícones SVG internos também receberam classes puristas rigorosas (`w-6 h-6 flex-shrink-0 mr-2`) para impedi-los de vazar e corromper o painel de ZPL View.

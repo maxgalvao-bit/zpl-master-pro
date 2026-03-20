@@ -1,0 +1,10 @@
+# Node / Python
+node_modules/
+__pycache__/
+*.pyc
+
+# Agent 3-Layer Architecture Files
+.env
+.tmp/
+credentials.json
+token.json

@@ -1,0 +1,81 @@
+# ZPLMaster - Constituição do Projeto (gemini.txt)
+
+## Invariantes e Regras Comportamentais:
+
+1. **INVARIANTE ZPLMASTER:** Em TODAS as respostas que envolverem modificação de arquivos de tradução, é OBRIGATÓRIO fornecer as alterações para TODOS os 4 idiomas: **PT-BR, EN, ES e ZH**. Se forem apenas adições, deve ser enviado estritamente o bloco das novas chaves.
+2. O nome da empresa oficial para copyright a ser utilizado em todo o projeto é: **G-Max Solutions**.
+
+## Definição (Rascunho) - JSON Data Schema: Ferramenta Principal (Home/Editor)
+
+### Entrada (Input Schema)
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "raw_zpl": {
+      "type": "string",
+      "description": "O código ZPL cru inserido pelo usuário no Editor."
+    },
+    "action": {
+      "type": "string",
+      "enum": ["preview", "validate", "fix", "export_pdf"],
+      "description": "Ação solicitada pelo usuário na interface principal."
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "density": { "type": "integer", "default": 8 },
+        "width": { "type": "number", "default": 100 },
+        "height": { "type": "number", "default": 150 },
+        "paper_format": { "type": "string", "enum": ["A4", "Letter"], "default": "A4" }
+      }
+    }
+  },
+  "required": ["raw_zpl", "action"]
+}
+```
+
+### Saída (Output Schema)
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "error", "warning"],
+      "description": "Resultado do processamento da ação solicitada."
+    },
+    "processed_zpl": {
+      "type": "string",
+      "description": "Código ZPL processado/corrigido, pronto para renderização ou exportação."
+    },
+    "preview_url": {
+      "type": "string",
+      "description": "Data URI Base64 da imagem gerada como preview (se aplicável)."
+    },
+    "pdf_data": {
+      "type": "string",
+      "description": "Base64 completo com o arquivo PDF/A4 para impressão caso o action seja export_pdf."
+    },
+    "fixes_applied": {
+      "type": "array",
+      "description": "Log das correções inteligentes e heurísticas aplicadas no ZPL cru.",
+      "items": { "type": "string" }
+    },
+    "errors": {
+      "type": "array",
+      "description": "Lista de validações que falharam.",
+      "items": { "type": "string" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "label_count": { "type": "integer" }
+      }
+    }
+  },
+  "required": ["status"]
+}
+```

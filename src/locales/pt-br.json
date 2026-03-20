@@ -1,0 +1,116 @@
+{
+  "title": "ZPLMaster Pro",
+  "welcome": "Olá, ZPLMaster!",
+  "copyright": "© 2026 G-Max Solutions. Todos os direitos reservados.",
+  "shopeeFixer": {
+    "btnDiagnose": "DIAGNOSTICAR",
+    "btnFix": "CORRIGIR",
+    "btnCopy": "COPIAR CÓDIGO CORRIGIDO",
+    "btnCopied": "COPIADO!",
+    "statusOkTitle": "Nenhum Erro Encontrado",
+    "statusOkMsg": "A etiqueta não possui erros de bitmap detectados. Pronta para impressão.",
+    "statusWarnTitle": "Atenção: Imagens Grandes",
+    "statusWarnMsg": "A etiqueta contém imagens GFA de grande dimensão. Pode haver lentidão na Shopee.",
+    "statusErrorTitle": "Erro Crítico de Bitmap",
+    "statusErrorMsg": "Bitmap GFB incompatível com Shopee detectado. Corrija para continuar.",
+    "invalidFormatTitle": "Código ZPL Inválido",
+    "invalidFormatMsg": "Código ZPL incompleto ou inválido. Certifique-se de copiar todo o texto original (deve conter ^XA e ^XZ).",
+    "btnValidator": "Analisar no Validador de Sintaxe"
+  },
+  "tools": {
+    "homeEditor": "Home / Editor",
+    "syntaxValidator": "Validador de Sintaxe",
+    "shopeeFixer": "Shopee Fixer",
+    "bulkSplitter": "Divisor em Massa",
+    "homeEditorDesc": "Edite, refine e visualize etiquetas em tempo real.",
+    "syntaxValidatorDesc": "Magic Fix para código bruto ZPL.",
+    "shopeeFixerDesc": "Injeção inteligente de bitmaps e redimensionamento.",
+    "bulkSplitterDesc": "Separa etiquetas ZPL encadeadas em múltiplas imagens."
+  },
+  "editor": {
+    "placeholder": "Cole seu código ZPL aqui ou arraste arquivos .txt / .zpl",
+    "renderButton": "Renderizar / Visualizar",
+    "previewTitle": "Visualização da Etiqueta",
+    "dropZone": "Arraste e solte o arquivo aqui",
+    "errorMsg": "Erro ao renderizar a etiqueta.",
+    "labelsRendered": "{count} etiquetas renderizadas",
+    "btnThermalPrint": "Impressão Térmica",
+    "btnPdf4x6": "PDF Lote 4x6",
+    "btnPdfA4": "PDF A4 (2x2)",
+    "processing": "A processar...",
+    "clear": "Limpar",
+    "renderSingle": "Renderizar Etiqueta",
+    "renderMulti": "Renderizar {count} Etiquetas"
+  },
+  "ui": {
+    "codeEditor": "EDITOR DE CÓDIGO",
+    "loadZplFile": "CARREGAR ARQUIVO .ZPL",
+    "renderLabelsBtn": "RENDERIZAR ETIQUETAS",
+    "toolsSectionTitle": "FERRAMENTAS ZPL MASTER",
+    "privacyGuarantee": "Privacidade Garantida: O processamento é 100% volátil. Nenhum dado de etiqueta ou código ZPL é armazenado em nossos servidores.",
+    "adTop": "PUBLICIDADE - TOP AD",
+    "adSidebar": "PUBLICIDADE - SIDEBAR AD",
+    "waitingZpl": "Aguardando lote de códigos ZPL...",
+    "ecommerceUltimate": "A FERRAMENTA DEFINITIVA PARA E-COMMERCE",
+    "reportError": "REPORTAR UM ERRO",
+    "clearCode": "LIMPAR CÓDIGO"
+  },
+  "explore": {
+    "title": "Explorar Ferramentas",
+    "toolZplPdf": "ZPL to PDF Converter",
+    "toolZplPdfDesc": "Converter código ZPL para PDF 4x6 ou A4.",
+    "toolShopeeFix": "Shopee Image Fix",
+    "toolShopeeFixDesc": "Corrigir bitmaps gigantes e redimensionar etiquetas da Shopee.",
+    "toolValidator": "ZPL Syntax Validator",
+    "toolValidatorDesc": "Verificar erros de sintaxe no código ZPL.",
+    "toolSplitter": "Bulk Splitter",
+    "toolSplitterDesc": "Dividir arquivos com múltiplas etiquetas.",
+    "active": "Ativo",
+    "comingSoon": "Em breve",
+    "supportProject": "Apoie o Projeto",
+    "supportDesc": "Ajude a manter a ferramenta online.",
+    "premiumTitle": "ZPLMaster Premium",
+    "premiumDesc": "Recursos avançados e sem anúncios.",
+    "adSidebar": "PUBLICIDADE - SIDEBAR AD"
+  },
+  "seo": {
+    "zplToPdf": {
+      "title": "Conversor ZPL para PDF | ZPLMaster",
+      "h1": "Conversor de ZPL para PDF Online Gratuito",
+      "desc": "Converta códigos ZPL brutos em arquivos PDF prontos para impressão em segundos. Suporte a formatos 4x6 (térmica) e A4 direto no navegador, sem instalar nada. 100% gratuito e privado."
+    },
+    "shopeeFix": {
+      "title": "Corrigir Etiquetas Shopee | ZPLMaster",
+      "h1": "Corretor de Imagens ZPL para Shopee",
+      "desc": "Cole o código ZPL da sua etiqueta Shopee, o sistema irá diagnosticar erros de bitmap e corrigir automaticamente o código com um clique. Gratuito e 100% no navegador."
+    },
+    "validator": {
+      "title": "Validador de Sintaxe ZPL | ZPLMaster",
+      "h1": "Validador de Sintaxe ZPL Online",
+      "desc": "Analise o seu código ZPL e identifique erros de estrutura, problemas semânticos e boas práticas de formatação. Gratuito e 100% no navegador."
+    }
+  },
+  "validator": {
+    "btnValidate": "VALIDAR",
+    "btnClear": "LIMPAR",
+    "statusValid": "Código Válido",
+    "statusWarning": "Atenção",
+    "statusInvalid": "Código Inválido",
+    "statusValidMsg": "Nenhum erro ou aviso encontrado. O código está pronto para uso.",
+    "layerStructure": "Erros de Estrutura",
+    "layerSemantic": "Avisos Semânticos",
+    "layerBestPractice": "Boas Práticas",
+    "E001": "Tag de abertura `^XA` não encontrada",
+    "E002": "Tag de fechamento `^XZ` não encontrada",
+    "E003": "`^XA` aparece após `^XZ` — estrutura invertida",
+    "E004": "Gráfico referenciado (`^XGR`) sem definição (`~DGR`) no código",
+    "W001": "Imagem inline (`^GFA`) sem dimensões de página (`^PW`/`^LL`) — pode desconfigurara impressora",
+    "W002": "Formato `^GFB` detectado — incompatível com Shopee e algumas impressoras",
+    "W003": "Origem da imagem (`^FO`) não está em 0,0 — pode causar deslocamento visual",
+    "W004": "{count} blocos de etiqueta (`^XA...^XZ`) detectados no código",
+    "W005": "Bloco de etiqueta aberto (`^XA`) sem fechamento (`^XZ`) correspondente",
+    "I001": "Recomendado definir dimensões de página explícitas (`^PW` e `^LL`)",
+    "I002": "Considere definir o comportamento de mídia com `^MN`",
+    "I003": "Quantidade de impressão (`^PQ`) diferente de 1 — verifique se intencional"
+  }
+}
