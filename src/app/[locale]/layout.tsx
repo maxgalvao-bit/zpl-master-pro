@@ -8,6 +8,9 @@ export const metadata: Metadata = {
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { GoogleAnalytics } from '../../components/GoogleAnalytics';
 
 export default async function RootLayout({
   children,
@@ -21,9 +24,12 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className="antialiased font-sans bg-background text-foreground transition-colors duration-300">
+      <body className="antialiased font-sans bg-background text-foreground transition-colors duration-300 flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
+          <GoogleAnalytics />
+          <Header />
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,116 +1,103 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, usePathname } from "../../i18n/routing";
-import { useLocale, useTranslations } from "next-intl";
-import { Link } from "../../i18n/routing";
-import ZplEditor from "../../components/ZplEditor";
+import { useTranslations } from "next-intl";
 import ToolGrid from "../../components/ToolGrid";
 
 export default function Home() {
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const ui = useTranslations("ui");
-
-  const switchLocale = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale });
-  };
-
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200 font-sans flex flex-col selection:bg-amber-500/30">
-
-      {/* Header Minimalista */}
-      <header className="bg-slate-950 border-b border-slate-800/50 py-3 px-6 xl:px-8 flex justify-between items-center z-50">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 bg-amber-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-            <svg className="w-5 h-5 text-slate-950" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-            </svg>
-          </div>
-          <span className="font-black text-lg tracking-tight text-white uppercase group-hover:text-amber-400 transition-colors">ZPLMaster</span>
-        </Link>
-
-        {/* Seletor de Idiomas em Pill */}
-        <div className="flex bg-slate-800 rounded-full border border-slate-700/50 overflow-hidden shadow-sm">
-          {[
-            { id: 'pt-br', label: 'PT' },
-            { id: 'en', label: 'EN' },
-            { id: 'es', label: 'ES' },
-            { id: 'zh', label: 'ZH' }
-          ].map(language => (
-            <button
-              key={language.id}
-              onClick={() => switchLocale(language.id)}
-              className={`px-4 py-1.5 text-[11px] font-black transition-all duration-200 ${
-                locale === language.id
-                  ? 'bg-slate-700 text-amber-400'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
-              }`}
-            >
-              {language.label}
-            </button>
-          ))}
-        </div>
-      </header>
-
-      {/* Main Container */}
       <main className="max-w-[1600px] w-full mx-auto p-4 md:p-6 lg:p-8 flex-1 flex flex-col gap-10">
 
-        {/* PUBLICIDADE - TOP AD */}
-        <div className="w-full h-[90px] rounded-[24px] border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center overflow-hidden">
-          <p className="text-[12px] font-bold tracking-widest text-slate-500 uppercase">{ui("adTop")}</p>
+        {/* Hero Section */}
+        <HeroSection />
+
+        {/* Grade de Ferramentas */}
+        <div id="ferramentas">
+          <ToolGrid />
         </div>
 
-        {/* Editor & Visualização */}
-        <div className="w-full">
-          <ZplEditorLocalized />
-        </div>
-
-        {/* Grade de Ferramentas + Footer */}
-        <ToolGrid />
+        {/* Pillars */}
+        <PillarsSection />
 
       </main>
     </div>
   );
 }
 
-// Sub-component to use useTranslations inside the client tree
-function ZplEditorLocalized() {
-  const editor = useTranslations("editor");
-  const ui = useTranslations("ui");
+function HeroSection() {
+  const t = useTranslations("homepage");
 
-  // Build the t prop shape that ZplEditor currently requires
-  const t = {
-    editor: {
-      placeholder: editor("placeholder"),
-      renderButton: editor("renderButton"),
-      previewTitle: editor("previewTitle"),
-      dropZone: editor("dropZone"),
-      errorMsg: editor("errorMsg"),
-      labelsRendered: (count: number) => editor("labelsRendered", { count }),
-      btnThermalPrint: editor("btnThermalPrint"),
-      btnPdf4x6: editor("btnPdf4x6"),
-      btnPdfA4: editor("btnPdfA4"),
-      processing: editor("processing"),
-      clear: editor("clear"),
-      renderSingle: editor("renderSingle"),
-      renderMulti: (count: number) => editor("renderMulti", { count }),
-    },
-    ui: {
-      codeEditor: ui("codeEditor"),
-      loadZplFile: ui("loadZplFile"),
-      renderLabelsBtn: ui("renderLabelsBtn"),
-      toolsSectionTitle: ui("toolsSectionTitle"),
-      privacyGuarantee: ui("privacyGuarantee"),
-      adTop: ui("adTop"),
-      adSidebar: ui("adSidebar"),
-      waitingZpl: ui("waitingZpl"),
-      ecommerceUltimate: ui("ecommerceUltimate"),
-      reportError: ui("reportError"),
-      clearCode: ui("clearCode"),
-    },
+  const scrollToTools = () => {
+    document.getElementById("ferramentas")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return <ZplEditor t={t} />;
+  const badges = [
+    t("badge1"), t("badge2"), t("badge3"), t("badge4"), t("badge5")
+  ];
+
+  return (
+    <section className="flex flex-col items-center text-center gap-6 py-8 md:py-12">
+      <span className="text-[11px] font-black tracking-widest text-amber-400 uppercase border border-amber-400/30 bg-amber-400/10 px-4 py-1.5 rounded-full">
+        {t("eyebrow")}
+      </span>
+
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight max-w-3xl tracking-tight">
+        {t("h1")}
+      </h1>
+
+      <p className="text-slate-400 text-base md:text-lg max-w-2xl leading-relaxed">
+        {t("subtitle")}
+      </p>
+
+      <div className="flex flex-wrap justify-center gap-2 mt-2">
+        {badges.map((badge, i) => (
+          <span
+            key={i}
+            className="text-[10px] font-bold tracking-widest text-slate-400 uppercase border border-slate-700 bg-slate-800/60 px-3 py-1 rounded-full"
+          >
+            {badge}
+          </span>
+        ))}
+      </div>
+
+      <button
+        onClick={scrollToTools}
+        className="mt-2 bg-amber-400 text-slate-950 font-black text-sm tracking-widest uppercase px-8 py-4 rounded-full shadow-[0_0_24px_rgba(251,191,36,0.4)] hover:shadow-[0_0_36px_rgba(251,191,36,0.6)] hover:bg-amber-300 transition-all"
+      >
+        {t("ctaBtn")} ↓
+      </button>
+    </section>
+  );
 }
+
+function PillarsSection() {
+  const t = useTranslations("homepage");
+
+  const pillars = [
+    { title: t("pillar1Title"), desc: t("pillar1Desc"), icon: "⚡" },
+    { title: t("pillar2Title"), desc: t("pillar2Desc"), icon: "🔒" },
+    { title: t("pillar3Title"), desc: t("pillar3Desc"), icon: "🧰" },
+    { title: t("pillar4Title"), desc: t("pillar4Desc"), icon: "🎁" },
+  ];
+
+  return (
+    <section className="py-6">
+      <h2 className="text-[11px] font-black tracking-widest text-slate-500 uppercase text-center mb-8">
+        {t("pillarsSectionTitle")}
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pillars.map((p, i) => (
+          <div
+            key={i}
+            className="bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 flex flex-col gap-3 hover:border-amber-400/30 transition-colors"
+          >
+            <span className="text-2xl">{p.icon}</span>
+            <h3 className="font-medium text-white tracking-normal" style={{ fontSize: "15px" }}>{p.title}</h3>
+            <p className="text-sm text-slate-400 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+

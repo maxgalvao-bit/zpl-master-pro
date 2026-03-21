@@ -2,21 +2,6 @@
   "title": "ZPLMaster Pro",
   "welcome": "Hello, ZPLMaster!",
   "copyright": "© 2026 G-Max Solutions. All rights reserved.",
-  "shopeeFixer": {
-    "btnDiagnose": "DIAGNOSE",
-    "btnFix": "FIX CODE",
-    "btnCopy": "COPY FIXED CODE",
-    "btnCopied": "COPIED!",
-    "statusOkTitle": "No Errors Found",
-    "statusOkMsg": "The label has no detected bitmap errors. Ready to print.",
-    "statusWarnTitle": "Warning: Large Images",
-    "statusWarnMsg": "The label contains large GFA images. This may cause slowness on Shopee.",
-    "statusErrorTitle": "Critical Bitmap Error",
-    "statusErrorMsg": "Incompatible GFB bitmap for Shopee detected. Fix before printing.",
-    "invalidFormatTitle": "Invalid ZPL Code",
-    "invalidFormatMsg": "Incomplete or invalid ZPL code. Make sure to copy the entire original text (must contain ^XA and ^XZ).",
-    "btnValidator": "Analyze in Syntax Validator"
-  },
   "shopeeFix": {
     "statusTitles": {
       "green": "Green Status",
@@ -90,21 +75,24 @@
   "explore": {
     "title": "Explore Tools",
     "toolZplPdf": "ZPL to PDF Converter",
-    "toolZplPdfDesc": "Convert ZPL code to 4x6 or A4 PDF.",
+    "toolZplPdfDesc": "Convert ZPL code to 4×6 or A4 PDF. Supports multiple labels in batch.",
     "toolShopeeFix": "Shopee Image Fix",
-    "toolShopeeFixDesc": "Fix giant bitmaps and resize Shopee labels.",
+    "toolShopeeFixDesc": "Fixes giant Shopee labels. Detects and adjusts ^PW and ^LL automatically by DPI.",
     "toolValidator": "ZPL Syntax Validator",
-    "toolValidatorDesc": "Check for syntax errors in ZPL code.",
+    "toolValidatorDesc": "Validates ZPL code line by line. Detects errors, warnings and suggests fixes with examples.",
     "toolSplitter": "Bulk Splitter",
-    "toolSplitterDesc": "Split files with multiple labels.",
+    "toolSplitterDesc": "Splits ZPL files with multiple labels into individual files. Exports ZIP with PDFs.",
     "toolLabelBuilder": "Label Builder",
-    "toolLabelBuilderDesc": "Create transport labels without writing ZPL.",
+    "toolLabelBuilderDesc": "Create transport labels without writing ZPL. Multiple packages, logo and batch export.",
     "active": "Active",
     "comingSoon": "Coming soon",
     "supportProject": "Support the Project",
     "supportDesc": "Help keep the tool online.",
     "premiumTitle": "ZPLMaster Premium",
     "premiumDesc": "Advanced features and no ads.",
+    "premiumBadge": "Premium",
+    "moreComingTitle": "More tools",
+    "moreComingDesc": "New features in development.",
     "adSidebar": "ADVERTISEMENT - SIDEBAR AD"
   },
   "seo": {
@@ -127,7 +115,32 @@
       "title": "ZPL Label Builder | ZPLMaster",
       "h1": "Online ZPL Label Builder",
       "desc": "Create transport, shipping and logistics labels without writing code. Generate PDF and ZPL ready for printing."
+    },
+    "bulkSplitter": {
+      "title": "ZPL Bulk Splitter | ZPLMaster",
+      "h1": "ZPL Bulk Label Splitter",
+      "desc": "Split ZPL files containing multiple labels into individual blocks. Download all at once as a ZIP or copy each one. Free and 100% in-browser."
     }
+  },
+  "bulkSplitter": {
+    "inputLabel": "Paste ZPL with multiple labels",
+    "placeholder": "^XA\n...\n^XZ\n^XA\n...\n^XZ",
+    "btnSplit": "SPLIT",
+    "btnClear": "CLEAR",
+    "btnUpload": "Load .zpl / .txt",
+    "btnSplitCount": "SPLIT {count} LABELS",
+    "btnDownloadAll": "Download all (.zip)",
+    "btnDownloadZpl": "ZIP (ZPL)",
+    "btnDownloadPdf": "ZIP (PDF)",
+    "btnCopy": "Copy",
+    "btnCopied": "Copied!",
+    "generatingPdf": "Generating PDFs...",
+    "dropHint": "or drag a .zpl / .txt file here",
+    "counter": "{count, plural, =1 {1 label found} other {# labels found}}",
+    "labelNum": "Label #{num}",
+    "empty": "No ^XA/^XZ label blocks found.",
+    "crossSell": "Validate each label's syntax with the",
+    "crossSellLink": "ZPL Syntax Validator"
   },
   "validator": {
     "fix": {
@@ -283,5 +296,51 @@
       "saving": "Draft saved automatically",
       "exporting": "Exporting..."
     }
+  },
+  "homepage": {
+    "eyebrow": "ZPL tools for e-commerce",
+    "h1": "Solve your ZPL label problems in seconds",
+    "subtitle": "Visualize, fix, validate and generate ZPL labels directly in the browser — no installation, no data sent to servers.",
+    "ctaBtn": "Explore tools",
+    "badge1": "100% in-browser",
+    "badge2": "Shopee & Mercado Livre",
+    "badge3": "Zebra printers",
+    "badge4": "Free",
+    "badge5": "4 languages",
+    "pillarsSectionTitle": "Why ZPL Master Pro",
+    "pillar1Title": "Instant",
+    "pillar1Desc": "100% browser-side processing. No upload, no waiting.",
+    "pillar2Title": "Full privacy",
+    "pillar2Desc": "No label data is transmitted or stored on servers.",
+    "pillar3Title": "All in one place",
+    "pillar3Desc": "Validator, fixer, splitter and converter — one platform.",
+    "pillar4Title": "Free",
+    "pillar4Desc": "Core tools always free. No sign-up required.",
+    "metaTitle": "ZPL Master Pro — ZPL Tools for E-commerce",
+    "metaDesc": "Convert, fix, validate and generate ZPL labels for Shopee and Mercado Livre. 100% in-browser, free and no sign-up required."
+  },
+  "header": {
+    "navTools": "Tools",
+    "navPremium": "Premium"
+  },
+  "footer": {
+    "copyright": "© 2026 G-Max Solutions · ZPLMaster Pro v1.5",
+    "privacy": "Privacy",
+    "terms": "Terms of Use",
+    "reportError": "Report Error"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This tool processes all data locally in the user's browser.",
+    "local": "No label data or ZPL code is transmitted or stored on our servers. All processing is 100% volatile and local.",
+    "analytics": "Anonymous usage data may be collected via Google Analytics for continuous product improvement.",
+    "contact": "Contact: to be defined."
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "intro": "The ZPL Master Pro tool is provided without express or implied warranties.",
+    "free": "Use is free for personal and commercial purposes.",
+    "prohibited": "Use for illegal purposes or purposes that violate third-party rights is prohibited.",
+    "copyright": "© 2026 G-Max Solutions. All rights reserved."
   }
 }

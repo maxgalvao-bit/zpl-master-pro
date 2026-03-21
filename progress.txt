@@ -1,5 +1,18 @@
 # Progress Tracker (ZPLMaster)
 
+## Ciclo Realizado: Homepage, Header Global, Footer Global, Páginas Legais (2026-03-21)
+- **Header.tsx**: Componente global sticky com logo, nav ("Ferramentas" → âncora #ferramentas), seletor de idiomas pill. Integrado em layout.tsx.
+- **Footer.tsx**: Componente global com copyright, links para Privacidade/Termos/Reportar Erro, e privacy guarantee banner. Integrado em layout.tsx.
+- **layout.tsx**: Atualizado para incluir Header e Footer globais em todas as páginas.
+- **Homepage (page.tsx)**: Reescrita como landing page com HeroSection (eyebrow, h1, subtitle, badges, CTA scroll), ZplEditor, ToolGrid, PillarsSection (4 pilares: Instantâneo, Privacidade, Tudo-em-um, Gratuito).
+- **Páginas legais**: /privacidade e /termos criadas (server components) com generateMetadata e i18n. Rotas adicionadas em routing.ts.
+- **ToolGrid**: Removido footer embutido (agora global), adicionado cartão "Mais em breve" (disabled), Label Builder com borda dourada + badge "Premium".
+- **i18n**: Namespaces homepage, header, footer, privacy, terms adicionados nos 4 locales (pt-br, en, es, zh).
+- **Build**: Limpo (0 erros TypeScript, 9 rotas geradas).
+- **Aprendizado**: Ao mover footer de ToolGrid para layout.tsx, remover imports não-utilizados (ShieldCheck) e a const t = useTranslations() raiz para evitar erros de TS.
+
+
+
 ## Ciclo Realizado: Fase 3 - Boilerplate e i18n
 *   **Limpeza Next.js:** Os arquivos base `page.tsx`, `layout.tsx` e `globals.css` foram recriados com estrutura limpa e interceptação simples focado n UI.
 *   **TailwindCSS Configurado:** As variáveis base da estética G-Max foram definidas no `tailwind.config.ts` (cores e grids baseados na cor slate/blue e estilizações de botões shadow-xl e rounded-3xl preparadas para uso futuro).
@@ -21,6 +34,25 @@
 
 ## Ciclo Realizado: Action Bar e Motor PDF (ExportEngine)
 *   **Serviço Agnóstico (ExportEngine):** Classes estáticas construídas usando o `jspdf` via `window.print` (Termal) e download instantâneo (PDF A4 - Calculado Grid 2x2 centrado - e PDF 4x6 unitário). Tudo estritamente contido no navegador para proteção de dados do cliente G-Max.
-*   **UI Adicionada:** Interface Action Bar instalada com contador dinâmico de labels rastreado no payload, embutida no rodápé de preview do ZplEditor. Strings foram atreladas e atualizadas simultaneamente por todo o array JSON da invariante i18n (`pt-br`, `es`, `en`, `zh`).
+*   **UI Adicionada:** Interface- [x] Action: Preview/Validation (Lógica e Engine reimplementados via ZplValidator.ts).
 *   **Ajustes Críticos de UX (PDF e Preview):** Escalou-se a matemática do grid A4 para 95x142mm evitando cortes na sangria física da impressora de destino. A UI de print Térmico foi equipada com self-destroy no `onafterprint()`. O ZplEditor recebeu Loading States robustos e bloqueio preventivo de múltiplos gatilhos simultâneos. Botões ganharam peso G-Max (height/padding aumentados e SVGs nativos).
 *   **Correção de Layout (Action Bar):** Os botões que estavam preenchendo erraticamente a tela foram contidos em um Grid Responsivo CSS (`grid-cols-3`). Os ícones SVG internos também receberam classes puristas rigorosas (`w-6 h-6 flex-shrink-0 mr-2`) para impedi-los de vazar e corromper o painel de ZPL View.
+
+## Ciclo Realizado: Reescrita do ZPL Validator (Fase 4 - Atualização)
+*   **Correção de Falso Positivo (E004):** O engine de validação foi totalmente reimplementado e extraído para `src/services/ZplValidator.ts`. A nova lógica utiliza um parser de tokens para garantir que cada `^FD` possua um `^FS` correspondente, mesmo na mesma linha.
+*   **Níveis de Severidade (E, W, I):** Implementou-se a separação rigorosa entre Erros (Vermelho), Avisos (Amarelo) e Informações (Verde), conforme a Directive 03.
+*   **i18n Expandido:** Os 4 arquivos de tradução (`pt-br`, `es`, `en`, `zh`) foram atualizados com novas chaves para detalhamento de erros estruturais, avisos semânticos e boas práticas.
+*   **Refatoração de Componente:** O `ZplValidator.tsx` foi simplificado para consumir o novo serviço, incluindo exibição de contexto do erro e agrupamento por categoria.
+
+## Ciclo Realizado: Label Builder (Directive 05 — Etiqueta de Transporte)
+*   **Arquivos criados:** `src/types/label.types.ts`, `src/hooks/useCpfCnpjMask.ts`, `src/services/LabelGenerator.ts`, `src/services/LabelBuilderStorage.ts`, `src/services/LabelTemplates.ts`, `src/components/label-builder/` (TemplateSelector, FormDadosFixos, FormVolumes, VolumeRow, LabelPreview, ExportBar, simbolos.ts), `src/app/[locale]/tools/label-builder/page.tsx` e `LabelBuilderWrapper.tsx`.
+*   **Funcionalidades:** Formulário visual para etiquetas de transporte com remetente, destinatário, NF, volumes (peso, descrição, indicadores fragil/cima/chuva/inflamável), preview SVG em tempo real, exportação PDF (via ZplEngine + ExportEngine) e ZPL, salvamento automático em localStorage com debounce 500ms.
+*   **i18n:** Chaves `labelBuilder` e `seo.labelBuilder` adicionadas nos 4 idiomas (pt-br, en, es, zh). Rota `/tools/label-builder` configurada em routing.ts. Card no ToolGrid.
+
+## Ciclo Realizado: Label Builder — 6 correções (encoding, preview, PDF, logo)
+*   **LabelGenerator:** `^CI28` após `^XA`; rodapé em 2 linhas; `sanitizeFd`; logo `^GFA` via `logoZplFragment`; bloco indicadores omitido se vazio; texto remetente deslocado quando há logo.
+*   **encodeLogoForZpl.ts:** Canvas → monocromático → `^GFA` (240×120 dots máx.).
+*   **LabelBuilderPdf.ts:** PDF 100×150 mm com jsPDF (helvetica); endereços ≥9pt; margem direita 10mm; rodapé 2 linhas com `splitTextToSize`; indicadores em caixas com `drawRect` + ícone Path2D em canvas + label.
+*   **LabelPreview:** Layout flex/coluna com gaps, sem sobreposição; logo opcional; indicadores só se houver seleção.
+*   **FormDadosFixos:** Upload de logo (base64 + fragmento ZPL); chaves i18n `logo`, `logoHint`, `removeLogo`.
+*   **ExportBar:** PDF via `generateLabelBuilderPdf` (não mais ZPL→PNG).

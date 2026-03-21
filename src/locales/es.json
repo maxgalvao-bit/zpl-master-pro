@@ -2,21 +2,6 @@
   "title": "ZPLMaster Pro",
   "welcome": "¡Hola, ZPLMaster!",
   "copyright": "© 2026 G-Max Solutions. Todos los derechos reservados.",
-  "shopeeFixer": {
-    "btnDiagnose": "DIAGNOSTICAR",
-    "btnFix": "CORREGIR",
-    "btnCopy": "COPIAR CÓDIGO CORREGIDO",
-    "btnCopied": "¡COPIADO!",
-    "statusOkTitle": "Sin Errores",
-    "statusOkMsg": "La etiqueta no tiene errores de bitmap. Lista para imprimir.",
-    "statusWarnTitle": "Advertencia: Imágenes Grandes",
-    "statusWarnMsg": "La etiqueta contiene imágenes GFA grandes. Puede causar lentitud en Shopee.",
-    "statusErrorTitle": "Error Crítico de Bitmap",
-    "statusErrorMsg": "Bitmap GFB incompatible con Shopee detectado. Corríjalo antes de imprimir.",
-    "invalidFormatTitle": "Código ZPL Inválido",
-    "invalidFormatMsg": "Código ZPL incompleto o inválido. Asegúrate de copiar todo el texto original (debe contener ^XA y ^XZ).",
-    "btnValidator": "Analizar en Validador de Sintaxis"
-  },
   "shopeeFix": {
     "statusTitles": {
       "green": "Estado Verde",
@@ -90,21 +75,24 @@
   "explore": {
     "title": "Explorar Herramientas",
     "toolZplPdf": "ZPL to PDF Converter",
-    "toolZplPdfDesc": "Convertir código ZPL a PDF 4x6 o A4.",
+    "toolZplPdfDesc": "Convierte código ZPL a PDF 4×6 o A4. Admite múltiples etiquetas en lote.",
     "toolShopeeFix": "Shopee Image Fix",
-    "toolShopeeFixDesc": "Corregir mapas de bits gigantes y redimensionar etiquetas de Shopee.",
+    "toolShopeeFixDesc": "Corrige etiquetas gigantes de Shopee. Detecta y ajusta ^PW y ^LL automáticamente por DPI.",
     "toolValidator": "ZPL Syntax Validator",
-    "toolValidatorDesc": "Verificar errores de sintaxis en el código ZPL.",
+    "toolValidatorDesc": "Valida el código ZPL línea por línea. Detecta errores, avisos y sugiere correcciones con ejemplos.",
     "toolSplitter": "Bulk Splitter",
-    "toolSplitterDesc": "Dividir archivos con múltiples etiquetas.",
+    "toolSplitterDesc": "Divide archivos ZPL con múltiples etiquetas en archivos individuales. Exporta ZIP con PDFs.",
     "toolLabelBuilder": "Label Builder",
-    "toolLabelBuilderDesc": "Cree etiquetas de transporte sin escribir ZPL.",
+    "toolLabelBuilderDesc": "Cree etiquetas de transporte sin escribir ZPL. Múltiples paquetes, logo y exportación en lote.",
     "active": "Activo",
     "comingSoon": "Próximamente",
     "supportProject": "Apoya el Proyecto",
     "supportDesc": "Ayuda a mantener la herramienta en línea.",
     "premiumTitle": "ZPLMaster Premium",
     "premiumDesc": "Funciones avanzadas y sin anuncios.",
+    "premiumBadge": "Premium",
+    "moreComingTitle": "Más herramientas",
+    "moreComingDesc": "Nuevas funciones en desarrollo.",
     "adSidebar": "PUBLICIDAD - SIDEBAR AD"
   },
   "seo": {
@@ -127,7 +115,32 @@
       "title": "Label Builder ZPL | ZPLMaster",
       "h1": "Constructor de Etiquetas ZPL Online",
       "desc": "Crea etiquetas de transporte, envío y logística sin escribir código. Genera PDF y ZPL listos para imprimir."
+    },
+    "bulkSplitter": {
+      "title": "Divisor de Etiquetas ZPL | ZPLMaster",
+      "h1": "Divisor Masivo de Etiquetas ZPL",
+      "desc": "Separa archivos ZPL con múltiples etiquetas en bloques individuales. Descarga todos como ZIP o copia cada uno. Gratis y 100% en el navegador."
     }
+  },
+  "bulkSplitter": {
+    "inputLabel": "Pega el ZPL con múltiples etiquetas",
+    "placeholder": "^XA\n...\n^XZ\n^XA\n...\n^XZ",
+    "btnSplit": "DIVIDIR",
+    "btnClear": "LIMPIAR",
+    "btnUpload": "Cargar .zpl / .txt",
+    "btnSplitCount": "DIVIDIR {count} ETIQUETAS",
+    "btnDownloadAll": "Descargar todas (.zip)",
+    "btnDownloadZpl": "ZIP (ZPL)",
+    "btnDownloadPdf": "ZIP (PDF)",
+    "btnCopy": "Copiar",
+    "btnCopied": "¡Copiado!",
+    "generatingPdf": "Generando PDFs...",
+    "dropHint": "o arrastra un archivo .zpl / .txt aquí",
+    "counter": "{count, plural, =1 {1 etiqueta encontrada} other {# etiquetas encontradas}}",
+    "labelNum": "Etiqueta #{num}",
+    "empty": "No se encontraron bloques ^XA/^XZ.",
+    "crossSell": "Valida la sintaxis de cada etiqueta con el",
+    "crossSellLink": "Validador de Sintaxis ZPL"
   },
   "validator": {
     "fix": {
@@ -283,5 +296,51 @@
       "saving": "Borrador guardado automáticamente",
       "exporting": "Exportando..."
     }
+  },
+  "homepage": {
+    "eyebrow": "Herramientas ZPL para e-commerce",
+    "h1": "Resuelve tus problemas de etiquetas ZPL en segundos",
+    "subtitle": "Visualiza, corrige, valida y genera etiquetas ZPL directamente en el navegador — sin instalación, sin enviar datos a servidores.",
+    "ctaBtn": "Explorar herramientas",
+    "badge1": "100% en el navegador",
+    "badge2": "Shopee & Mercado Libre",
+    "badge3": "Impresoras Zebra",
+    "badge4": "Gratis",
+    "badge5": "4 idiomas",
+    "pillarsSectionTitle": "Por qué ZPL Master Pro",
+    "pillar1Title": "Instantáneo",
+    "pillar1Desc": "Procesamiento 100% en el navegador. Sin carga, sin espera.",
+    "pillar2Title": "Privacidad total",
+    "pillar2Desc": "Ningún dato de etiqueta es transmitido o almacenado en servidores.",
+    "pillar3Title": "Todo en un lugar",
+    "pillar3Desc": "Validador, corrector, divisor y convertidor — una sola plataforma.",
+    "pillar4Title": "Gratis",
+    "pillar4Desc": "Herramientas principales siempre gratis. Sin registro.",
+    "metaTitle": "ZPL Master Pro — Herramientas ZPL para E-commerce",
+    "metaDesc": "Convierte, corrige, valida y genera etiquetas ZPL para Shopee y Mercado Libre. 100% en el navegador, gratis y sin registro."
+  },
+  "header": {
+    "navTools": "Herramientas",
+    "navPremium": "Premium"
+  },
+  "footer": {
+    "copyright": "© 2026 G-Max Solutions · ZPLMaster Pro v1.5",
+    "privacy": "Privacidad",
+    "terms": "Términos de Uso",
+    "reportError": "Reportar Error"
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "intro": "Esta herramienta procesa todos los datos localmente en el navegador del usuario.",
+    "local": "Ningún dato de etiqueta o código ZPL es transmitido o almacenado en nuestros servidores. Todo el procesamiento es 100% volátil y local.",
+    "analytics": "Datos de uso anónimos pueden ser recopilados mediante Google Analytics para la mejora continua del producto.",
+    "contact": "Contacto: a definir."
+  },
+  "terms": {
+    "title": "Términos de Uso",
+    "intro": "La herramienta ZPL Master Pro se proporciona sin garantías expresas o implícitas.",
+    "free": "El uso es gratuito para fines personales y comerciales.",
+    "prohibited": "Está prohibido el uso para fines ilegales o que violen los derechos de terceros.",
+    "copyright": "© 2026 G-Max Solutions. Todos los derechos reservados."
   }
 }

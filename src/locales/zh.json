@@ -2,21 +2,6 @@
   "title": "ZPLMaster Pro",
   "welcome": "你好，ZPLMaster！",
   "copyright": "© 2026 G-Max Solutions。版权所有。",
-  "shopeeFixer": {
-    "btnDiagnose": "诊断",
-    "btnFix": "修复代码",
-    "btnCopy": "复制已修复代码",
-    "btnCopied": "已复制！",
-    "statusOkTitle": "未发现错误",
-    "statusOkMsg": "标签没有检测到位图错误，准备打印。",
-    "statusWarnTitle": "警告：图像过大",
-    "statusWarnMsg": "标签包含大型 GFA 图像，可能导致 Shopee 打印缓慢。",
-    "statusErrorTitle": "位图严重错误",
-    "statusErrorMsg": "检测到与 Shopee 不兼容的 GFB 位图，请修复后再打印。",
-    "invalidFormatTitle": "ZPL代码无效",
-    "invalidFormatMsg": "ZPL代码不完整或无效。请确保复制完整的原始文本（必须包含 ^XA 和 ^XZ）。",
-    "btnValidator": "在语法验证器中分析"
-  },
   "shopeeFix": {
     "statusTitles": {
       "green": "绿色状态",
@@ -90,21 +75,24 @@
   "explore": {
     "title": "探索工具",
     "toolZplPdf": "ZPL to PDF Converter",
-    "toolZplPdfDesc": "将 ZPL 代码转换为 4x6 或 A4 PDF。",
+    "toolZplPdfDesc": "将ZPL代码转换为4×6或A4 PDF。支持批量多标签。",
     "toolShopeeFix": "Shopee Image Fix",
-    "toolShopeeFixDesc": "修复巨大的位图并调整 Shopee 标签大小。",
+    "toolShopeeFixDesc": "修复超大Shopee标签。按DPI自动检测并调整^PW和^LL。",
     "toolValidator": "ZPL Syntax Validator",
-    "toolValidatorDesc": "检查 ZPL 代码中的语法错误。",
+    "toolValidatorDesc": "逐行验证ZPL代码。检测错误、警告并提供带示例的修复建议。",
     "toolSplitter": "Bulk Splitter",
-    "toolSplitterDesc": "分割包含多个标签的文件。",
+    "toolSplitterDesc": "将含多个标签的ZPL文件拆分为单独文件。导出含PDF的ZIP压缩包。",
     "toolLabelBuilder": "Label Builder",
-    "toolLabelBuilderDesc": "无需编写ZPL即可创建运输标签。",
+    "toolLabelBuilderDesc": "无需编写ZPL即可创建运输标签。支持多件包裹、Logo和批量导出。",
     "active": "活跃",
     "comingSoon": "快来了",
     "supportProject": "支持项目",
     "supportDesc": "帮助保持工具在线。",
     "premiumTitle": "ZPLMaster Premium",
     "premiumDesc": "高级功能且无广告。",
+    "premiumBadge": "高级版",
+    "moreComingTitle": "更多工具",
+    "moreComingDesc": "新功能正在开发中。",
     "adSidebar": "广告 - 侧边栏广告"
   },
   "seo": {
@@ -127,7 +115,32 @@
       "title": "ZPL标签构建器 | ZPLMaster",
       "h1": "在线ZPL标签构建器",
       "desc": "无需编写代码即可创建运输、发货和物流标签。生成可打印的PDF和ZPL。"
+    },
+    "bulkSplitter": {
+      "title": "ZPL批量分割工具 | ZPLMaster",
+      "h1": "ZPL标签批量分割工具",
+      "desc": "将包含多个标签的ZPL文件拆分为独立块。一键下载ZIP压缩包或单独复制。免费且全在浏览器内运行。"
     }
+  },
+  "bulkSplitter": {
+    "inputLabel": "粘贴包含多个标签的ZPL代码",
+    "placeholder": "^XA\n...\n^XZ\n^XA\n...\n^XZ",
+    "btnSplit": "分割",
+    "btnClear": "清除",
+    "btnUpload": "加载 .zpl / .txt",
+    "btnSplitCount": "分割 {count} 个标签",
+    "btnDownloadAll": "下载全部 (.zip)",
+    "btnDownloadZpl": "ZIP (ZPL)",
+    "btnDownloadPdf": "ZIP (PDF)",
+    "btnCopy": "复制",
+    "btnCopied": "已复制！",
+    "generatingPdf": "正在生成PDF...",
+    "dropHint": "或将 .zpl / .txt 文件拖放至此",
+    "counter": "{count, plural, other {找到 # 个标签}}",
+    "labelNum": "标签 #{num}",
+    "empty": "未找到 ^XA/^XZ 标签块。",
+    "crossSell": "使用以下工具验证每个标签的语法：",
+    "crossSellLink": "ZPL语法验证器"
   },
   "validator": {
     "fix": {
@@ -283,5 +296,51 @@
       "saving": "草稿已自动保存",
       "exporting": "导出中..."
     }
+  },
+  "homepage": {
+    "eyebrow": "电商ZPL标签工具",
+    "h1": "几秒内解决您的ZPL标签问题",
+    "subtitle": "直接在浏览器中可视化、修复、验证和生成ZPL标签 — 无需安装，无需向服务器发送数据。",
+    "ctaBtn": "探索工具",
+    "badge1": "100%浏览器内处理",
+    "badge2": "Shopee & Mercado Livre",
+    "badge3": "Zebra打印机",
+    "badge4": "免费",
+    "badge5": "4种语言",
+    "pillarsSectionTitle": "为什么选择ZPL Master Pro",
+    "pillar1Title": "即时处理",
+    "pillar1Desc": "100%浏览器端处理。无需上传，无需等待。",
+    "pillar2Title": "完全隐私",
+    "pillar2Desc": "标签数据不会传输或存储在服务器上。",
+    "pillar3Title": "一站式平台",
+    "pillar3Desc": "验证器、修复器、分割器和转换器 — 集于一体。",
+    "pillar4Title": "免费",
+    "pillar4Desc": "核心工具永久免费。无需注册。",
+    "metaTitle": "ZPL Master Pro — 电商ZPL标签工具",
+    "metaDesc": "为Shopee和Mercado Livre转换、修复、验证和生成ZPL标签。100%浏览器内处理，免费无需注册。"
+  },
+  "header": {
+    "navTools": "工具",
+    "navPremium": "Premium"
+  },
+  "footer": {
+    "copyright": "© 2026 G-Max Solutions · ZPLMaster Pro v1.5",
+    "privacy": "隐私政策",
+    "terms": "使用条款",
+    "reportError": "报告错误"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "intro": "本工具在用户浏览器中本地处理所有数据。",
+    "local": "没有标签数据或ZPL代码被传输或存储在我们的服务器上。所有处理均100%本地且易失性。",
+    "analytics": "可能通过Google Analytics收集匿名使用数据，用于持续改进产品。",
+    "contact": "联系方式：待定。"
+  },
+  "terms": {
+    "title": "使用条款",
+    "intro": "ZPL Master Pro工具不提供明示或暗示的任何保证。",
+    "free": "个人和商业用途均可免费使用。",
+    "prohibited": "禁止用于非法目的或侵犯第三方权利的目的。",
+    "copyright": "© 2026 G-Max Solutions。保留所有权利。"
   }
 }

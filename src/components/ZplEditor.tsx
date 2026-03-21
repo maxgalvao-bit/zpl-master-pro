@@ -3,6 +3,7 @@
 import React, { useState, DragEvent, ChangeEvent, useRef } from "react";
 import { ZplEngine, ZplProcessResult } from "../services/ZplEngine";
 import { ExportEngine } from "../services/ExportEngine";
+import { trackEvent } from "../lib/analytics";
 
 interface ZplEditorProps {
   t: {
@@ -218,13 +219,13 @@ export default function ZplEditor({ t, value, onChange }: ZplEditorProps) {
                        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base tracking-wider font-bold uppercase">{t.editor.btnThermalPrint}</p>
                      </button>
                      <button
-                      onClick={() => ExportEngine.generatePdf4x6(result!.labels!)}
+                      onClick={() => { ExportEngine.generatePdf4x6(result!.labels!); trackEvent('export_pdf', 'zpl_converter'); }}
                       className="flex w-full items-center justify-center bg-slate-800 text-slate-300 border border-slate-700 font-bold tracking-wide rounded-full py-4 shadow-[0_0_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(0,0,0,0.6)] hover:bg-slate-700 hover:text-white transition-all cursor-pointer"
                      >
                        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base tracking-wider font-bold uppercase">{t.editor.btnPdf4x6}</p>
                      </button>
                      <button
-                      onClick={() => ExportEngine.generatePdfA4(result!.labels!)}
+                      onClick={() => { ExportEngine.generatePdfA4(result!.labels!); trackEvent('export_pdf', 'zpl_converter'); }}
                       className="flex w-full items-center justify-center bg-slate-800 text-slate-300 border border-slate-700 font-bold tracking-wide rounded-full py-4 shadow-[0_0_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(0,0,0,0.6)] hover:bg-slate-700 hover:text-white transition-all cursor-pointer"
                      >
                        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base tracking-wider font-bold uppercase">{t.editor.btnPdfA4}</p>
@@ -249,9 +250,11 @@ export default function ZplEditor({ t, value, onChange }: ZplEditorProps) {
         </div>
 
         {/* PUBLICIDADE - SIDEBAR AD */}
-        <div className="w-full h-[90px] rounded-[20px] border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-           <p className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t.ui.adSidebar}</p>
-        </div>
+        {process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true' && (
+          <div className="w-full h-[90px] rounded-[20px] border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+            <p className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t.ui.adSidebar}</p>
+          </div>
+        )}
       </div>
 
     </div>

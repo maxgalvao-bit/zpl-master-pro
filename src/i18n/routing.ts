@@ -23,6 +23,36 @@ export const routing = defineRouting({
       en: '/tools/zpl-syntax-validator',
       es: '/herramientas/validador-de-sintaxis-zpl',
       zh: '/tools/zpl-syntax-validator'
+    },
+    '/tools/label-builder': {
+      'pt-br': '/ferramentas/construtor-de-etiquetas',
+      en: '/tools/label-builder',
+      es: '/herramientas/constructor-de-etiquetas',
+      zh: '/tools/label-builder'
+    },
+    '/tools/bulk-splitter': {
+      'pt-br': '/ferramentas/divisor-de-etiquetas',
+      en: '/tools/bulk-splitter',
+      es: '/herramientas/divisor-de-etiquetas',
+      zh: '/tools/bulk-splitter'
+    },
+    '/privacidade': {
+      'pt-br': '/privacidade',
+      en: '/privacy',
+      es: '/privacidad',
+      zh: '/privacy'
+    },
+    '/termos': {
+      'pt-br': '/termos',
+      en: '/terms',
+      es: '/terminos',
+      zh: '/terms'
+    },
+    '/premium': {
+      'pt-br': '/premium',
+      en: '/premium',
+      es: '/premium',
+      zh: '/premium'
     }
   }
 });

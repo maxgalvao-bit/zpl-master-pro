@@ -20,10 +20,11 @@
 
 --------------------------------------------------
 ### FASE 4: ESTILO (Regras de Negócio e Processamento ZPL)
-- [x] Action: Preview/Validation (Lógica para injetar e ler o raw_zpl na UI).
-- [ ] Action: Fix & Heurística ZPL (Shopee Fixer, Bitmaps e Escala para 100mm).
-- [ ] Action: ZPL Splitter (Bulk Split de massa ZPL).
+- [x] Action: Preview/Validation (Engine reescrito e validado)
+- [x] Action: Fix & Heurística ZPL (Shopee Fixer, Bitmaps e Escala para 100mm).
+- [x] Action: ZPL Splitter (Bulk Split de massa ZPL).
 - [x] Action: Export PDF (Geração client-side do pdf_data para A4).
+- [x] Action: Label Builder (Ferramenta Premium — Etiqueta de Transporte, directive 05).
 
 --------------------------------------------------
 ### FASE 5: GATILHO (Testes Finais e Entrega)

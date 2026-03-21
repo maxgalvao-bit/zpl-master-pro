@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { validateZpl, type ValidationIssue, type ValidationResult, type Severity } from "../services/ZplValidator";
 import { autoFix } from "../services/ZplFixer";
+import { trackEvent } from "../lib/analytics";
 
 const FIXABLE_CODES = ['E004', 'W001', 'W004', 'W005', 'I001'];
 
@@ -98,13 +99,13 @@ export default function ZplValidator() {
   const [code, setCode] = useState('');
   const [result, setResult] = useState<ValidationResult | null>(null);
 
-  const handleValidate = () => setResult(validateZpl(code));
+  const handleValidate = () => { setResult(validateZpl(code)); trackEvent('zpl_validated', 'validator'); };
   const handleClear = () => {
     setCode('');
     setResult(null);
   };
 
-  const estruturaValida = !result?.issues.some(i => ['E001', 'E002', 'E003'].includes(i.code)) ?? true;
+  const estruturaValida = result ? !result.issues.some(i => ['E001', 'E002', 'E003'].includes(i.code)) : true;
   const temCorrigiveis = result?.issues.some(i => FIXABLE_CODES.includes(i.code)) ?? false;
   const hasUnfixableErrors = result?.issues.some(
     issue => issue.severity === 'E' && !FIXABLE_CODES.includes(issue.code)
@@ -117,6 +118,7 @@ export default function ZplValidator() {
     const newResult = validateZpl(corrected);
     setCode(corrected);
     setResult(newResult);
+    trackEvent('auto_fixed', 'validator');
   };
 
   const handleCopy = async () => {
