@@ -17,6 +17,38 @@
     "invalidFormatMsg": "Incomplete or invalid ZPL code. Make sure to copy the entire original text (must contain ^XA and ^XZ).",
     "btnValidator": "Analyze in Syntax Validator"
   },
+  "shopeeFix": {
+    "statusTitles": {
+      "green": "Green Status",
+      "yellow": "Yellow Status",
+      "red": "Red Status"
+    },
+    "result": {
+      "correct": "Label is within Shopee specifications. No correction required.",
+      "missingDimensions": "Missing dimensions. Click Fix to add the correct ^PW and ^LL.",
+      "wrongDimensions": "Wrong dimensions for the selected DPI. Click Fix to adjust.",
+      "invalidStructure": "Invalid ZPL code — missing ^XA or ^XZ. Use the Syntax Validator for full diagnostics."
+    },
+    "buttons": {
+      "analyze": "ANALYZE",
+      "fix": "AUTO FIX",
+      "copy": "COPY FIXED ZPL",
+      "copied": "COPIED!",
+      "download": "DOWNLOAD FIXED .ZPL"
+    },
+    "crossSell": {
+      "validator": "Your ZPL has structural errors. Use the Syntax Validator for complete diagnostics."
+    },
+    "dpiSelector": {
+      "label": "Printer DPI",
+      "hint203": "203 DPI — Zebra ZD220, ZD230 (most common)",
+      "hint300": "300 DPI — Zebra ZD421, ZT230"
+    },
+    "dimensions": {
+      "found": "Found: ^PW{pw} ^LL{ll}",
+      "expected": "Expected: ^PW{pw} ^LL{ll}"
+    }
+  },
   "tools": {
     "homeEditor": "Home / Editor",
     "syntaxValidator": "Syntax Validator",
@@ -65,6 +97,8 @@
     "toolValidatorDesc": "Check for syntax errors in ZPL code.",
     "toolSplitter": "Bulk Splitter",
     "toolSplitterDesc": "Split files with multiple labels.",
+    "toolLabelBuilder": "Label Builder",
+    "toolLabelBuilderDesc": "Create transport labels without writing ZPL.",
     "active": "Active",
     "comingSoon": "Coming soon",
     "supportProject": "Support the Project",
@@ -88,9 +122,28 @@
       "title": "ZPL Syntax Validator | ZPLMaster",
       "h1": "Free Online ZPL Syntax Validator",
       "desc": "Analyze your ZPL code and identify structural errors, semantic issues and formatting best practices. Free and 100% in-browser."
+    },
+    "labelBuilder": {
+      "title": "ZPL Label Builder | ZPLMaster",
+      "h1": "Online ZPL Label Builder",
+      "desc": "Create transport, shipping and logistics labels without writing code. Generate PDF and ZPL ready for printing."
     }
   },
   "validator": {
+    "fix": {
+      "button": "Fix automatically",
+      "buttonWithCodes": "Fix automatic errors (E004, W001...)",
+      "manualNote": "Structural errors (E001, E002, E003) require manual correction.",
+      "buttonShort": "Fix",
+      "success": "Code fixed successfully",
+      "copy": "Copy corrected code",
+      "download": "Download corrected .zpl",
+      "tooltip": "Automatically fixes: ^FD fields without ^FS, negative coordinates and missing dimensions"
+    },
+    "layout": {
+      "inputLabel": "Paste your ZPL code",
+      "resultLabel": "Validation result"
+    },
     "btnValidate": "VALIDATE",
     "btnClear": "CLEAR",
     "statusValid": "Valid Code",
@@ -100,17 +153,135 @@
     "layerStructure": "Structure Errors",
     "layerSemantic": "Semantic Warnings",
     "layerBestPractice": "Best Practices",
-    "E001": "Opening tag `^XA` not found",
-    "E002": "Closing tag `^XZ` not found",
-    "E003": "`^XA` appears after `^XZ` — inverted structure",
-    "E004": "Graphic referenced (`^XGR`) without definition (`~DGR`) in the code",
-    "W001": "Inline image (`^GFA`) without page dimensions (`^PW`/`^LL`) — may misconfigure the printer",
-    "W002": "`^GFB` format detected — incompatible with Shopee and some printers",
-    "W003": "Image origin (`^FO`) is not at 0,0 — may cause visual offset",
-    "W004": "{count} label blocks (`^XA...^XZ`) detected in the code",
-    "W005": "Open label block (`^XA`) without a matching closing tag (`^XZ`)",
-    "I001": "Recommended: define explicit page dimensions (`^PW` and `^LL`)",
-    "I002": "Consider defining media handling behavior with `^MN`",
-    "I003": "Print quantity (`^PQ`) is not 1 — verify if intentional"
+    "errors": {
+      "E001": "Tag ^XA (start of label) not found",
+      "E002": "Tag ^XZ (end of label) not found",
+      "E003": "^XA appears after ^XZ — inverted order",
+      "E004": "^FD without matching ^FS — field not closed (line {line})",
+      "E005": "Incomplete barcode block — missing ^FD or ^FS",
+      "E006": "Multiple ^XA detected without ^XZ between them — use Bulk Splitter"
+    },
+    "warnings": {
+      "W001": "Negative coordinates in ^FO — field may be outside the label",
+      "W002": "Unrecognized font in ^CF",
+      "W003": "Inconsistent ^GF image size",
+      "W004": "Commands after ^XZ will be ignored by the printer",
+      "W005": "^PQ0 — zero quantity, nothing will be printed"
+    },
+    "info": {
+      "I001": "Recommended: define ^PW and ^LL (label dimensions)",
+      "I002": "No ^FD fields found — label has no content",
+      "I003": "Encoding not declared — printer will use default"
+    },
+    "help": {
+      "toggle": "How to fix?",
+      "incorrect": "Incorrect",
+      "correct": "Correct",
+      "generic": {
+        "explanation": "Review this line structure and adjust the commands according to ZPL syntax."
+      },
+      "codes": {
+        "E001": {
+          "explanation": "^XA starts the label. Without it, the printer cannot parse the block correctly.",
+          "incorrect": "^FO50,50^FDText^FS^XZ",
+          "correct": "^XA\n^FO50,50^FDText^FS\n^XZ"
+        },
+        "E002": {
+          "explanation": "^XZ ends the label. Without it, the ZPL is incomplete.",
+          "incorrect": "^XA\n^FO50,50^FDText^FS",
+          "correct": "^XA\n^FO50,50^FDText^FS\n^XZ"
+        },
+        "E003": {
+          "explanation": "Order is inverted: ^XA must come first and ^XZ must come last.",
+          "incorrect": "^XZ\n^FO50,50^FDText^FS\n^XA",
+          "correct": "^XA\n^FO50,50^FDText^FS\n^XZ"
+        },
+        "E004": {
+          "explanation": "Every field opened with ^FD must be closed with ^FS.",
+          "incorrect": "^FO50,50^FDUnclosed text",
+          "correct": "^FO50,50^FDText^FS"
+        },
+        "E005": {
+          "explanation": "Barcode commands need data (^FD) and a field close (^FS).",
+          "incorrect": "^FO50,50^BC^XZ",
+          "correct": "^FO50,50^BC^FDCode^FS"
+        },
+        "E006": {
+          "explanation": "This file contains multiple labels pasted together. Split them before validating individually.",
+          "incorrect": "^XA...^XZ\n^XA...^XZ",
+          "correct": "Split each label into a separate block/file",
+          "bulkSplitterCta": "Open Bulk Splitter"
+        },
+        "W001": {
+          "explanation": "Negative coordinates can place content outside printable area.",
+          "incorrect": "^FO-10,50^FDText^FS",
+          "correct": "^FO0,50^FDText^FS"
+        },
+        "W004": {
+          "explanation": "Anything after ^XZ is ignored by the printer.",
+          "incorrect": "^XA^FDText^FS^XZ^CF0,30",
+          "correct": "Remove everything after ^XZ"
+        },
+        "W005": {
+          "explanation": "^PQ0 sets quantity to zero, so nothing is printed.",
+          "incorrect": "^PQ0",
+          "correct": "^PQ1 (or remove it — default is 1)"
+        },
+        "I001": {
+          "explanation": "Without ^PW/^LL, the printer uses defaults and label size may be wrong.",
+          "incorrect": "^XA\n^FO50,50^FDText^FS\n^XZ",
+          "correct": "^XA\n^PW812\n^LL1218\n^FO50,50^FDText^FS\n^XZ"
+        }
+      }
+    }
+  },
+  "labelBuilder": {
+    "title": "ZPL Label Builder",
+    "description": "Create professional labels without knowing ZPL",
+    "layout": {
+      "resultLabel": "Preview"
+    },
+    "previewEmpty": "Fill in the form to preview",
+    "templates": {
+      "transporte": {
+        "nome": "Transport label",
+        "descricao": "For shipments with invoice, multiple packages and handling indicators"
+      }
+    },
+    "form": {
+      "logo": "Company logo",
+      "logoHint": "PNG or JPG, max 30×15 mm on label",
+      "removeLogo": "Remove logo",
+      "remetente": "Sender",
+      "destinatario": "Recipient",
+      "empresa": "Company",
+      "cnpj": "CNPJ",
+      "endereco": "Address",
+      "nome": "Name",
+      "cpfCnpj": "CPF / CNPJ",
+      "cidade": "City",
+      "uf": "State",
+      "cep": "ZIP",
+      "notaFiscal": "Invoice",
+      "totalVolumes": "Number of packages",
+      "pesoIgual": "Same weight for all",
+      "pesoGlobal": "Weight (kg) — all packages",
+      "volume": "Package",
+      "peso": "Weight (kg)",
+      "descricao": "Product description",
+      "indicadores": "Handling indicators"
+    },
+    "indicadores": {
+      "fragil": "Fragile",
+      "cima": "This side up",
+      "chuva": "Protect from rain",
+      "inflamavel": "Flammable"
+    },
+    "export": {
+      "pdf": "Export PDF",
+      "zpl": "Export ZPL",
+      "saving": "Draft saved automatically",
+      "exporting": "Exporting..."
+    }
   }
 }

@@ -17,6 +17,38 @@
     "invalidFormatMsg": "ZPL代码不完整或无效。请确保复制完整的原始文本（必须包含 ^XA 和 ^XZ）。",
     "btnValidator": "在语法验证器中分析"
   },
+  "shopeeFix": {
+    "statusTitles": {
+      "green": "绿色状态",
+      "yellow": "黄色状态",
+      "red": "红色状态"
+    },
+    "result": {
+      "correct": "标签符合 Shopee 规格，无需修复。",
+      "missingDimensions": "缺少尺寸。点击修复以添加正确的 ^PW 和 ^LL。",
+      "wrongDimensions": "所选 DPI 的尺寸不正确。点击修复进行调整。",
+      "invalidStructure": "ZPL 代码无效：缺少 ^XA 或 ^XZ。请使用语法验证器进行完整诊断。"
+    },
+    "buttons": {
+      "analyze": "分析",
+      "fix": "自动修复",
+      "copy": "复制修复后的 ZPL",
+      "copied": "已复制！",
+      "download": "下载修复后的 .ZPL"
+    },
+    "crossSell": {
+      "validator": "你的 ZPL 存在结构错误。请使用语法验证器进行完整诊断。"
+    },
+    "dpiSelector": {
+      "label": "打印机 DPI",
+      "hint203": "203 DPI — Zebra ZD220、ZD230（最常见）",
+      "hint300": "300 DPI — Zebra ZD421、ZT230"
+    },
+    "dimensions": {
+      "found": "检测到：^PW{pw} ^LL{ll}",
+      "expected": "期望值：^PW{pw} ^LL{ll}"
+    }
+  },
   "tools": {
     "homeEditor": "主页 / 编辑器",
     "syntaxValidator": "语法验证器",
@@ -65,6 +97,8 @@
     "toolValidatorDesc": "检查 ZPL 代码中的语法错误。",
     "toolSplitter": "Bulk Splitter",
     "toolSplitterDesc": "分割包含多个标签的文件。",
+    "toolLabelBuilder": "Label Builder",
+    "toolLabelBuilderDesc": "无需编写ZPL即可创建运输标签。",
     "active": "活跃",
     "comingSoon": "快来了",
     "supportProject": "支持项目",
@@ -88,9 +122,28 @@
       "title": "ZPL语法验证器 | ZPLMaster",
       "h1": "免费在线ZPL语法验证器",
       "desc": "分析您的ZPL代码，识别结构错误、语义问题和格式最佳实践。免费且全在浏览器内运行。"
+    },
+    "labelBuilder": {
+      "title": "ZPL标签构建器 | ZPLMaster",
+      "h1": "在线ZPL标签构建器",
+      "desc": "无需编写代码即可创建运输、发货和物流标签。生成可打印的PDF和ZPL。"
     }
   },
   "validator": {
+    "fix": {
+      "button": "自动修复",
+      "buttonWithCodes": "自动修复错误 (E004, W001...)",
+      "manualNote": "结构性错误 (E001, E002, E003) 需要手动修正。",
+      "buttonShort": "修复",
+      "success": "代码已成功修复",
+      "copy": "复制已修复的代码",
+      "download": "下载已修复的 .zpl",
+      "tooltip": "自动修复：缺少 ^FS 的 ^FD 字段、负坐标和缺失的尺寸"
+    },
+    "layout": {
+      "inputLabel": "粘贴您的 ZPL 代码",
+      "resultLabel": "验证结果"
+    },
     "btnValidate": "验证",
     "btnClear": "清除",
     "statusValid": "代码有效",
@@ -100,17 +153,135 @@
     "layerStructure": "结构错误",
     "layerSemantic": "语义警告",
     "layerBestPractice": "最佳实践",
-    "E001": "未找到开始标签 `^XA`",
-    "E002": "未找到结束标签 `^XZ`",
-    "E003": "`^XA` 出现在 `^XZ` 之后 — 结构颠倒",
-    "E004": "引用了图形 (`^XGR`)，但代码中没有对应定义 (`~DGR`)",
-    "W001": "内嵌图像 (`^GFA`) 没有页面尺寸 (`^PW`/`^LL`) — 可能导致打印机设置错误",
-    "W002": "检测到 `^GFB` 格式 — 与 Shopee 及部分打印机不兼容",
-    "W003": "图像起点 (`^FO`) 不在 0,0 — 可能导致视觉偏移",
-    "W004": "代码中检测到 {count} 个标签块 (`^XA...^XZ`)",
-    "W005": "标签块已开启 (`^XA`) 但缺少对应的关闭标签 (`^XZ`)",
-    "I001": "建议明确定义页面尺寸 (`^PW` 和 `^LL`)",
-    "I002": "建议使用 `^MN` 定义介质处理行为",
-    "I003": "打印数量 (`^PQ`) 不为 1 — 请确认是否有意为之"
+    "errors": {
+      "E001": "未找到 ^XA 标签（标签开始）",
+      "E002": "未找到 ^XZ 标签（标签结束）",
+      "E003": "^XA 出现在 ^XZ 之后 — 顺序颠倒",
+      "E004": "^FD 缺少对应的 ^FS — 字段未关闭（第 {line} 行）",
+      "E005": "条形码块不完整 — 缺少 ^FD 或 ^FS",
+      "E006": "检测到多个 ^XA 且中间没有 ^XZ — 请使用批量分割器"
+    },
+    "warnings": {
+      "W001": "^FO 中的坐标为负数 — 字段可能会落在标签外",
+      "W002": "^CF 中的字体未识别",
+      "W003": "^GF 图像大小不一致",
+      "W004": "^XZ 之后的命令将被打印机忽略",
+      "W005": "^PQ0 — 数量为零，将不会打印任何内容"
+    },
+    "info": {
+      "I001": "建议：定义 ^PW 和 ^LL（标签尺寸）",
+      "I002": "未找到 ^FD 字段 — 标签没有内容",
+      "I003": "编码未声明 — 打印机将使用默认值"
+    },
+    "help": {
+      "toggle": "如何修复？",
+      "incorrect": "错误示例",
+      "correct": "正确示例",
+      "generic": {
+        "explanation": "请检查该行结构，并按 ZPL 语法调整命令。"
+      },
+      "codes": {
+        "E001": {
+          "explanation": "^XA 是标签起始命令。缺少它会导致打印机无法正确解析。",
+          "incorrect": "^FO50,50^FD文本^FS^XZ",
+          "correct": "^XA\n^FO50,50^FD文本^FS\n^XZ"
+        },
+        "E002": {
+          "explanation": "^XZ 是标签结束命令。缺少它会导致 ZPL 不完整。",
+          "incorrect": "^XA\n^FO50,50^FD文本^FS",
+          "correct": "^XA\n^FO50,50^FD文本^FS\n^XZ"
+        },
+        "E003": {
+          "explanation": "顺序反了：^XA 必须在前，^XZ 必须在最后。",
+          "incorrect": "^XZ\n^FO50,50^FD文本^FS\n^XA",
+          "correct": "^XA\n^FO50,50^FD文本^FS\n^XZ"
+        },
+        "E004": {
+          "explanation": "每个 ^FD 开启的字段都必须用 ^FS 结束。",
+          "incorrect": "^FO50,50^FD未闭合文本",
+          "correct": "^FO50,50^FD文本^FS"
+        },
+        "E005": {
+          "explanation": "条码命令需要数据 (^FD) 和字段结束 (^FS)。",
+          "incorrect": "^FO50,50^BC^XZ",
+          "correct": "^FO50,50^BC^FDCode^FS"
+        },
+        "E006": {
+          "explanation": "该文件包含多张粘在一起的标签。请先拆分后再逐个验证。",
+          "incorrect": "^XA...^XZ\n^XA...^XZ",
+          "correct": "将每张标签拆分为单独的块/文件",
+          "bulkSplitterCta": "打开 Bulk Splitter"
+        },
+        "W001": {
+          "explanation": "负坐标会导致内容超出可打印区域。",
+          "incorrect": "^FO-10,50^FD文本^FS",
+          "correct": "^FO0,50^FD文本^FS"
+        },
+        "W004": {
+          "explanation": "^XZ 之后的命令会被打印机忽略。",
+          "incorrect": "^XA^FD文本^FS^XZ^CF0,30",
+          "correct": "删除 ^XZ 之后的所有内容"
+        },
+        "W005": {
+          "explanation": "^PQ0 表示打印数量为 0，因此不会打印。",
+          "incorrect": "^PQ0",
+          "correct": "^PQ1（或删除该命令，默认值为 1）"
+        },
+        "I001": {
+          "explanation": "缺少 ^PW/^LL 时，打印机会使用默认尺寸，可能导致标签尺寸错误。",
+          "incorrect": "^XA\n^FO50,50^FD文本^FS\n^XZ",
+          "correct": "^XA\n^PW812\n^LL1218\n^FO50,50^FD文本^FS\n^XZ"
+        }
+      }
+    }
+  },
+  "labelBuilder": {
+    "title": "ZPL标签构建器",
+    "description": "无需了解ZPL即可创建专业标签",
+    "layout": {
+      "resultLabel": "预览"
+    },
+    "previewEmpty": "填写表单以预览",
+    "templates": {
+      "transporte": {
+        "nome": "运输标签",
+        "descricao": "适用于带发票、多件包裹和搬运标识的货运"
+      }
+    },
+    "form": {
+      "logo": "公司标志",
+      "logoHint": "PNG 或 JPG，标签上最大约 30×15 mm",
+      "removeLogo": "移除标志",
+      "remetente": "发件人",
+      "destinatario": "收件人",
+      "empresa": "公司",
+      "cnpj": "CNPJ",
+      "endereco": "地址",
+      "nome": "姓名",
+      "cpfCnpj": "CPF / CNPJ",
+      "cidade": "城市",
+      "uf": "省/州",
+      "cep": "邮政编码",
+      "notaFiscal": "发票",
+      "totalVolumes": "包裹数量",
+      "pesoIgual": "所有包裹重量相同",
+      "pesoGlobal": "重量 (kg) — 所有包裹",
+      "volume": "包裹",
+      "peso": "重量 (kg)",
+      "descricao": "产品描述",
+      "indicadores": "搬运标识"
+    },
+    "indicadores": {
+      "fragil": "易碎",
+      "cima": "此面向上",
+      "chuva": "防潮",
+      "inflamavel": "易燃"
+    },
+    "export": {
+      "pdf": "导出PDF",
+      "zpl": "导出ZPL",
+      "saving": "草稿已自动保存",
+      "exporting": "导出中..."
+    }
   }
 }

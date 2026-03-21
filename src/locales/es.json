@@ -17,6 +17,38 @@
     "invalidFormatMsg": "Código ZPL incompleto o inválido. Asegúrate de copiar todo el texto original (debe contener ^XA y ^XZ).",
     "btnValidator": "Analizar en Validador de Sintaxis"
   },
+  "shopeeFix": {
+    "statusTitles": {
+      "green": "Estado Verde",
+      "yellow": "Estado Amarillo",
+      "red": "Estado Rojo"
+    },
+    "result": {
+      "correct": "La etiqueta está dentro de las especificaciones de Shopee. No se requiere corrección.",
+      "missingDimensions": "Faltan dimensiones. Haz clic en Corregir para agregar ^PW y ^LL correctos.",
+      "wrongDimensions": "Dimensiones incorrectas para el DPI seleccionado. Haz clic en Corregir para ajustar.",
+      "invalidStructure": "Código ZPL inválido: falta ^XA o ^XZ. Usa el Validador de Sintaxis para el diagnóstico completo."
+    },
+    "buttons": {
+      "analyze": "ANALIZAR",
+      "fix": "CORREGIR AUTOMÁTICAMENTE",
+      "copy": "COPIAR ZPL CORREGIDO",
+      "copied": "¡COPIADO!",
+      "download": "DESCARGAR .ZPL CORREGIDO"
+    },
+    "crossSell": {
+      "validator": "Tu ZPL tiene errores estructurales. Usa el Validador de Sintaxis para un diagnóstico completo."
+    },
+    "dpiSelector": {
+      "label": "DPI de tu impresora",
+      "hint203": "203 DPI — Zebra ZD220, ZD230 (más común)",
+      "hint300": "300 DPI — Zebra ZD421, ZT230"
+    },
+    "dimensions": {
+      "found": "Encontrado: ^PW{pw} ^LL{ll}",
+      "expected": "Esperado: ^PW{pw} ^LL{ll}"
+    }
+  },
   "tools": {
     "homeEditor": "Inicio / Editor",
     "syntaxValidator": "Validador de Sintaxis",
@@ -65,6 +97,8 @@
     "toolValidatorDesc": "Verificar errores de sintaxis en el código ZPL.",
     "toolSplitter": "Bulk Splitter",
     "toolSplitterDesc": "Dividir archivos con múltiples etiquetas.",
+    "toolLabelBuilder": "Label Builder",
+    "toolLabelBuilderDesc": "Cree etiquetas de transporte sin escribir ZPL.",
     "active": "Activo",
     "comingSoon": "Próximamente",
     "supportProject": "Apoya el Proyecto",
@@ -88,9 +122,28 @@
       "title": "Validador de Sintaxis ZPL | ZPLMaster",
       "h1": "Validador de Sintaxis ZPL Online Gratuito",
       "desc": "Analiza tu código ZPL e identifica errores de estructura, problemas semánticos y buenas prácticas de formato. Gratis y 100% en el navegador."
+    },
+    "labelBuilder": {
+      "title": "Label Builder ZPL | ZPLMaster",
+      "h1": "Constructor de Etiquetas ZPL Online",
+      "desc": "Crea etiquetas de transporte, envío y logística sin escribir código. Genera PDF y ZPL listos para imprimir."
     }
   },
   "validator": {
+    "fix": {
+      "button": "Corregir automáticamente",
+      "buttonWithCodes": "Corregir errores automáticos (E004, W001...)",
+      "manualNote": "Los errores estructurales (E001, E002, E003) requieren corrección manual.",
+      "buttonShort": "Corregir",
+      "success": "Código corregido con éxito",
+      "copy": "Copiar código corregido",
+      "download": "Descargar .zpl corregido",
+      "tooltip": "Corrige automáticamente: campos ^FD sin ^FS, coordenadas negativas y dimensiones ausentes"
+    },
+    "layout": {
+      "inputLabel": "Pega tu código ZPL",
+      "resultLabel": "Resultado de la validación"
+    },
     "btnValidate": "VALIDAR",
     "btnClear": "LIMPIAR",
     "statusValid": "Código Válido",
@@ -100,17 +153,135 @@
     "layerStructure": "Errores de Estructura",
     "layerSemantic": "Advertencias Semánticas",
     "layerBestPractice": "Buenas Prácticas",
-    "E001": "Etiqueta de apertura `^XA` no encontrada",
-    "E002": "Etiqueta de cierre `^XZ` no encontrada",
-    "E003": "`^XA` aparece después de `^XZ` — estructura invertida",
-    "E004": "Gráfico referenciado (`^XGR`) sin definición (`~DGR`) en el código",
-    "W001": "Imagen en línea (`^GFA`) sin dimensiones de página (`^PW`/`^LL`) — puede desconfigurar la impresora",
-    "W002": "Formato `^GFB` detectado — incompatible con Shopee y algunas impresoras",
-    "W003": "El origen de la imagen (`^FO`) no está en 0,0 — puede causar desplazamiento visual",
-    "W004": "{count} bloques de etiqueta (`^XA...^XZ`) detectados en el código",
-    "W005": "Bloque de etiqueta abierto (`^XA`) sin cierre (`^XZ`) correspondiente",
-    "I001": "Recomendado: definir dimensiones de página explícitas (`^PW` y `^LL`)",
-    "I002": "Considera definir el comportamiento de medios con `^MN`",
-    "I003": "Cantidad de impresión (`^PQ`) diferente de 1 — verifica si es intencional"
+    "errors": {
+      "E001": "Etiqueta ^XA (inicio de etiqueta) no encontrada",
+      "E002": "Etiqueta ^XZ (fin de etiqueta) no encontrada",
+      "E003": "^XA aparece después de ^XZ — orden invertido",
+      "E004": "^FD sin ^FS correspondiente — campo no cerrado (línea {line})",
+      "E005": "Bloque de código de barras incompleto — falta ^FD o ^FS",
+      "E006": "Múltiples ^XA detectados sin ^XZ entre ellos — use el Divisor Masivo"
+    },
+    "warnings": {
+      "W001": "Coordenadas negativas en ^FO — el campo pode quedar fuera de la etiqueta",
+      "W002": "Fuente no reconocida en ^CF",
+      "W003": "Tamaño de imagen ^GF inconsistente",
+      "W004": "Los comandos después de ^XZ serán ignorados por la impresora",
+      "W005": "^PQ0 — cantidad cero, no se imprimirá nada"
+    },
+    "info": {
+      "I001": "Recomendado: definir ^PW y ^LL (dimensiones de la etiqueta)",
+      "I002": "No se encontraron campos ^FD — la etiqueta no tiene contenido",
+      "I003": "Codificación no declarada — la impresora usará por defecto"
+    },
+    "help": {
+      "toggle": "¿Cómo corregir?",
+      "incorrect": "Incorrecto",
+      "correct": "Correcto",
+      "generic": {
+        "explanation": "Revisa la estructura de esta línea y ajusta los comandos según la sintaxis ZPL."
+      },
+      "codes": {
+        "E001": {
+          "explanation": "^XA marca el inicio de la etiqueta. Sin él, la impresora no interpreta bien el bloque.",
+          "incorrect": "^FO50,50^FDTexto^FS^XZ",
+          "correct": "^XA\n^FO50,50^FDTexto^FS\n^XZ"
+        },
+        "E002": {
+          "explanation": "^XZ cierra la etiqueta. Sin cierre, el ZPL queda incompleto.",
+          "incorrect": "^XA\n^FO50,50^FDTexto^FS",
+          "correct": "^XA\n^FO50,50^FDTexto^FS\n^XZ"
+        },
+        "E003": {
+          "explanation": "El orden está invertido: ^XA debe ir primero y ^XZ al final.",
+          "incorrect": "^XZ\n^FO50,50^FDTexto^FS\n^XA",
+          "correct": "^XA\n^FO50,50^FDTexto^FS\n^XZ"
+        },
+        "E004": {
+          "explanation": "Todo campo abierto con ^FD debe cerrarse con ^FS.",
+          "incorrect": "^FO50,50^FDTexto sin cerrar",
+          "correct": "^FO50,50^FDTexto^FS"
+        },
+        "E005": {
+          "explanation": "El código de barras necesita datos (^FD) y cierre de campo (^FS).",
+          "incorrect": "^FO50,50^BC^XZ",
+          "correct": "^FO50,50^BC^FDCodigo^FS"
+        },
+        "E006": {
+          "explanation": "Este archivo contiene varias etiquetas pegadas. Sepáralas antes de validar cada una.",
+          "incorrect": "^XA...^XZ\n^XA...^XZ",
+          "correct": "Separar cada etiqueta en un bloque/archivo independiente",
+          "bulkSplitterCta": "Abrir Bulk Splitter"
+        },
+        "W001": {
+          "explanation": "Las coordenadas negativas pueden colocar contenido fuera del área imprimible.",
+          "incorrect": "^FO-10,50^FDTexto^FS",
+          "correct": "^FO0,50^FDTexto^FS"
+        },
+        "W004": {
+          "explanation": "Todo lo que esté después de ^XZ será ignorado por la impresora.",
+          "incorrect": "^XA^FDTexto^FS^XZ^CF0,30",
+          "correct": "Eliminar todo lo que esté después de ^XZ"
+        },
+        "W005": {
+          "explanation": "^PQ0 establece cantidad cero, por lo que no se imprime nada.",
+          "incorrect": "^PQ0",
+          "correct": "^PQ1 (o eliminarlo — el valor por defecto es 1)"
+        },
+        "I001": {
+          "explanation": "Sin ^PW/^LL, la impresora usa valores por defecto y el tamaño puede salir mal.",
+          "incorrect": "^XA\n^FO50,50^FDTexto^FS\n^XZ",
+          "correct": "^XA\n^PW812\n^LL1218\n^FO50,50^FDTexto^FS\n^XZ"
+        }
+      }
+    }
+  },
+  "labelBuilder": {
+    "title": "Constructor de etiquetas ZPL",
+    "description": "Cree etiquetas profesionales sin conocer ZPL",
+    "layout": {
+      "resultLabel": "Vista previa"
+    },
+    "previewEmpty": "Complete el formulario para previsualizar",
+    "templates": {
+      "transporte": {
+        "nome": "Etiqueta de transporte",
+        "descricao": "Para envíos con factura, múltiples volúmenes e indicadores de manipulación"
+      }
+    },
+    "form": {
+      "logo": "Logo de la empresa",
+      "logoHint": "PNG o JPG, máx. 30×15 mm en la etiqueta",
+      "removeLogo": "Quitar logo",
+      "remetente": "Remitente",
+      "destinatario": "Destinatario",
+      "empresa": "Empresa",
+      "cnpj": "CNPJ",
+      "endereco": "Dirección",
+      "nome": "Nombre",
+      "cpfCnpj": "CPF / CNPJ",
+      "cidade": "Ciudad",
+      "uf": "Estado",
+      "cep": "CEP",
+      "notaFiscal": "Factura",
+      "totalVolumes": "Cantidad de volúmenes",
+      "pesoIgual": "Mismo peso para todos",
+      "pesoGlobal": "Peso (kg) — todos los volúmenes",
+      "volume": "Volumen",
+      "peso": "Peso (kg)",
+      "descricao": "Descripción del producto",
+      "indicadores": "Indicadores de manipulación"
+    },
+    "indicadores": {
+      "fragil": "Frágil",
+      "cima": "Este lado hacia arriba",
+      "chuva": "Proteger de la lluvia",
+      "inflamavel": "Inflamable"
+    },
+    "export": {
+      "pdf": "Exportar PDF",
+      "zpl": "Exportar ZPL",
+      "saving": "Borrador guardado automáticamente",
+      "exporting": "Exportando..."
+    }
   }
 }
