@@ -27,9 +27,7 @@ export default function Footer() {
             {t("terms")}
           </Link>
           <a
-            href="https://github.com/issues"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:suporte@zplmaster.com?subject=Reportar%20Erro%20-%20ZPL%20Master%20Pro&body=Descreva%20o%20erro%20encontrado%3A%0A%0APágina%3A%0ANavegador%3A"
             className="text-[11px] font-bold text-slate-500 hover:text-amber-400 transition-colors tracking-widest uppercase"
           >
             {t("reportError")}
