@@ -1,12 +1,44 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Link } from "../../../i18n/routing";
 import Script from "next/script";
 
+const BREVO_URL =
+  "https://3bb4fd44.sibforms.com/serve/MUIFAOj7XyS_0ZfmbTqK4_eviiTSlLKVJCiCKWVnk8InmT1Zh13qAu1Pi9hfue7ftL4s0NEM7LWhcf2DctZfRs1jhrY4U1XyuYH10SFnxSuGnJA3s2Od33IKgQpkPqSqHAGXWYG-WdaItEmaikf5Q3FOADDJokyZ-zMVG3EaihUP2-KyrMLETq8OKtTQutp4GDioJFUWCuZQraflPg==";
+
 export default function PremiumPage() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    (window as any).handleCaptchaResponse = (token: string) => {
+      setCaptchaToken(token);
+    };
+  }, []);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!captchaToken) return;
+    setStatus("loading");
+
+    try {
+      const formData = new FormData();
+      formData.append("EMAIL", email);
+      formData.append("email_address_check", "");
+      formData.append("locale", "pt");
+      formData.append("g-recaptcha-response", captchaToken);
+
+      await fetch(BREVO_URL, { method: "POST", body: formData });
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <>
-      {/* Estilos do Brevo */}
-      <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
-
       <div className="min-h-screen bg-slate-900 text-slate-200 font-sans flex flex-col items-center justify-center px-6">
         <div className="w-full max-w-md flex flex-col gap-8 text-center">
 
@@ -27,57 +59,58 @@ export default function PremiumPage() {
             </p>
           </div>
 
-          {/* Formulário Brevo nativo */}
-          <form
-            id="sib-form"
-            method="POST"
-            action="https://3bb4fd44.sibforms.com/serve/MUIFAOj7XyS_0ZfmbTqK4_eviiTSlLKVJCiCKWVnk8InmT1Zh13qAu1Pi9hfue7ftL4s0NEM7LWhcf2DctZfRs1jhrY4U1XyuYH10SFnxSuGnJA3s2Od33IKgQpkPqSqHAGXWYG-WdaItEmaikf5Q3FOADDJokyZ-zMVG3EaihUP2-KyrMLETq8OKtTQutp4GDioJFUWCuZQraflPg=="
-            data-type="subscription"
-            className="w-full max-w-md mx-auto flex flex-col gap-4"
-          >
-            <input
-              type="email"
-              id="EMAIL"
-              name="EMAIL"
-              required
-              placeholder="seu@email.com"
-              className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-yellow-500"
-            />
-
-            <div
-              className="g-recaptcha"
-              id="sib-captcha"
-              data-sitekey="6Le4pZMsAAAAAIcTPTzDczi9OYWXabYjPJC3nq56"
-              data-callback="handleCaptchaResponse"
-            />
-
-            <button
-              type="submit"
-              form="sib-form"
-              className="w-full py-3 px-6 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold rounded-xl transition-colors"
+          {/* Conteúdo por estado */}
+          {status === "success" ? (
+            <div className="text-center py-8">
+              <div className="text-5xl mb-4">✓</div>
+              <h3 className="text-xl font-bold text-yellow-500 mb-2">
+                Você está na lista!
+              </h3>
+              <p className="text-slate-300">
+                Avisaremos assim que o ZPLMaster Premium lançar.
+              </p>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="w-full max-w-md mx-auto flex flex-col gap-4"
             >
-              EU QUERO ACESSO ANTECIPADO
-            </button>
+              <input
+                type="email"
+                id="EMAIL"
+                name="EMAIL"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="seu@email.com"
+                className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-yellow-500"
+              />
 
-            <input type="text" name="email_address_check" defaultValue="" className="hidden" />
-            <input type="hidden" name="locale" value="pt" />
-          </form>
+              <div
+                className="g-recaptcha flex justify-center"
+                id="sib-captcha"
+                data-sitekey="6Le4pZMsAAAAAIcTPTzDczi9OYWXabYjPJC3nq56"
+                data-callback="handleCaptchaResponse"
+              />
 
-          {/* Mensagem de sucesso */}
-          <div
-            id="success-message"
-            className="hidden bg-emerald-900/40 border border-emerald-500/50 text-emerald-400 font-bold text-sm rounded-xl px-6 py-4"
-          >
-            ✓ Email registrado! Você será avisado no lançamento.
-          </div>
+              <button
+                type="submit"
+                disabled={status === "loading" || !captchaToken}
+                className="w-full py-3 px-6 bg-yellow-500 hover:bg-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 font-bold rounded-xl transition-colors"
+              >
+                {status === "loading" ? "Enviando..." : "EU QUERO ACESSO ANTECIPADO"}
+              </button>
 
-          {/* Mensagem de erro */}
-          <div
-            id="error-message"
-            className="hidden bg-red-900/40 border border-red-500/50 text-red-400 font-bold text-sm rounded-xl px-6 py-4"
-          >
-            ✗ Ocorreu um erro. Por favor, tente novamente.
-          </div>
+              {status === "error" && (
+                <p className="text-red-400 text-sm">
+                  Algo deu errado. Tente novamente ou envie um e-mail para{" "}
+                  <a href="mailto:suporte@zplmaster.com" className="underline">
+                    suporte@zplmaster.com
+                  </a>
+                </p>
+              )}
+            </form>
+          )}
 
           {/* Voltar */}
           <Link
@@ -89,21 +122,10 @@ export default function PremiumPage() {
         </div>
       </div>
 
-      {/* Scripts */}
       <Script
         src="https://www.google.com/recaptcha/api.js?hl=pt"
         strategy="afterInteractive"
       />
-      <Script
-        src="https://sibforms.com/forms/end-form/build/main.js"
-        strategy="afterInteractive"
-      />
-      <Script id="brevo-captcha-handler" strategy="afterInteractive">{`
-        function handleCaptchaResponse() {
-          var event = new Event('captchaChange');
-          document.getElementById('sib-captcha').dispatchEvent(event);
-        }
-      `}</Script>
     </>
   );
 }
