@@ -30,7 +30,7 @@ export default function PremiumPage() {
       formData.append("locale", "pt");
       formData.append("g-recaptcha-response", captchaToken);
 
-      await fetch(BREVO_URL, { method: "POST", body: formData });
+      await fetch(BREVO_URL, { method: "POST", body: formData, mode: "no-cors" });
       setStatus("success");
     } catch {
       setStatus("error");
