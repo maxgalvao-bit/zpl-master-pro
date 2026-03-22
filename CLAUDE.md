@@ -197,11 +197,23 @@ Após implementar qualquer ferramenta, **sempre valide via browser agent:**
 3. Verificar os 4 idiomas: `/pt-br/`, `/en/`, `/es/`, `/zh/`
 4. Checar console para erros de hidratação React
 
+### Fluxo de Branches
+- Todo desenvolvimento acontece na branch `develop`
+- **Nunca** fazer push direto para `main`
+- Para enviar para produção:
+  ```
+  git checkout main
+  git merge develop
+  git push origin main
+  git checkout develop
+  ```
+
 ### Terminal — Allow/Deny
 **Permitido executar sem revisão:**
 - `npm run dev`, `npm run build`, `npm run lint`
 - Scripts em `tools/` que não consomem APIs pagas
 - `git status`, `git diff`
+- `git checkout develop`, `git merge develop`, `git checkout main`
 
 **Requer aprovação antes de executar:**
 - `npm install [pacote]` — confirmar se pacote é necessário
