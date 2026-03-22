@@ -19,8 +19,8 @@ export default function PremiumPage() {
 
           {/* Título */}
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
-              ZPLMaster Premium — Em breve
+            <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight text-center">
+              ZPLMaster Premium<br />— Em breve
             </h1>
             <p className="text-slate-400 text-base leading-relaxed">
               Seja o primeiro a saber quando lançar.
