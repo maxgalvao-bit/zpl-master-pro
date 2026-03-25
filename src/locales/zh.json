@@ -96,20 +96,60 @@
     "adSidebar": "广告 - 侧边栏广告"
   },
   "seo": {
+    "howToTitle": "使用方法",
+    "faqTitle": "常见问题",
     "zplToPdf": {
-      "title": "ZPL转PDF转换器 | ZPLMaster",
+      "title": "免费在线ZPL转PDF转换工具 | ZPL PRO",
       "h1": "免费在线ZPL转PDF转换工具",
-      "desc": "将ZPL代码在几秒内转换为可打印的PDF文件。支持 4x6 热敏格式和 A4 格式，直接在浏览器中运行，无需安装。100%免费且私密。"
+      "desc": "免费将ZPL代码转换为4×6或A4格式PDF。ZPL PRO在线工具，支持Shopee、Mercado Livre和Zebra打印机。100%浏览器内运行。",
+      "intro": "无需安装任何程序，直接将ZPL代码转换为PDF。将代码粘贴到编辑器中，选择格式——热敏打印机用4×6或普通打印用A4——几秒内下载PDF。所有处理均在您的浏览器中进行，不向服务器发送任何数据。",
+      "step1": "将ZPL代码粘贴到编辑器中或拖入.zpl文件",
+      "step2": "选择格式：PDF 4×6（热敏标签）或PDF A4",
+      "step3": "点击渲染并下载PDF",
+      "faq1q": "什么是ZPL？",
+      "faq1a": "ZPL（Zebra编程语言）是Zebra热敏打印机用于创建条形码标签、快递标签和产品标签的语言。",
+      "faq2q": "需要安装任何程序吗？",
+      "faq2a": "不需要。转换器100%在浏览器中运行——Chrome、Firefox、Edge或Safari均可。无需安装或注册。",
+      "faq3q": "支持Shopee和Mercado Livre的标签吗？",
+      "faq3a": "支持。兼容Shopee、Mercado Livre、WooCommerce以及任何使用Zebra打印机的系统生成的ZPL格式。",
+      "faq4q": "每个文件的标签数量有限制吗？",
+      "faq4a": "没有限制。您可以一次转换包含数百个标签的文件。",
+      "faq5q": "我的数据安全吗？",
+      "faq5a": "是的。ZPL代码永远不会离开您的设备——所有处理均在浏览器本地进行。"
     },
     "shopeeFix": {
-      "title": "Shopee ZPL图像修复工具 | ZPLMaster",
+      "title": "修复Shopee ZPL标签 | ZPL PRO",
       "h1": "Shopee ZPL标签图像修复工具",
-      "desc": "粘贴您的Shopee标签 ZPL 代码，系统将诊断位图错误并一键自动修复代码。免费且全在浏览器内运行。"
+      "desc": "自动修复Shopee生成的超大ZPL标签。免费ZPL PRO工具，适用于使用Zebra ZD220和ZD230打印机的卖家。",
+      "intro": "自动修复Shopee生成的超大ZPL标签。问题发生在Shopee系统生成尺寸不正确的标签时——Zebra打印机接收代码后以错误尺寸打印或根本不打印。",
+      "step1": "将Shopee标签的ZPL代码粘贴到编辑器中",
+      "step2": "选择打印机DPI（Zebra ZD220/ZD230选203 DPI，ZD421/ZT230选300 DPI）",
+      "step3": "点击分析——如有问题，点击修复并复制修正后的代码",
+      "faq1q": "为什么我的Shopee标签打印出来很大？",
+      "faq1a": "Shopee系统有时会生成没有正确^PW和^LL命令的ZPL标签。没有这些尺寸设置，打印机会使用默认尺寸，这很少与100×150mm的快递标签纸匹配。",
+      "faq2q": "Shopee标签应该用哪种打印机？",
+      "faq2a": "Zebra ZD220和ZD230（203 DPI）打印机是Shopee卖家中最常见的。如果您有ZD421或ZT230，请选择300 DPI。",
+      "faq3q": "也适用于Mercado Livre的标签吗？",
+      "faq3a": "是的。Mercado Livre、WooCommerce和其他使用Zebra打印机的平台也会出现相同问题。",
+      "faq4q": "需要ZPL技术知识吗？",
+      "faq4a": "不需要。工具会自动检测并修复。"
     },
     "validator": {
-      "title": "ZPL语法验证器 | ZPLMaster",
+      "title": "ZPL语法在线验证器 | ZPL PRO",
       "h1": "免费在线ZPL语法验证器",
-      "desc": "分析您的ZPL代码，识别结构错误、语义问题和格式最佳实践。免费且全在浏览器内运行。"
+      "desc": "免费验证和修复ZPL代码错误。ZPL PRO工具，提供针对Zebra打印机的逐行错误检测。",
+      "intro": "在打印前验证ZPL代码，避免浪费纸张和时间。验证器逐行分析代码，检测结构错误、语义警告并建议最佳实践——并附有每个问题的修复示例。",
+      "step1": "将ZPL代码粘贴到编辑器中",
+      "step2": "点击验证",
+      "step3": "查看错误（红色）、警告（黄色）和提示（蓝色）——每项均附有修复示例",
+      "faq1q": "ZPL代码中的错误是由什么引起的？",
+      "faq1a": "最常见的错误是：缺少^XA或^XZ、^FD字段没有关闭^FS，以及^FO坐标超出打印区域。",
+      "faq2q": "错误、警告和提示有什么区别？",
+      "faq2a": "错误（E）会阻止打印。警告（W）会导致意外行为。提示（I）是改善不同打印机兼容性的最佳实践。",
+      "faq3q": "验证器会自动修复错误吗？",
+      "faq3a": "是的，对于可修复的错误，如没有^FS的^FD和负坐标。结构性错误需要手动修复——验证器会详细说明该做什么。",
+      "faq4q": "支持ERP系统生成的ZPL吗？",
+      "faq4a": "是的。接受任何ZPL代码——SAP、TOTVS、Bling、Tiny或任何生成Zebra标签的系统。"
     },
     "labelBuilder": {
       "title": "ZPL标签构建器 | ZPLMaster",
@@ -117,9 +157,21 @@
       "desc": "无需编写代码即可创建运输、发货和物流标签。生成可打印的PDF和ZPL。"
     },
     "bulkSplitter": {
-      "title": "ZPL批量分割工具 | ZPLMaster",
+      "title": "ZPL标签批量分割工具 | ZPL PRO",
       "h1": "ZPL标签批量分割工具",
-      "desc": "将包含多个标签的ZPL文件拆分为独立块。一键下载ZIP压缩包或单独复制。免费且全在浏览器内运行。"
+      "desc": "将包含多个标签的ZPL文件分割为独立文件。免费ZPL PRO工具，适用于Shopee、Mercado Livre和仓储履约。",
+      "intro": "将包含数百个标签的ZPL文件分割为独立文件。非常适合收到Shopee或Mercado Livre大批量标签、需要单独打印或归档每个标签的仓储运营。",
+      "step1": "粘贴ZPL代码或上传.zpl文件",
+      "step2": "点击分割——系统自动检测存在多少个标签",
+      "step3": "下载包含ZPL或PDF格式标签的ZIP文件",
+      "faq1q": "一次可以分割多少个标签？",
+      "faq1a": "没有限制。已测试处理数百个Shopee和Mercado Livre标签批次，没有任何问题。",
+      "faq2q": "支持包含GRF图像的Shopee标签吗？",
+      "faq2a": "支持。算法能识别Shopee标签的特定格式——包括图像块——并将每个标签作为完整单元处理。",
+      "faq3q": "可以将标签下载为PDF吗？",
+      "faq3a": "可以。您可以下载包含单独.zpl文件的ZIP，或包含PDF的ZIP——每个标签一个。",
+      "faq4q": "为什么我的文件生成了双倍数量的标签？",
+      "faq4a": "Shopee标签有一个内部^XA^MCY^XZ块。我们的工具能识别这个模式，不会将其计为单独的标签。"
     }
   },
   "bulkSplitter": {
@@ -316,8 +368,8 @@
     "pillar3Desc": "验证器、修复器、分割器和转换器 — 集于一体。",
     "pillar4Title": "免费",
     "pillar4Desc": "核心工具永久免费。无需注册。",
-    "metaTitle": "ZPL Master Pro — 电商ZPL标签工具",
-    "metaDesc": "为Shopee和Mercado Livre转换、修复、验证和生成ZPL标签。100%浏览器内处理，免费无需注册。"
+    "metaTitle": "ZPL PRO — 电商ZPL工具 | ZPLMaster",
+    "metaDesc": "免费ZPL PRO电商工具：转换、修复、验证和分割Zebra标签，支持Shopee和Mercado Livre。100%在浏览器中运行，无需注册。"
   },
   "header": {
     "navTools": "工具",

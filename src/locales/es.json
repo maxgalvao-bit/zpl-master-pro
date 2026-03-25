@@ -96,20 +96,60 @@
     "adSidebar": "PUBLICIDAD - SIDEBAR AD"
   },
   "seo": {
+    "howToTitle": "Cómo usar",
+    "faqTitle": "Preguntas frecuentes",
     "zplToPdf": {
-      "title": "Convertidor ZPL a PDF | ZPLMaster",
+      "title": "Convertidor ZPL a PDF Online Gratuito | ZPL PRO",
       "h1": "Convertidor de ZPL a PDF Online Gratuito",
-      "desc": "Convierte códigos ZPL en archivos PDF listos para imprimir en segundos. Compatible con formatos térmicos 4x6 y A4, directamente en tu navegador, sin instalar nada. 100% gratis y privado."
+      "desc": "Convierte código ZPL a PDF 4×6 o A4 gratis. Herramienta ZPL PRO online para Shopee, Mercado Libre e impresoras Zebra. 100% en el navegador.",
+      "intro": "Convierte código ZPL a PDF sin instalar nada. Pega el código directamente en el editor, elige el formato — 4×6 para impresoras térmicas o A4 para impresión común — y descarga el PDF en segundos. Todo el procesamiento ocurre en tu navegador, sin enviar datos a servidores.",
+      "step1": "Pega el código ZPL en el editor o arrastra un archivo .zpl",
+      "step2": "Elige el formato: PDF 4×6 (etiqueta térmica) o PDF A4",
+      "step3": "Haz clic en Renderizar y descarga el PDF",
+      "faq1q": "¿Qué es ZPL?",
+      "faq1a": "ZPL (Zebra Programming Language) es el lenguaje utilizado por las impresoras térmicas Zebra para crear etiquetas de código de barras, etiquetas de envío y etiquetas de producto.",
+      "faq2q": "¿Necesito instalar algún programa?",
+      "faq2a": "No. El convertidor funciona 100% en el navegador — Chrome, Firefox, Edge o Safari. No requiere instalación ni registro.",
+      "faq3q": "¿Funciona con etiquetas de Shopee y Mercado Libre?",
+      "faq3a": "Sí. Compatible con los formatos ZPL generados por Shopee, Mercado Libre, WooCommerce y cualquier sistema que use impresoras Zebra.",
+      "faq4q": "¿Cuál es el límite de etiquetas por archivo?",
+      "faq4a": "No hay límite. Puedes convertir archivos con cientos de etiquetas a la vez.",
+      "faq5q": "¿Mis datos están seguros?",
+      "faq5a": "Sí. El código ZPL nunca sale de tu dispositivo — todo el procesamiento es local en el navegador."
     },
     "shopeeFix": {
-      "title": "Corregir Etiquetas Shopee ZPL | ZPLMaster",
+      "title": "Corregir Etiqueta Shopee ZPL | ZPL PRO",
       "h1": "Corrector de Imágenes ZPL para Shopee",
-      "desc": "Pega el código ZPL de tu etiqueta Shopee, el sistema diagnosticará errores de bitmap y corregirá el código automáticamente con un clic. Gratis y 100% en el navegador."
+      "desc": "Corrige automáticamente etiquetas ZPL gigantes de Shopee. Herramienta ZPL PRO gratuita para vendedores con impresoras Zebra ZD220 y ZD230.",
+      "intro": "Corrige automáticamente etiquetas ZPL gigantes generadas por Shopee. El problema ocurre cuando el sistema de Shopee genera etiquetas con dimensiones incorrectas — la impresora Zebra recibe el código pero imprime en tamaño incorrecto o no imprime nada.",
+      "step1": "Pega el código ZPL de la etiqueta Shopee en el editor",
+      "step2": "Selecciona el DPI de tu impresora (203 DPI para Zebra ZD220/ZD230, 300 DPI para ZD421/ZT230)",
+      "step3": "Haz clic en Analizar — si hay problema, haz clic en Corregir y copia el código corregido",
+      "faq1q": "¿Por qué mi etiqueta Shopee imprime gigante?",
+      "faq1a": "El sistema de Shopee a veces genera etiquetas ZPL sin los comandos ^PW y ^LL correctos. Sin esas dimensiones, la impresora usa el tamaño predeterminado, que raramente coincide con el papel 100×150mm de la etiqueta de envío.",
+      "faq2q": "¿Qué impresora usar para etiquetas Shopee?",
+      "faq2a": "Las impresoras Zebra ZD220 y ZD230 (203 DPI) son las más comunes entre vendedores Shopee. Si tienes ZD421 o ZT230, selecciona 300 DPI.",
+      "faq3q": "¿Funciona con etiquetas de Mercado Libre también?",
+      "faq3a": "Sí. El mismo problema ocurre con etiquetas de Mercado Libre, WooCommerce y otros marketplaces que usan impresoras Zebra.",
+      "faq4q": "¿Necesito conocimientos técnicos en ZPL?",
+      "faq4a": "No. La herramienta detecta y corrige automáticamente."
     },
     "validator": {
-      "title": "Validador de Sintaxis ZPL | ZPLMaster",
+      "title": "Validador de Sintaxis ZPL Online | ZPL PRO",
       "h1": "Validador de Sintaxis ZPL Online Gratuito",
-      "desc": "Analiza tu código ZPL e identifica errores de estructura, problemas semánticos y buenas prácticas de formato. Gratis y 100% en el navegador."
+      "desc": "Valida y corrige errores en código ZPL gratis. Herramienta ZPL PRO con detección de errores línea por línea para impresoras Zebra.",
+      "intro": "Valida tu código ZPL antes de imprimir y evita desperdiciar papel y tiempo. El validador analiza el código línea por línea, detecta errores de estructura, avisos semánticos y sugiere buenas prácticas — con ejemplos de cómo corregir cada problema encontrado.",
+      "step1": "Pega el código ZPL en el editor",
+      "step2": "Haz clic en Validar",
+      "step3": "Revisa los errores (rojo), avisos (amarillo) y consejos (azul) — cada elemento tiene un ejemplo de cómo corregirlo",
+      "faq1q": "¿Qué causa errores en código ZPL?",
+      "faq1a": "Los errores más comunes son: falta de ^XA o ^XZ, campos ^FD sin cierre ^FS, y coordenadas ^FO fuera del área de impresión.",
+      "faq2q": "¿Cuál es la diferencia entre error, aviso y consejo?",
+      "faq2a": "Los errores (E) impiden la impresión. Los avisos (W) causan comportamiento inesperado. Los consejos (I) son buenas prácticas que mejoran la compatibilidad entre impresoras.",
+      "faq3q": "¿El validador corrige los errores automáticamente?",
+      "faq3a": "Sí, para errores corregibles como ^FD sin ^FS y coordenadas negativas. Los errores estructurales requieren corrección manual — el validador explica exactamente qué hacer.",
+      "faq4q": "¿Funciona con ZPL generado por sistemas ERP?",
+      "faq4a": "Sí. Acepta cualquier código ZPL — SAP, TOTVS, Bling, Tiny o cualquier sistema que genere etiquetas Zebra."
     },
     "labelBuilder": {
       "title": "Label Builder ZPL | ZPLMaster",
@@ -117,9 +157,21 @@
       "desc": "Crea etiquetas de transporte, envío y logística sin escribir código. Genera PDF y ZPL listos para imprimir."
     },
     "bulkSplitter": {
-      "title": "Divisor de Etiquetas ZPL | ZPLMaster",
+      "title": "Divisor de Etiquetas ZPL en Lote | ZPL PRO",
       "h1": "Divisor Masivo de Etiquetas ZPL",
-      "desc": "Separa archivos ZPL con múltiples etiquetas en bloques individuales. Descarga todos como ZIP o copia cada uno. Gratis y 100% en el navegador."
+      "desc": "Divide archivos ZPL con múltiples etiquetas en archivos individuales. Herramienta ZPL PRO gratuita para Shopee, Mercado Libre y fulfillment.",
+      "intro": "Divide archivos ZPL con cientos de etiquetas en archivos individuales. Ideal para operaciones de fulfillment que reciben lotes masivos de etiquetas de Shopee o Mercado Libre y necesitan imprimir o archivar cada etiqueta por separado.",
+      "step1": "Pega el código ZPL o carga un archivo .zpl",
+      "step2": "Haz clic en Dividir — el sistema detecta automáticamente cuántas etiquetas existen",
+      "step3": "Descarga el ZIP con las etiquetas en formato ZPL o PDF",
+      "faq1q": "¿Cuántas etiquetas puedo dividir a la vez?",
+      "faq1a": "No hay límite. Se ha probado con lotes de cientos de etiquetas de Shopee y Mercado Libre sin problemas.",
+      "faq2q": "¿Funciona con etiquetas Shopee que tienen imágenes GRF?",
+      "faq2a": "Sí. El algoritmo reconoce el formato específico de las etiquetas Shopee — incluyendo bloques de imagen — y trata cada etiqueta como unidad completa.",
+      "faq3q": "¿Puedo descargar las etiquetas como PDF?",
+      "faq3a": "Sí. Puedes descargar un ZIP con archivos .zpl individuales o un ZIP con PDFs — uno por etiqueta.",
+      "faq4q": "¿Por qué mi archivo está generando el doble de etiquetas?",
+      "faq4a": "Las etiquetas Shopee tienen un bloque interno ^XA^MCY^XZ. Nuestra herramienta reconoce este patrón y no lo cuenta como etiqueta separada."
     }
   },
   "bulkSplitter": {
@@ -316,8 +368,8 @@
     "pillar3Desc": "Validador, corrector, divisor y convertidor — una sola plataforma.",
     "pillar4Title": "Gratis",
     "pillar4Desc": "Herramientas principales siempre gratis. Sin registro.",
-    "metaTitle": "ZPL Master Pro — Herramientas ZPL para E-commerce",
-    "metaDesc": "Convierte, corrige, valida y genera etiquetas ZPL para Shopee y Mercado Libre. 100% en el navegador, gratis y sin registro."
+    "metaTitle": "ZPL PRO — Herramientas ZPL para E-commerce | ZPLMaster",
+    "metaDesc": "Herramientas ZPL PRO gratuitas para e-commerce: convertir, corregir, validar y dividir etiquetas Zebra para Shopee y Mercado Libre. 100% en el navegador, sin registro."
   },
   "header": {
     "navTools": "Herramientas",

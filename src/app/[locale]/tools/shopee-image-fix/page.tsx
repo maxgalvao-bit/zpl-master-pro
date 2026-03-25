@@ -1,27 +1,49 @@
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import ShopeeFixer from '../../../../components/ShopeeFixer';
 import ToolGrid from '../../../../components/ToolGrid';
-import type {Metadata} from 'next';
+import SeoSection from '../../../../components/SeoSection';
+import type { Metadata } from 'next';
 
 type Props = {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({params}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({locale, namespace: 'seo'});
+  const t = await getTranslations({ locale, namespace: 'seo' });
   return {
     title: t('shopeeFix.title'),
     description: t('shopeeFix.desc'),
   };
 }
 
-export default async function ShopeeFixPage({params}: Props) {
+export default async function ShopeeFixPage({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({locale, namespace: 'seo'});
+  const t = await getTranslations({ locale, namespace: 'seo' });
+
+  const faqs = [
+    { q: t('shopeeFix.faq1q'), a: t('shopeeFix.faq1a') },
+    { q: t('shopeeFix.faq2q'), a: t('shopeeFix.faq2a') },
+    { q: t('shopeeFix.faq3q'), a: t('shopeeFix.faq3a') },
+    { q: t('shopeeFix.faq4q'), a: t('shopeeFix.faq4a') },
+  ];
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
 
   return (
     <main className="min-h-screen bg-slate-900 text-slate-200 font-sans flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-[1600px] w-full mx-auto p-4 md:p-6 lg:p-8 flex-1 flex flex-col gap-8">
         {/* Hero SEO */}
         <div className="pt-4">
@@ -35,6 +57,15 @@ export default async function ShopeeFixPage({params}: Props) {
 
         {/* ShopeeFixer Component */}
         <ShopeeFixer />
+
+        {/* Seção SEO: descrição, como usar, FAQ */}
+        <SeoSection
+          howToTitle={t('howToTitle')}
+          faqTitle={t('faqTitle')}
+          intro={t('shopeeFix.intro')}
+          steps={[t('shopeeFix.step1'), t('shopeeFix.step2'), t('shopeeFix.step3')]}
+          faqs={faqs}
+        />
 
         {/* Grade de Ferramentas + Footer */}
         <ToolGrid />
