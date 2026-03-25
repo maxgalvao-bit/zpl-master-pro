@@ -29,7 +29,7 @@ export function useShopeeFix() {
     setFixedZpl(corrected);
     setAnalysis(analyzeShopeeZpl(corrected, dpi));
     setZplInput(corrected);
-    trackEvent('fix_applied', 'shopee_fix');
+    trackEvent('shopee_fixed', 'shopee_fix');
   }, [analysis, dpi, zplInput]);
 
   const handleCopy = useCallback(async () => {

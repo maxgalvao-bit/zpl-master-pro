@@ -3,11 +3,15 @@
 import { useTranslations } from 'next-intl';
 import ToolGrid from './ToolGrid';
 
-export default function HomeClient() {
+interface HomeClientProps {
+  statsBar?: React.ReactNode;
+}
+
+export default function HomeClient({ statsBar }: HomeClientProps) {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200 font-sans flex flex-col selection:bg-amber-500/30">
       <main className="max-w-[1600px] w-full mx-auto p-4 md:p-6 lg:p-8 flex-1 flex flex-col gap-10">
-        <HeroSection />
+        <HeroSection statsBar={statsBar} />
         <div id="ferramentas">
           <ToolGrid />
         </div>
@@ -17,7 +21,7 @@ export default function HomeClient() {
   );
 }
 
-function HeroSection() {
+function HeroSection({ statsBar }: { statsBar?: React.ReactNode }) {
   const t = useTranslations('homepage');
 
   const scrollToTools = () => {
@@ -50,6 +54,8 @@ function HeroSection() {
           </span>
         ))}
       </div>
+
+      {statsBar}
 
       <button
         onClick={scrollToTools}
