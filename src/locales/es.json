@@ -394,5 +394,10 @@
     "free": "El uso es gratuito para fines personales y comerciales.",
     "prohibited": "Está prohibido el uso para fines ilegales o que violen los derechos de terceros.",
     "copyright": "© 2026 G-Max Solutions. Todos los derechos reservados."
+  },
+  "stats": {
+    "labelsProcessed": "etiquetas procesadas",
+    "filesSplit": "archivos divididos",
+    "codesValidated": "códigos validados"
   }
 }

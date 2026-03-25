@@ -394,5 +394,10 @@
     "free": "个人和商业用途均可免费使用。",
     "prohibited": "禁止用于非法目的或侵犯第三方权利的目的。",
     "copyright": "© 2026 G-Max Solutions。保留所有权利。"
+  },
+  "stats": {
+    "labelsProcessed": "已处理标签",
+    "filesSplit": "已分割文件",
+    "codesValidated": "已验证代码"
   }
 }

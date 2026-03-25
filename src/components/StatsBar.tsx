@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase'
+import { getTranslations } from 'next-intl/server'
 
 async function getCounters() {
   const { data } = await supabase
@@ -12,6 +13,7 @@ async function getCounters() {
 
 export async function StatsBar() {
   const counters = await getCounters()
+  const t = await getTranslations('stats')
 
   const labels = counters['total_labels_processed'] ?? 0
   const splits = counters['total_files_split'] ?? 0
@@ -28,7 +30,7 @@ export async function StatsBar() {
             +{labels.toLocaleString('pt-BR')}
           </span>
           <span className="text-xs text-slate-400 whitespace-nowrap">
-            etiquetas processadas
+            {t('labelsProcessed')}
           </span>
         </div>
 
@@ -37,7 +39,7 @@ export async function StatsBar() {
             +{splits.toLocaleString('pt-BR')}
           </span>
           <span className="text-xs text-slate-400 whitespace-nowrap">
-            arquivos divididos
+            {t('filesSplit')}
           </span>
         </div>
 
@@ -46,7 +48,7 @@ export async function StatsBar() {
             +{validations.toLocaleString('pt-BR')}
           </span>
           <span className="text-xs text-slate-400 whitespace-nowrap">
-            códigos validados
+            {t('codesValidated')}
           </span>
         </div>
 
