@@ -20,22 +20,37 @@ export async function StatsBar() {
   if (labels + splits + validations === 0) return null
 
   return (
-    <div className="flex justify-center gap-8 py-4 text-sm text-slate-400 border-t border-slate-800">
-      <span>
-        <strong className="text-yellow-500">
-          +{labels.toLocaleString('pt-BR')}
-        </strong> etiquetas processadas
-      </span>
-      <span>
-        <strong className="text-yellow-500">
-          +{splits.toLocaleString('pt-BR')}
-        </strong> arquivos divididos
-      </span>
-      <span>
-        <strong className="text-yellow-500">
-          +{validations.toLocaleString('pt-BR')}
-        </strong> códigos validados
-      </span>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '1.5rem 0' }}>
+      <div className="flex items-center overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50">
+
+        <div className="flex flex-col items-center px-7 py-3 gap-0.5 border-r border-slate-700">
+          <span className="text-xl font-medium text-yellow-500">
+            +{labels.toLocaleString('pt-BR')}
+          </span>
+          <span className="text-xs text-slate-400 whitespace-nowrap">
+            etiquetas processadas
+          </span>
+        </div>
+
+        <div className="flex flex-col items-center px-7 py-3 gap-0.5 border-r border-slate-700">
+          <span className="text-xl font-medium text-yellow-500">
+            +{splits.toLocaleString('pt-BR')}
+          </span>
+          <span className="text-xs text-slate-400 whitespace-nowrap">
+            arquivos divididos
+          </span>
+        </div>
+
+        <div className="flex flex-col items-center px-7 py-3 gap-0.5">
+          <span className="text-xl font-medium text-yellow-500">
+            +{validations.toLocaleString('pt-BR')}
+          </span>
+          <span className="text-xs text-slate-400 whitespace-nowrap">
+            códigos validados
+          </span>
+        </div>
+
+      </div>
     </div>
   )
 }

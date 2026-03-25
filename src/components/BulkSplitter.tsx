@@ -53,7 +53,7 @@ export default function BulkSplitter() {
     const result = splitZpl(code);
     setLabels(result);
     setHasRun(true);
-    trackEvent('labels_split', 'bulk_splitter', result.length.toString());
+    trackEvent('labels_split', 'bulk_splitter', result.length.toString(), result.length);
   };
 
   const handleClear = () => {

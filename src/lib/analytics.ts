@@ -3,7 +3,8 @@ import { trackServerEvent } from './trackEvent'
 export function trackEvent(
   action: string,
   category: string,
-  label?: string
+  label?: string,
+  count: number = 1
 ) {
   if (typeof window === 'undefined') return
   if ((window as any).gtag) {
@@ -12,5 +13,5 @@ export function trackEvent(
       event_label: label,
     })
   }
-  trackServerEvent(action)
+  trackServerEvent(action, count)
 }

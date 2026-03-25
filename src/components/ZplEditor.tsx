@@ -219,13 +219,13 @@ export default function ZplEditor({ t, value, onChange }: ZplEditorProps) {
                        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base tracking-wider font-bold uppercase">{t.editor.btnThermalPrint}</p>
                      </button>
                      <button
-                      onClick={() => { ExportEngine.generatePdf4x6(result!.labels!); trackEvent('export_pdf', 'zpl_converter'); }}
+                      onClick={() => { ExportEngine.generatePdf4x6(result!.labels!); trackEvent('export_pdf', 'zpl_converter', undefined, result!.labels!.length); }}
                       className="flex w-full items-center justify-center bg-slate-800 text-slate-300 border border-slate-700 font-bold tracking-wide rounded-full py-4 shadow-[0_0_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(0,0,0,0.6)] hover:bg-slate-700 hover:text-white transition-all cursor-pointer"
                      >
                        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base tracking-wider font-bold uppercase">{t.editor.btnPdf4x6}</p>
                      </button>
                      <button
-                      onClick={() => { ExportEngine.generatePdfA4(result!.labels!); trackEvent('export_pdf', 'zpl_converter'); }}
+                      onClick={() => { ExportEngine.generatePdfA4(result!.labels!); trackEvent('export_pdf', 'zpl_converter', undefined, result!.labels!.length); }}
                       className="flex w-full items-center justify-center bg-slate-800 text-slate-300 border border-slate-700 font-bold tracking-wide rounded-full py-4 shadow-[0_0_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(0,0,0,0.6)] hover:bg-slate-700 hover:text-white transition-all cursor-pointer"
                      >
                        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base tracking-wider font-bold uppercase">{t.editor.btnPdfA4}</p>
