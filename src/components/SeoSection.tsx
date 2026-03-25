@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { AdSlot } from './AdSlot';
 
 export interface FaqItem {
   q: string;
@@ -64,6 +65,9 @@ export default function SeoSection({ howToTitle, faqTitle, intro, steps, faqs }:
           ))}
         </ol>
       </section>
+
+      {/* AdSense in-article */}
+      <AdSlot slot="1164474328" format="fluid" layout="in-article" />
 
       {/* FAQ */}
       <section>

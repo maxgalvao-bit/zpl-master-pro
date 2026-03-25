@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import ZplEditorWrapper from '../../../../components/ZplEditorWrapper';
 import ToolGrid from '../../../../components/ToolGrid';
 import SeoSection from '../../../../components/SeoSection';
+import { AdSlot } from '../../../../components/AdSlot';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -56,6 +57,9 @@ export default async function ZplToPdfPage({ params: { locale } }: Props) {
 
         {/* Editor Central */}
         <ZplEditorWrapper />
+
+        {/* AdSense display */}
+        <AdSlot slot="3138099223" format="auto" />
 
         {/* Seção SEO: descrição, como usar, FAQ */}
         <SeoSection

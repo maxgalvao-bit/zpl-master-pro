@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import BulkSplitter from '../../../../components/BulkSplitter';
 import ToolGrid from '../../../../components/ToolGrid';
 import SeoSection from '../../../../components/SeoSection';
+import { AdSlot } from '../../../../components/AdSlot';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -57,6 +58,9 @@ export default async function BulkSplitterPage({ params }: Props) {
 
         {/* Bulk Splitter Component */}
         <BulkSplitter />
+
+        {/* AdSense display */}
+        <AdSlot slot="3138099223" format="auto" />
 
         {/* Seção SEO: descrição, como usar, FAQ */}
         <SeoSection
