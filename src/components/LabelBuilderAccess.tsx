@@ -43,13 +43,21 @@ export function LabelBuilderAccess() {
     setStatus('loading')
 
     try {
-      // Obter token reCAPTCHA v3
-      const token = await new Promise<string>((resolve, reject) => {
-        ;(window as any).grecaptcha.ready(() => {
-          ;(window as any).grecaptcha
+      // Timeout de 10 segundos
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 10000)
+
+      const token = await new Promise<string>((resolve) => {
+        const grecaptcha = (window as any).grecaptcha
+        if (!grecaptcha) {
+          resolve('')
+          return
+        }
+        grecaptcha.ready(() => {
+          grecaptcha
             .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'label_builder_register' })
             .then(resolve)
-            .catch(reject)
+            .catch(() => resolve('')) // fallback sem token
         })
       })
 
@@ -57,7 +65,10 @@ export function LabelBuilderAccess() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, recaptchaToken: token }),
+        signal: controller.signal,
       })
+      clearTimeout(timeout)
+
       const data = await res.json()
 
       if (data.ok) {
@@ -66,7 +77,15 @@ export function LabelBuilderAccess() {
       } else {
         setStatus('error')
       }
-    } catch {
+    } catch (err: any) {
+      if (err?.name === 'AbortError') {
+        // Timeout — redirecionar se já foi salvo localmente
+        const saved = localStorage.getItem(STORAGE_KEY)
+        if (saved === email) {
+          router.push(toolUrl)
+          return
+        }
+      }
       setStatus('error')
     }
   }

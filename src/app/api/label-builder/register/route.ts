@@ -8,20 +8,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: 'invalid_email' })
     }
 
-    // Validar reCAPTCHA v3
-    const recaptchaRes = await fetch(
-      'https://www.google.com/recaptcha/api/siteverify',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-      }
-    )
-    const recaptchaData = await recaptchaRes.json()
+    // Validar reCAPTCHA v3 apenas se token foi fornecido
+    if (recaptchaToken && recaptchaToken.length > 0) {
+      const recaptchaRes = await fetch(
+        'https://www.google.com/recaptcha/api/siteverify',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+        }
+      )
+      const recaptchaData = await recaptchaRes.json()
 
-    // Score abaixo de 0.5 = provável bot
-    if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      return NextResponse.json({ ok: false, error: 'recaptcha_failed' })
+      if (!recaptchaData.success || recaptchaData.score < 0.3) {
+        return NextResponse.json({ ok: false, error: 'recaptcha_failed' })
+      }
     }
 
     const { error } = await supabaseAdmin
