@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { redirect } from "../../../../i18n/routing";
 import ToolGrid from "../../../../components/ToolGrid";
 import LabelBuilderWrapper from "./LabelBuilderWrapper";
 import type { Metadata } from "next";
@@ -18,11 +17,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LabelBuilderPage({ params }: Props) {
-  const isPremiumEnabled = process.env.NEXT_PUBLIC_PREMIUM_ENABLED === 'true';
-  if (!isPremiumEnabled) {
-    redirect({ href: '/premium', locale: (await params).locale });
-  }
-
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "seo" });
 
