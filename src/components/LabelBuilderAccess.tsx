@@ -4,16 +4,6 @@ import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 
 const STORAGE_KEY = 'zplmaster_lb_email'
-const BREVO_URL =
-  'https://3bb4fd44.sibforms.com/serve/MUIFABgxn6BqO6LRnDxlg48pzflg7V4UEMzCAUSkoyzhNFIvho2tczGGwv9c-a92RmRSgb9_PzyJ-m8F0ZHvfj31zhwOIvzJVG73dNf9GJalYnc-JzevddJ_kunOoGTijviV-gRrGlSjl0DbsFonobS0cLPDSOBQPUeei1ZL5pSvrXOwrLZGPQTJOkw_kHfnwWcyhdyqZ_caMR6gHw=='
-
-async function sendToBrevo(email: string) {
-  const formData = new FormData()
-  formData.append('EMAIL', email)
-  formData.append('email_address_check', '')
-  formData.append('locale', 'pt')
-  await fetch(BREVO_URL, { method: 'POST', body: formData, mode: 'no-cors' }).catch(() => {})
-}
 
 export function LabelBuilderAccess() {
   const [email, setEmail] = useState('')
@@ -22,6 +12,14 @@ export function LabelBuilderAccess() {
   const locale = useLocale()
   const t = useTranslations('labelAccess')
   const toolUrl = `/${locale}/ferramentas/construtor-de-etiquetas`
+
+  // Carregar reCAPTCHA v3
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
+    document.head.appendChild(script)
+    return () => { document.head.removeChild(script) }
+  }, [])
 
   // Verificar localStorage ao carregar
   useEffect(() => {
@@ -45,16 +43,25 @@ export function LabelBuilderAccess() {
     setStatus('loading')
 
     try {
+      // Obter token reCAPTCHA v3
+      const token = await new Promise<string>((resolve, reject) => {
+        ;(window as any).grecaptcha.ready(() => {
+          ;(window as any).grecaptcha
+            .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'label_builder_register' })
+            .then(resolve)
+            .catch(reject)
+        })
+      })
+
       const res = await fetch('/api/label-builder/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, recaptchaToken: token }),
       })
       const data = await res.json()
 
       if (data.ok) {
         localStorage.setItem(STORAGE_KEY, email)
-        sendToBrevo(email) // fire and forget
         router.push(toolUrl)
       } else {
         setStatus('error')
