@@ -53,6 +53,12 @@ export const routing = defineRouting({
       en: '/premium',
       es: '/premium',
       zh: '/premium'
+    },
+    '/label-builder/acesso': {
+      'pt-br': '/label-builder/acesso',
+      en: '/label-builder/access',
+      es: '/label-builder/acceso',
+      zh: '/label-builder/access'
     }
   }
 });

@@ -1,8 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FileText, Zap, CheckCircle2, LayoutGrid, Heart, Sparkles, Package } from "lucide-react";
+import { FileText, Zap, CheckCircle2, LayoutGrid, Heart, Sparkles } from "lucide-react";
 import { Link } from "../i18n/routing";
+import { LabelBuilderCard } from "./LabelBuilderCard";
 
 export default function ToolGrid() {
   const explore = useTranslations("explore");
@@ -63,30 +64,7 @@ export default function ToolGrid() {
         </Link>
 
         {/* Label Builder — Acesso Gratuito */}
-        <Link href="/label-builder/acesso" className="bg-slate-800 rounded-2xl p-5 border-2 border-green-500/50 flex items-start gap-4 transition-all hover:shadow-lg hover:shadow-green-500/10 cursor-pointer hover:bg-slate-700/50 group relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-green-500 text-slate-950 text-[9px] font-black px-3 py-1 pb-1.5 rounded-bl-xl uppercase tracking-widest leading-none">
-            GRATUITO
-          </div>
-          <div className="p-2.5 bg-slate-900 text-green-400 rounded-xl group-hover:bg-green-500 group-hover:text-slate-900 transition-colors">
-            <Package size={20} />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-base md:text-lg lg:text-xl font-bold text-white uppercase tracking-wide leading-tight mt-1">
-              {explore("toolLabelBuilder")}
-            </h3>
-            <p className="text-xs md:text-sm lg:text-base text-slate-400 mt-1 italic">
-              {explore("toolLabelBuilderDesc")}
-            </p>
-            <p className="text-xs text-green-400/80 mt-1">
-              Acesso gratuito enquanto durar a oferta
-            </p>
-            <div className="mt-3">
-              <span className="inline-block px-2 py-0.5 bg-green-500/10 text-green-400 font-bold text-[9px] rounded uppercase italic tracking-wider">
-                Quero acesso gratuito →
-              </span>
-            </div>
-          </div>
-        </Link>
+        <LabelBuilderCard />
 
         {/* Validador de Sintaxe ZPL */}
         <Link href="/tools/validator" className="bg-slate-800 rounded-2xl p-5 border border-slate-700/50 flex items-start gap-4 transition-all hover:shadow-lg hover:shadow-black/20 cursor-pointer hover:bg-slate-700/50 group">
