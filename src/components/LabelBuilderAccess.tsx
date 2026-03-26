@@ -42,33 +42,35 @@ export function LabelBuilderAccess() {
     if (!email || !email.includes('@')) return
     setStatus('loading')
 
+    let recaptchaToken = ''
+
     try {
-      // Timeout de 10 segundos
-      const controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), 10000)
+      const grecaptcha = (window as any).grecaptcha
+      if (grecaptcha?.ready && grecaptcha?.execute) {
+        recaptchaToken = await Promise.race([
+          new Promise<string>((resolve) => {
+            grecaptcha.ready(() => {
+              grecaptcha
+                .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'register' })
+                .then(resolve)
+                .catch(() => resolve(''))
+            })
+          }),
+          // Timeout de 3 segundos — se demorar, continua sem token
+          new Promise<string>((resolve) => setTimeout(() => resolve(''), 3000)),
+        ])
+      }
+    } catch {
+      recaptchaToken = ''
+    }
 
-      const token = await new Promise<string>((resolve) => {
-        const grecaptcha = (window as any).grecaptcha
-        if (!grecaptcha) {
-          resolve('')
-          return
-        }
-        grecaptcha.ready(() => {
-          grecaptcha
-            .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'label_builder_register' })
-            .then(resolve)
-            .catch(() => resolve('')) // fallback sem token
-        })
-      })
-
+    // Sempre chega aqui independente do reCAPTCHA
+    try {
       const res = await fetch('/api/label-builder/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, recaptchaToken: token }),
-        signal: controller.signal,
+        body: JSON.stringify({ email, recaptchaToken }),
       })
-      clearTimeout(timeout)
-
       const data = await res.json()
 
       if (data.ok) {
@@ -77,15 +79,7 @@ export function LabelBuilderAccess() {
       } else {
         setStatus('error')
       }
-    } catch (err: any) {
-      if (err?.name === 'AbortError') {
-        // Timeout — redirecionar se já foi salvo localmente
-        const saved = localStorage.getItem(STORAGE_KEY)
-        if (saved === email) {
-          router.push(toolUrl)
-          return
-        }
-      }
+    } catch {
       setStatus('error')
     }
   }
