@@ -412,6 +412,7 @@
     "back": "← Back to home",
     "cardBadge": "FREE",
     "cardOffer": "Free access while the offer lasts",
-    "cardCta": "Get free access →"
+    "cardCta": "Get free access →",
+    "cardCtaHasAccess": "Open Label Builder →"
   }
 }

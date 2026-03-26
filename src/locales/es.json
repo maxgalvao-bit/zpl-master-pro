@@ -401,17 +401,18 @@
     "codesValidated": "códigos validados"
   },
   "labelAccess": {
-    "badge": "Acceso gratuito",
+    "badge": "Acceso Gratuito",
     "title": "Label Builder ZPL",
-    "desc": "Crea etiquetas de envío profesionales sin escribir ZPL. Acceso gratuito mientras dure la oferta.",
-    "emailLabel": "Tu correo de acceso",
+    "desc": "Cree etiquetas de transporte profesionales sin escribir ZPL. Acceso gratuito mientras dure la oferta.",
+    "emailLabel": "Su correo de acceso",
     "button": "ACCEDER AL LABEL BUILDER →",
     "loading": "Verificando...",
-    "error": "Algo salió mal. Inténtalo de nuevo.",
-    "privacy": "Al continuar aceptas nuestra política de privacidad.",
+    "error": "Algo salió mal. Inténtelo de nuevo.",
+    "privacy": "Al continuar acepta nuestra política de privacidad.",
     "back": "← Volver al inicio",
     "cardBadge": "GRATUITO",
     "cardOffer": "Acceso gratuito mientras dure la oferta",
-    "cardCta": "Quiero acceso gratuito →"
+    "cardCta": "Quiero acceso gratuito →",
+    "cardCtaHasAccess": "Abrir Label Builder →"
   }
 }

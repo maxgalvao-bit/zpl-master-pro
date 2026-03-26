@@ -401,7 +401,7 @@
     "codesValidated": "códigos validados"
   },
   "labelAccess": {
-    "badge": "Acesso gratuito",
+    "badge": "Acesso Gratuito",
     "title": "Label Builder ZPL",
     "desc": "Crie etiquetas de transporte profissionais sem escrever ZPL. Acesso gratuito enquanto durar a oferta.",
     "emailLabel": "Seu e-mail de acesso",
@@ -412,6 +412,7 @@
     "back": "← Voltar para o início",
     "cardBadge": "GRATUITO",
     "cardOffer": "Acesso gratuito enquanto durar a oferta",
-    "cardCta": "Quero acesso gratuito →"
+    "cardCta": "Quero acesso gratuito →",
+    "cardCtaHasAccess": "Acessar Label Builder →"
   }
 }
