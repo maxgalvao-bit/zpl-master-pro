@@ -4,6 +4,16 @@ import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 
 const STORAGE_KEY = 'zplmaster_lb_email'
+const BREVO_URL =
+  'https://3bb4fd44.sibforms.com/serve/MUIFABgxn6BqO6LRnDxlg48pzflg7V4UEMzCAUSkoyzhNFIvho2tczGGwv9c-a92RmRSgb9_PzyJ-m8F0ZHvfj31zhwOIvzJVG73dNf9GJalYnc-JzevddJ_kunOoGTijviV-gRrGlSjl0DbsFonobS0cLPDSOBQPUeei1ZL5pSvrXOwrLZGPQTJOkw_kHfnwWcyhdyqZ_caMR6gHw=='
+
+async function sendToBrevo(email: string) {
+  const formData = new FormData()
+  formData.append('EMAIL', email)
+  formData.append('email_address_check', '')
+  formData.append('locale', 'pt')
+  await fetch(BREVO_URL, { method: 'POST', body: formData, mode: 'no-cors' }).catch(() => {})
+}
 
 export function LabelBuilderAccess() {
   const [email, setEmail] = useState('')
@@ -44,6 +54,7 @@ export function LabelBuilderAccess() {
 
       if (data.ok) {
         localStorage.setItem(STORAGE_KEY, email)
+        sendToBrevo(email) // fire and forget
         router.push(toolUrl)
       } else {
         setStatus('error')
