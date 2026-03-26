@@ -399,5 +399,19 @@
     "labelsProcessed": "etiquetas procesadas",
     "filesSplit": "archivos divididos",
     "codesValidated": "códigos validados"
+  },
+  "labelAccess": {
+    "badge": "Acceso gratuito",
+    "title": "Label Builder ZPL",
+    "desc": "Crea etiquetas de envío profesionales sin escribir ZPL. Acceso gratuito mientras dure la oferta.",
+    "emailLabel": "Tu correo de acceso",
+    "button": "ACCEDER AL LABEL BUILDER →",
+    "loading": "Verificando...",
+    "error": "Algo salió mal. Inténtalo de nuevo.",
+    "privacy": "Al continuar aceptas nuestra política de privacidad.",
+    "back": "← Volver al inicio",
+    "cardBadge": "GRATUITO",
+    "cardOffer": "Acceso gratuito mientras dure la oferta",
+    "cardCta": "Quiero acceso gratuito →"
   }
 }

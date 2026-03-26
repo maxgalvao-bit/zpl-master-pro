@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import type { DadosEtiqueta, DadosVolume, Indicador } from "../../../../types/label.types";
 import { carregarRascunho, salvarRascunho } from "../../../../services/LabelBuilderStorage";
 import TemplateSelector from "../../../../components/label-builder/TemplateSelector";
@@ -38,9 +39,18 @@ function syncVolumes(total: number, current: DadosVolume[]): DadosVolume[] {
 
 export default function LabelBuilderWrapper() {
   const t = useTranslations("labelBuilder");
+  const router = useRouter();
+  const locale = useLocale();
   const [dados, setDados] = useState<DadosEtiqueta>(createDefaultDados);
   const [templateId, setTemplateId] = useState("transporte-mercadoria");
   const [previewVolumeIndex, setPreviewVolumeIndex] = useState(0);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('zplmaster_lb_email')
+    if (!saved) {
+      router.replace(`/${locale}/label-builder/acesso`)
+    }
+  }, [])
 
   useEffect(() => {
     const rascunho = carregarRascunho();

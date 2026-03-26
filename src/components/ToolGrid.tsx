@@ -62,12 +62,12 @@ export default function ToolGrid() {
           </div>
         </Link>
 
-        {/* Label Builder — Premium */}
-        <Link href={process.env.NEXT_PUBLIC_PREMIUM_ENABLED === 'true' ? '/tools/label-builder' : '/premium'} className="bg-slate-800 rounded-2xl p-5 border-2 border-amber-400/50 flex items-start gap-4 transition-all hover:shadow-lg hover:shadow-amber-400/10 cursor-pointer hover:bg-slate-700/50 group relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-amber-400 text-slate-950 text-[9px] font-black px-3 py-1 pb-1.5 rounded-bl-xl uppercase tracking-widest leading-none">
-            {explore("premiumBadge")}
+        {/* Label Builder — Acesso Gratuito */}
+        <Link href="/label-builder/acesso" className="bg-slate-800 rounded-2xl p-5 border-2 border-green-500/50 flex items-start gap-4 transition-all hover:shadow-lg hover:shadow-green-500/10 cursor-pointer hover:bg-slate-700/50 group relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-green-500 text-slate-950 text-[9px] font-black px-3 py-1 pb-1.5 rounded-bl-xl uppercase tracking-widest leading-none">
+            GRATUITO
           </div>
-          <div className="p-2.5 bg-slate-900 text-amber-400 rounded-xl group-hover:bg-amber-400 group-hover:text-slate-900 transition-colors">
+          <div className="p-2.5 bg-slate-900 text-green-400 rounded-xl group-hover:bg-green-500 group-hover:text-slate-900 transition-colors">
             <Package size={20} />
           </div>
           <div className="flex-1">
@@ -77,9 +77,12 @@ export default function ToolGrid() {
             <p className="text-xs md:text-sm lg:text-base text-slate-400 mt-1 italic">
               {explore("toolLabelBuilderDesc")}
             </p>
+            <p className="text-xs text-green-400/80 mt-1">
+              Acesso gratuito enquanto durar a oferta
+            </p>
             <div className="mt-3">
-              <span className="inline-block px-2 py-0.5 bg-amber-400/10 text-amber-400 font-bold text-[9px] rounded uppercase italic tracking-wider">
-                {explore("active")}
+              <span className="inline-block px-2 py-0.5 bg-green-500/10 text-green-400 font-bold text-[9px] rounded uppercase italic tracking-wider">
+                Quero acesso gratuito →
               </span>
             </div>
           </div>

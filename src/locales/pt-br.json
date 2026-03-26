@@ -399,5 +399,19 @@
     "labelsProcessed": "etiquetas processadas",
     "filesSplit": "arquivos divididos",
     "codesValidated": "códigos validados"
+  },
+  "labelAccess": {
+    "badge": "Acesso gratuito",
+    "title": "Label Builder ZPL",
+    "desc": "Crie etiquetas de transporte profissionais sem escrever ZPL. Acesso gratuito enquanto durar a oferta.",
+    "emailLabel": "Seu e-mail de acesso",
+    "button": "ACESSAR LABEL BUILDER →",
+    "loading": "Verificando...",
+    "error": "Algo deu errado. Tente novamente.",
+    "privacy": "Ao continuar você concorda com nossa política de privacidade.",
+    "back": "← Voltar para o início",
+    "cardBadge": "GRATUITO",
+    "cardOffer": "Acesso gratuito enquanto durar a oferta",
+    "cardCta": "Quero acesso gratuito →"
   }
 }

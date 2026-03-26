@@ -399,5 +399,19 @@
     "labelsProcessed": "labels processed",
     "filesSplit": "files split",
     "codesValidated": "codes validated"
+  },
+  "labelAccess": {
+    "badge": "Free Access",
+    "title": "ZPL Label Builder",
+    "desc": "Create professional shipping labels without writing ZPL. Free access while the offer lasts.",
+    "emailLabel": "Your access email",
+    "button": "ACCESS LABEL BUILDER →",
+    "loading": "Verifying...",
+    "error": "Something went wrong. Please try again.",
+    "privacy": "By continuing you agree to our privacy policy.",
+    "back": "← Back to home",
+    "cardBadge": "FREE",
+    "cardOffer": "Free access while the offer lasts",
+    "cardCta": "Get free access →"
   }
 }

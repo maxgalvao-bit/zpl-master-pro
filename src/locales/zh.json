@@ -399,5 +399,19 @@
     "labelsProcessed": "已处理标签",
     "filesSplit": "已分割文件",
     "codesValidated": "已验证代码"
+  },
+  "labelAccess": {
+    "badge": "免费访问",
+    "title": "ZPL 标签构建器",
+    "desc": "无需编写 ZPL 即可创建专业运输标签。优惠期间免费访问。",
+    "emailLabel": "您的访问邮箱",
+    "button": "访问标签构建器 →",
+    "loading": "验证中...",
+    "error": "出了点问题，请重试。",
+    "privacy": "继续即表示您同意我们的隐私政策。",
+    "back": "← 返回首页",
+    "cardBadge": "免费",
+    "cardOffer": "优惠期间免费访问",
+    "cardCta": "获取免费访问 →"
   }
 }
