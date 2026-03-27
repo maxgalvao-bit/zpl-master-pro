@@ -1,12 +1,13 @@
 import createMiddleware from 'next-intl/middleware';
-import {routing} from './i18n/routing';
+import { routing } from './i18n/routing';
 
 export default createMiddleware(routing);
 
 export const config = {
-  // Configuração para corresponder apenas navegação internacionalizada
   matcher: [
-    // Rota raiz e as rotas dos locales (todas)
+    // Ignora arquivos internos do Next.js e estáticos
+    '/((?!_next|_vercel|.*\\..*).*)',
+    // Rota raiz e rotas dos locales
     '/',
     '/(pt-br|en|es|zh)/:path*'
   ]
