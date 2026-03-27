@@ -56,9 +56,15 @@ export async function POST(request: NextRequest) {
       }),
     })
 
-    const brevoData = await brevoRes.json()
     console.log('[LB Register] Brevo status:', brevoRes.status)
-    console.log('[LB Register] Brevo response:', JSON.stringify(brevoData))
+
+    // 201 = criado, 204 = já existe, ambos são sucesso
+    if (brevoRes.status === 201 || brevoRes.status === 204) {
+      console.log('[LB Register] Brevo OK')
+    } else {
+      const brevoData = await brevoRes.json()
+      console.log('[LB Register] Brevo error:', JSON.stringify(brevoData))
+    }
 
     return NextResponse.json({ ok: true })
   } catch (err) {
