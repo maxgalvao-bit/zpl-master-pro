@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FileText, Zap, CheckCircle2, LayoutGrid, Heart, Sparkles } from "lucide-react";
+import { FileText, Zap, CheckCircle2, LayoutGrid, Heart, Sparkles, Coffee } from "lucide-react";
 import { Link } from "../i18n/routing";
 import { LabelBuilderCard } from "./LabelBuilderCard";
 
@@ -127,9 +127,9 @@ export default function ToolGrid() {
         </div>
 
         {/* Card: Apoie o Projeto */}
-        <div className="bg-amber-400 rounded-2xl p-5 flex items-start gap-4 transition-all hover:shadow-lg hover:shadow-black/20 cursor-pointer hover:bg-amber-300 group">
+        <a href="https://buymeacoffee.com/gmaxsolutions" target="_blank" rel="noopener noreferrer" className="bg-amber-400 rounded-2xl p-5 flex items-start gap-4 transition-all hover:shadow-lg hover:shadow-black/20 cursor-pointer hover:bg-amber-300 group no-underline">
           <div className="p-2.5 bg-slate-950 text-amber-400 rounded-xl group-hover:scale-110 transition-transform shadow-sm">
-            <Heart size={20} fill="currentColor" />
+            <Coffee size={20} />
           </div>
           <div className="flex-1">
             <h3 className="text-base md:text-lg lg:text-xl font-bold text-slate-950 uppercase tracking-wide leading-tight mt-1">
@@ -139,7 +139,7 @@ export default function ToolGrid() {
               {explore("supportDesc")}
             </p>
           </div>
-        </div>
+        </a>
 
         {/* Card: ZPLMaster Premium */}
         <Link href="/premium" className="bg-slate-950 rounded-2xl p-5 border-2 border-slate-800 flex items-start gap-4 transition-all hover:shadow-xl hover:shadow-black/40 cursor-pointer hover:border-amber-400/50 group relative overflow-hidden">
