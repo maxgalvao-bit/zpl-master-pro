@@ -4,8 +4,6 @@ import { supabaseAdmin } from '@/lib/supabase'
 export async function POST(request: NextRequest) {
   try {
     const { email, recaptchaToken } = await request.json()
-    console.log('[LB Register] Email:', email)
-    console.log('[LB Register] Token presente:', !!recaptchaToken)
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ ok: false, error: 'invalid_email' })
@@ -22,8 +20,6 @@ export async function POST(request: NextRequest) {
         }
       )
       const recaptchaData = await recaptchaRes.json()
-      console.log('[LB Register] reCAPTCHA score:', recaptchaData.score)
-      console.log('[LB Register] reCAPTCHA success:', recaptchaData.success)
 
       if (!recaptchaData.success || recaptchaData.score < 0.3) {
         return NextResponse.json({ ok: false, error: 'recaptcha_failed' })
@@ -35,14 +31,9 @@ export async function POST(request: NextRequest) {
       .from('label_builder_users')
       .upsert({ email: email.toLowerCase() }, { onConflict: 'email' })
 
-    console.log('[LB Register] Supabase error:', supabaseError)
-
     if (supabaseError) throw supabaseError
 
     // Brevo
-    console.log('[LB Register] BREVO_API_KEY presente:', !!process.env.BREVO_API_KEY)
-    console.log('[LB Register] BREVO_LIST_ID:', process.env.BREVO_LIST_ID_LABEL_BUILDER)
-
     const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -56,14 +47,10 @@ export async function POST(request: NextRequest) {
       }),
     })
 
-    console.log('[LB Register] Brevo status:', brevoRes.status)
-
     // 201 = criado, 204 = já existe, ambos são sucesso
-    if (brevoRes.status === 201 || brevoRes.status === 204) {
-      console.log('[LB Register] Brevo OK')
-    } else {
+    if (brevoRes.status !== 201 && brevoRes.status !== 204) {
       const brevoData = await brevoRes.json()
-      console.log('[LB Register] Brevo error:', JSON.stringify(brevoData))
+      console.error('[LB Register] Brevo error:', JSON.stringify(brevoData))
     }
 
     return NextResponse.json({ ok: true })
