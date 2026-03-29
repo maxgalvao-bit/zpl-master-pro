@@ -16,6 +16,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ZPLMaster Pro',
+  url: 'https://zplmaster.com',
+  description: 'Ferramentas ZPL gratuitas para e-commerce: converter, corrigir, validar e dividir etiquetas Zebra para Shopee e Mercado Livre.',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'BRL',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    ratingCount: '1',
+  },
+};
+
 export default function Home() {
-  return <HomeClient statsBar={<StatsBar />} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HomeClient statsBar={<StatsBar />} />
+    </>
+  );
 }

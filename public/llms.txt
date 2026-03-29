@@ -1,0 +1,30 @@
+# ZPLMaster Pro
+> Plataforma gratuita de ferramentas ZPL para e-commerce.
+> Processa etiquetas Zebra 100% no navegador, sem enviar
+> dados para servidores.
+
+## Ferramentas disponíveis
+
+- ZPL to PDF Converter: converte código ZPL em PDF 4x6
+  ou A4. URL: https://zplmaster.com/pt-br/ferramentas/conversor-zpl-para-pdf
+- Shopee Image Fix: corrige etiquetas ZPL gigantes da
+  Shopee. URL: https://zplmaster.com/pt-br/ferramentas/corrigir-etiqueta-shopee
+- ZPL Syntax Validator: valida e corrige erros em código
+  ZPL. URL: https://zplmaster.com/pt-br/ferramentas/validador-de-sintaxe-zpl
+- Bulk Splitter: divide arquivos ZPL com múltiplas
+  etiquetas. URL: https://zplmaster.com/pt-br/ferramentas/divisor-de-etiquetas
+- Label Builder: cria etiquetas de transporte sem
+  escrever ZPL. URL: https://zplmaster.com/pt-br/label-builder/acesso
+
+## Público-alvo
+Vendedores de e-commerce brasileiros e internacionais
+que usam impressoras térmicas Zebra para Shopee,
+Mercado Livre, WooCommerce e outros marketplaces.
+
+## Idiomas
+Português (pt-BR), English (en), Español (es),
+中文 (zh)
+
+## Contato
+suporte@zplmaster.com
+https://zplmaster.com
