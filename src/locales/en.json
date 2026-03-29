@@ -311,6 +311,10 @@
       "transporte": {
         "nome": "Transport label",
         "descricao": "For shipments with invoice, multiple packages and handling indicators"
+      },
+      "envioNfe": {
+        "nome": "Shipment with Invoice",
+        "descricao": "Sender, recipient and fiscal data"
       }
     },
     "form": {
@@ -334,7 +338,11 @@
       "volume": "Package",
       "peso": "Weight (kg)",
       "descricao": "Product description",
-      "indicadores": "Handling indicators"
+      "indicadores": "Handling indicators",
+      "dadosFiscais": "Fiscal Data",
+      "numeroNFe": "Invoice Number",
+      "chaveAcesso": "Access Key (44 digits)",
+      "chaveAcessoTooltip": "Optional — for fiscal verification"
     },
     "indicadores": {
       "fragil": "Fragile",

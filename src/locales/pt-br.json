@@ -311,6 +311,10 @@
       "transporte": {
         "nome": "Etiqueta de transporte",
         "descricao": "Para remessas com nota fiscal, múltiplos volumes e indicadores de manuseio"
+      },
+      "envioNfe": {
+        "nome": "Envio c/ NF-e",
+        "descricao": "Remetente, destinatário e dados fiscais"
       }
     },
     "form": {
@@ -334,7 +338,11 @@
       "volume": "Volume",
       "peso": "Peso (kg)",
       "descricao": "Descrição do produto",
-      "indicadores": "Indicadores de manuseio"
+      "indicadores": "Indicadores de manuseio",
+      "dadosFiscais": "Dados Fiscais",
+      "numeroNFe": "Número da NF-e",
+      "chaveAcesso": "Chave de Acesso (44 dígitos)",
+      "chaveAcessoTooltip": "Opcional — para comprovação fiscal"
     },
     "indicadores": {
       "fragil": "Frágil",

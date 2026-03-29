@@ -311,6 +311,10 @@
       "transporte": {
         "nome": "Etiqueta de transporte",
         "descricao": "Para envíos con factura, múltiples volúmenes e indicadores de manipulación"
+      },
+      "envioNfe": {
+        "nome": "Envío con Factura",
+        "descricao": "Remitente, destinatario y datos fiscales"
       }
     },
     "form": {
@@ -334,7 +338,11 @@
       "volume": "Volumen",
       "peso": "Peso (kg)",
       "descricao": "Descripción del producto",
-      "indicadores": "Indicadores de manipulación"
+      "indicadores": "Indicadores de manipulación",
+      "dadosFiscais": "Datos Fiscales",
+      "numeroNFe": "Número de Factura",
+      "chaveAcesso": "Clave de Acceso (44 dígitos)",
+      "chaveAcessoTooltip": "Opcional — para verificación fiscal"
     },
     "indicadores": {
       "fragil": "Frágil",

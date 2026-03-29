@@ -10,4 +10,11 @@ export const TEMPLATES: LabelTemplate[] = [
     component: null as unknown as LabelTemplate['component'],
     gerarZpl: gerarZplCompleto,
   },
+  {
+    id: 'envio-nfe',
+    nomeKey: 'templates.envioNfe.nome',
+    descricaoKey: 'templates.envioNfe.descricao',
+    component: null as unknown as LabelTemplate['component'],
+    gerarZpl: null, // usa gerarZplEnvioNFe — dados diferentes (DadosEnvioNFe)
+  },
 ];

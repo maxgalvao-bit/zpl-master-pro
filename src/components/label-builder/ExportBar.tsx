@@ -2,29 +2,27 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import type { DadosEtiqueta } from "../../types/label.types";
-import { gerarZplCompleto } from "../../services/LabelGenerator";
-import { generateLabelBuilderPdf } from "../../services/LabelBuilderPdf";
 import { trackEvent } from "../../lib/analytics";
 
 interface Props {
-  dados: DadosEtiqueta;
+  gerarZpl: () => string;
+  nomeArquivo: string;
+  canExport: boolean;
+  gerarPdf?: () => void;
 }
 
-export default function ExportBar({ dados }: Props) {
+export default function ExportBar({ gerarZpl, nomeArquivo, canExport, gerarPdf }: Props) {
   const t = useTranslations("labelBuilder.export");
   const [exporting, setExporting] = useState(false);
 
-  const canExport = dados.volumes.length > 0;
-
   const handleExportZpl = () => {
     if (!canExport) return;
-    const zpl = gerarZplCompleto(dados);
+    const zpl = gerarZpl();
     const blob = new Blob([zpl], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `etiquetas_NF${dados.notaFiscal}_${dados.totalVolumes}vol.zpl`;
+    a.download = nomeArquivo;
     a.click();
     URL.revokeObjectURL(url);
     trackEvent('label_built', 'label_builder');
@@ -32,10 +30,10 @@ export default function ExportBar({ dados }: Props) {
   };
 
   const handleExportPdf = () => {
-    if (!canExport) return;
+    if (!canExport || !gerarPdf) return;
     setExporting(true);
     try {
-      generateLabelBuilderPdf(dados);
+      gerarPdf();
       trackEvent('label_built', 'label_builder');
       trackEvent('label_exported_pdf', 'label_builder');
     } finally {
@@ -45,22 +43,24 @@ export default function ExportBar({ dados }: Props) {
 
   return (
     <div className="flex flex-wrap gap-3">
-      <button
-        onClick={handleExportPdf}
-        disabled={!canExport || exporting}
-        className="flex items-center gap-2 bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-widest px-6 py-3 rounded-full shadow-[0_0_20px_rgba(251,191,36,0.4)] hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-      >
-        {exporting ? (
-          <span className="animate-pulse">{t("exporting")}</span>
-        ) : (
-          <>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            {t("pdf")}
-          </>
-        )}
-      </button>
+      {gerarPdf ? (
+        <button
+          onClick={handleExportPdf}
+          disabled={!canExport || exporting}
+          className="flex items-center gap-2 bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-widest px-6 py-3 rounded-full shadow-[0_0_20px_rgba(251,191,36,0.4)] hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+        >
+          {exporting ? (
+            <span className="animate-pulse">{t("exporting")}</span>
+          ) : (
+            <>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              {t("pdf")}
+            </>
+          )}
+        </button>
+      ) : null}
       <button
         onClick={handleExportZpl}
         disabled={!canExport}

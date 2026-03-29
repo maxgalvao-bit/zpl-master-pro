@@ -1,5 +1,18 @@
 export type Indicador = 'fragil' | 'cima' | 'chuva' | 'inflamavel';
 
+export type TemplateId = 'transporte-mercadoria' | 'envio-nfe';
+
+export interface DadosNFe {
+  numero: string;
+  chaveAcesso: string;
+}
+
+export interface DadosEnvioNFe {
+  remetente: DadosRemetente;
+  destinatario: DadosDestinatario;
+  nfe: DadosNFe;
+}
+
 export interface DadosRemetente {
   empresa: string;
   cnpj: string;
@@ -43,5 +56,5 @@ export interface LabelTemplate {
   nomeKey: string;
   descricaoKey: string;
   component: ComponentType<{ dados: DadosEtiqueta }>;
-  gerarZpl: (dados: DadosEtiqueta) => string;
+  gerarZpl: ((dados: DadosEtiqueta) => string) | null;
 }

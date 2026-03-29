@@ -311,6 +311,10 @@
       "transporte": {
         "nome": "运输标签",
         "descricao": "适用于带发票、多件包裹和搬运标识的货运"
+      },
+      "envioNfe": {
+        "nome": "含发票的发货",
+        "descricao": "发件人、收件人和财务数据"
       }
     },
     "form": {
@@ -334,7 +338,11 @@
       "volume": "包裹",
       "peso": "重量 (kg)",
       "descricao": "产品描述",
-      "indicadores": "搬运标识"
+      "indicadores": "搬运标识",
+      "dadosFiscais": "财务数据",
+      "numeroNFe": "发票编号",
+      "chaveAcesso": "访问密钥（44位）",
+      "chaveAcessoTooltip": "可选 — 用于财务核验"
     },
     "indicadores": {
       "fragil": "易碎",
