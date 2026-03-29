@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import type { DadosEtiqueta, DadosVolume, DadosEnvioNFe, Indicador, TemplateId } from "../../../../types/label.types";
 import { carregarRascunho, salvarRascunho } from "../../../../services/LabelBuilderStorage";
 import { gerarZplCompleto } from "../../../../services/LabelGenerator";
-import { generateLabelBuilderPdf } from "../../../../services/LabelBuilderPdf";
+import { generateLabelBuilderPdf, generateEnvioNFePdf } from "../../../../services/LabelBuilderPdf";
 import { gerarZplEnvioNFe } from "../../../../services/EnvioNFeGenerator";
 import TemplateSelector from "../../../../components/label-builder/TemplateSelector";
 import FormDadosFixos from "../../../../components/label-builder/FormDadosFixos";
@@ -120,6 +120,7 @@ export default function LabelBuilderWrapper() {
             </div>
             <ExportBar
               gerarZpl={() => gerarZplEnvioNFe(dadosNFe)}
+              gerarPdf={() => generateEnvioNFePdf(dadosNFe)}
               nomeArquivo={`envio_nfe_${dadosNFe.nfe.numero || 'sem_nf'}.zpl`}
               canExport={canExportNFe}
             />

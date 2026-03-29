@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import type { DadosEtiqueta, DadosVolume, Indicador } from "../types/label.types";
+import type { DadosEtiqueta, DadosVolume, DadosEnvioNFe, Indicador } from "../types/label.types";
 import { SIMBOLOS } from "../components/label-builder/simbolos";
 
 const MM_W = 100;
@@ -426,6 +426,78 @@ function drawOneLabel(pdf: jsPDF, dados: DadosEtiqueta, volume: DadosVolume): vo
     setBorderPt(pdf);
     pdf.line(MARGIN_L, yRule, MM_W - MARGIN_R, yRule);
   }
+}
+
+export function generateEnvioNFePdf(dados: DadosEnvioNFe): void {
+  const rem = dados.remetente;
+  const dest = dados.destinatario;
+  const nfe = dados.nfe;
+
+  const pdf = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: [MM_W, MM_H],
+  });
+
+  let y = 6;
+  setBorderPt(pdf);
+  pdf.line(MARGIN_L, y, MM_W - MARGIN_R, y);
+  y += 5;
+
+  y = drawRemetenteHeader(pdf, rem, y);
+
+  setBorderPt(pdf);
+  pdf.line(MARGIN_L, y, MM_W - MARGIN_R, y);
+  y += 5;
+
+  y = drawWrapped(pdf, "DESTINATARIO", MARGIN_L, y, CONTENT_W, 8, "bold");
+  y += 0.5;
+  y = drawWrapped(pdf, dest.nome || "—", MARGIN_L, y, CONTENT_W, 12, "bold");
+  y += 0.5;
+  y = drawWrapped(pdf, dest.endereco || "—", MARGIN_L, y, CONTENT_W, ADDR_PT);
+  y = drawWrapped(
+    pdf,
+    `${dest.cidade || "—"} - ${dest.uf || "—"}`,
+    MARGIN_L,
+    y + 0.5,
+    CONTENT_W,
+    ADDR_PT
+  );
+  y = drawWrapped(pdf, `CEP: ${dest.cep || "—"}`, MARGIN_L, y + 0.5, CONTENT_W, ADDR_PT);
+  y += 3;
+
+  setBorderPt(pdf);
+  pdf.line(MARGIN_L, y, MM_W - MARGIN_R, y);
+  y += 5;
+
+  y = drawWrapped(pdf, "DOCUMENTO", MARGIN_L, y, CONTENT_W, 8);
+  y += 0.5;
+  y = drawWrapped(pdf, dest.cpfCnpj || "—", MARGIN_L, y, CONTENT_W, 12, "bold");
+  y += 3;
+
+  if (nfe.numero || nfe.chaveAcesso) {
+    setBorderPt(pdf);
+    pdf.line(MARGIN_L, y, MM_W - MARGIN_R, y);
+    y += 5;
+
+    y = drawWrapped(pdf, "DADOS FISCAIS", MARGIN_L, y, CONTENT_W, 8, "bold");
+    y += 1;
+
+    if (nfe.numero) {
+      y = drawWrapped(pdf, `NF-e N: ${nfe.numero}`, MARGIN_L, y, CONTENT_W, 11, "bold");
+      y += 1;
+    }
+    if (nfe.chaveAcesso) {
+      y = drawWrapped(pdf, "Chave de Acesso:", MARGIN_L, y, CONTENT_W, 8);
+      y += 0.5;
+      const digits = nfe.chaveAcesso.replace(/\D/g, '');
+      const formatted = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+      y = drawWrapped(pdf, formatted, MARGIN_L, y, CONTENT_W, 7);
+      y += 2;
+    }
+  }
+
+  pdf.save(`envio_nfe_${nfe.numero || 'sem_nf'}.pdf`);
 }
 
 export function generateLabelBuilderPdf(dados: DadosEtiqueta): void {
