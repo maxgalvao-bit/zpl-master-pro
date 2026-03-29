@@ -41,6 +41,12 @@ export default function FormEnvioNFe({ dados, onChange }: Props) {
   const setNFe = (n: Partial<DadosEnvioNFe["nfe"]>) =>
     onChange({ ...dados, nfe: { ...nfe, ...n } });
 
+  const limparDestinatario = () =>
+    onChange({
+      ...dados,
+      destinatario: { nome: "", cpfCnpj: "", endereco: "", cidade: "", uf: "", cep: "" },
+    });
+
   const handleLogoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !file.type.startsWith("image/")) {
@@ -120,7 +126,16 @@ export default function FormEnvioNFe({ dados, onChange }: Props) {
 
       {/* Destinatário */}
       <div>
-        <h3 className={labelClass}>{t("destinatario")}</h3>
+        <div className="flex items-center mb-2">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">{t("destinatario")}</h3>
+          <button
+            type="button"
+            onClick={limparDestinatario}
+            className="text-xs text-slate-400 hover:text-slate-200 transition-colors ml-auto"
+          >
+            Limpar campos ↺
+          </button>
+        </div>
         <div className="flex flex-col gap-3">
           <input
             type="text"

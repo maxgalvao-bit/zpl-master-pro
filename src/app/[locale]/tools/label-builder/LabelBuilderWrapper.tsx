@@ -162,13 +162,7 @@ export default function LabelBuilderWrapper() {
               )}
             </>
           ) : (
-            canExportNFe ? (
-              <LabelPreviewNFe dados={dadosNFe} />
-            ) : (
-              <div className="w-full max-w-[340px] aspect-[100/150] rounded-xl border-2 border-dashed border-slate-700 flex items-center justify-center text-slate-500 text-sm">
-                {t("previewEmpty")}
-              </div>
-            )
+            <LabelPreviewNFe dados={dadosNFe} />
           )}
         </div>
       </div>
