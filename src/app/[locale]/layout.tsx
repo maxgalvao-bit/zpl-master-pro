@@ -1,15 +1,32 @@
 import type { Metadata } from "next";
 import "../globals.css";
 
-export const metadata: Metadata = {
-  title: "ZPLMaster Pro",
-  description: "Advanced Client-Side ZPL Renderer",
-  verification: {
-    other: {
-      'msvalidate.01': '3DD959BB6601B0F531F05E679087B226',
+const BASE_URL = 'https://zplmaster.com';
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: "ZPLMaster Pro",
+    description: "Advanced Client-Side ZPL Renderer",
+    verification: {
+      other: {
+        'msvalidate.01': '3DD959BB6601B0F531F05E679087B226',
+      },
     },
-  },
-};
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        'pt-BR': `${BASE_URL}/pt-br`,
+        'en': `${BASE_URL}/en`,
+        'es': `${BASE_URL}/es`,
+        'zh': `${BASE_URL}/zh`,
+        'x-default': `${BASE_URL}/pt-br`,
+      },
+    },
+  };
+}
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';

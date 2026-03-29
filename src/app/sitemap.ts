@@ -16,7 +16,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/termos',
   ]
 
-  const entries: MetadataRoute.Sitemap = []
+  const entries: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+  ]
 
   for (const locale of locales) {
     for (const route of routes) {

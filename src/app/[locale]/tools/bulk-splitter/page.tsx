@@ -9,12 +9,25 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+const BASE_URL = 'https://zplmaster.com';
+const SLUG = '/tools/bulk-splitter';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'seo' });
   return {
     title: t('bulkSplitter.title'),
     description: t('bulkSplitter.desc'),
+    alternates: {
+      canonical: `${BASE_URL}/${locale}${SLUG}`,
+      languages: {
+        'pt-BR': `${BASE_URL}/pt-br${SLUG}`,
+        'en': `${BASE_URL}/en${SLUG}`,
+        'es': `${BASE_URL}/es${SLUG}`,
+        'zh': `${BASE_URL}/zh${SLUG}`,
+        'x-default': `${BASE_URL}/pt-br${SLUG}`,
+      },
+    },
   };
 }
 
