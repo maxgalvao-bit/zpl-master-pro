@@ -57,7 +57,7 @@ export async function encodeLogoForZpl(dataUrl: string): Promise<string | null> 
           hex += bytes[i].toString(16).padStart(2, "0").toUpperCase();
         }
 
-        const fragment = `^FO20,22^GFA,${totalBytes},${totalBytes},${bytesPerRow},${hex}^FS`;
+        const fragment = `^FO22,25^GFA,${totalBytes},${totalBytes},${bytesPerRow},${hex}^FS`;
         resolve(fragment);
       } catch {
         resolve(null);
