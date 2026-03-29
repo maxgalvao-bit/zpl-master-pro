@@ -354,7 +354,8 @@
       "pdf": "Exportar PDF",
       "zpl": "Exportar ZPL",
       "saving": "Borrador guardado automáticamente",
-      "exporting": "Exportando..."
+      "exporting": "Exportando...",
+      "zplHint": "El ZPL generado está optimizado para impresoras Zebra. Para visualizar, use labelary.com/viewer"
     }
   },
   "homepage": {

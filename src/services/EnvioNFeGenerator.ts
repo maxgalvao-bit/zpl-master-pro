@@ -9,6 +9,8 @@ function formatarChaveNFe(chave: string): string {
   return digits.replace(/(\d{4})(?=\d)/g, '$1 ');
 }
 
+// Nota: ^GFA e ^BCN requerem impressora Zebra
+// ou simulador compatível (ex: labelary.com/viewer)
 export function gerarZplEnvioNFe(dados: DadosEnvioNFe): string {
   const rem = dados.remetente;
   const dest = dados.destinatario;

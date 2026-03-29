@@ -46,26 +46,30 @@ export default function LabelPreviewNFe({ dados }: Props) {
 
   if (loading) {
     return (
-      <div className="w-full max-w-[340px] aspect-[100/150] rounded-xl border border-slate-700 flex items-center justify-center text-slate-500 text-sm animate-pulse">
-        Renderizando...
+      <div className="w-full min-w-[300px] max-w-[340px]" style={{ aspectRatio: '2/3' }}>
+        <div className="w-full h-full rounded-xl border border-slate-700 flex items-center justify-center text-slate-500 text-sm animate-pulse">
+          Renderizando...
+        </div>
       </div>
     );
   }
 
   if (!pngUrl) {
     return (
-      <div className="w-full max-w-[340px] aspect-[100/150] rounded-xl border-2 border-dashed border-slate-700 flex items-center justify-center text-slate-500 text-sm">
-        Preencha os dados para visualizar
+      <div className="w-full min-w-[300px] max-w-[340px]" style={{ aspectRatio: '2/3' }}>
+        <div className="w-full h-full rounded-xl border-2 border-dashed border-slate-700 flex items-center justify-center text-slate-500 text-sm">
+          Preencha os dados para visualizar
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="relative w-full max-w-[340px]">
+    <div className="relative w-full min-w-[300px] max-w-[340px]" style={{ aspectRatio: '2/3' }}>
       <img
         src={pngUrl}
         alt="Preview etiqueta NF-e"
-        className="w-full rounded-xl border border-slate-700 block"
+        className="w-full h-full object-contain rounded-xl border border-slate-700 block"
       />
       {dados.remetente.logoBase64 ? (
         <img

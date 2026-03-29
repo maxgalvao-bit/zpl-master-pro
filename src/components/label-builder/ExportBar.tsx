@@ -42,7 +42,8 @@ export default function ExportBar({ gerarZpl, nomeArquivo, canExport, gerarPdf }
   };
 
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap gap-3">
       {gerarPdf ? (
         <button
           onClick={handleExportPdf}
@@ -71,6 +72,8 @@ export default function ExportBar({ gerarZpl, nomeArquivo, canExport, gerarPdf }
         </svg>
         {t("zpl")}
       </button>
+      </div>
+      <p className="text-[10px] text-slate-600 italic">{t("zplHint")}</p>
     </div>
   );
 }

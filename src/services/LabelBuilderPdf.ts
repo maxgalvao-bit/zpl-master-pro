@@ -1,4 +1,5 @@
 import { jsPDF } from "jspdf";
+import * as bwipjs from "bwip-js/browser";
 import type { DadosEtiqueta, DadosVolume, DadosEnvioNFe, Indicador } from "../types/label.types";
 import { SIMBOLOS } from "../components/label-builder/simbolos";
 
@@ -490,10 +491,29 @@ export function generateEnvioNFePdf(dados: DadosEnvioNFe): void {
     if (nfe.chaveAcesso) {
       y = drawWrapped(pdf, "Chave de Acesso:", MARGIN_L, y, CONTENT_W, 8);
       y += 0.5;
-      const digits = nfe.chaveAcesso.replace(/\D/g, '');
+      const digits = nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44);
       const formatted = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
       y = drawWrapped(pdf, formatted, MARGIN_L, y, CONTENT_W, 7);
       y += 2;
+      if (digits.length >= 8) {
+        try {
+          const canvas = document.createElement('canvas');
+          bwipjs.toCanvas(canvas, {
+            bcid: 'code128',
+            text: digits,
+            scale: 2,
+            height: 12,
+            includetext: false,
+            backgroundcolor: 'ffffff',
+          });
+          const dataUrl = canvas.toDataURL('image/png');
+          const barcodeH = 16;
+          pdf.addImage(dataUrl, 'PNG', MARGIN_L, y, CONTENT_W, barcodeH);
+          y += barcodeH + 4;
+        } catch (e) {
+          console.warn('Barcode generation failed:', e);
+        }
+      }
     }
   }
 

@@ -354,7 +354,8 @@
       "pdf": "导出PDF",
       "zpl": "导出ZPL",
       "saving": "草稿已自动保存",
-      "exporting": "导出中..."
+      "exporting": "导出中...",
+      "zplHint": "生成的ZPL针对Zebra打印机优化。如需预览，请使用 labelary.com/viewer"
     }
   },
   "homepage": {
