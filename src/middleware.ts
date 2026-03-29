@@ -6,7 +6,7 @@ export default createMiddleware(routing);
 export const config = {
   matcher: [
     // Ignora arquivos internos do Next.js e estáticos
-    '/((?!_next|_vercel|.*\\..*).*)',
+    '/((?!_next|_vercel|api|.*\\..*).*)',
     // Rota raiz e rotas dos locales
     '/',
     '/(pt-br|en|es|zh)/:path*'
