@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
+import { trackEvent } from '@/lib/analytics'
 
 const STORAGE_KEY = 'zplmaster_lb_email'
 
@@ -75,6 +76,7 @@ export function LabelBuilderAccess() {
 
       if (data.ok) {
         localStorage.setItem(STORAGE_KEY, email)
+        trackEvent('lb_registered', 'label_builder')
         router.push(toolUrl)
       } else {
         setStatus('error')

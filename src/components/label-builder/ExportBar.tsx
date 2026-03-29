@@ -27,6 +27,7 @@ export default function ExportBar({ dados }: Props) {
     a.download = `etiquetas_NF${dados.notaFiscal}_${dados.totalVolumes}vol.zpl`;
     a.click();
     URL.revokeObjectURL(url);
+    trackEvent('label_built', 'label_builder');
     trackEvent('label_exported_zpl', 'label_builder');
   };
 
@@ -35,6 +36,7 @@ export default function ExportBar({ dados }: Props) {
     setExporting(true);
     try {
       generateLabelBuilderPdf(dados);
+      trackEvent('label_built', 'label_builder');
       trackEvent('label_exported_pdf', 'label_builder');
     } finally {
       setExporting(false);
