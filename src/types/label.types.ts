@@ -19,8 +19,8 @@ export interface DadosRemetente {
   endereco: string;
   /** Data URL (image/*) para preview, PDF e persistência */
   logoBase64?: string;
-  /** Fragmento ZPL ^GFA...^FS gerado no upload (browser) */
-  logoZplFragment?: string;
+  /** Fragmento ZPL gerado no upload — ~DGR antes do ^XA e ^XGR dentro do label */
+  logoZplFragment?: { downloadCmd: string; renderCmd: string };
 }
 
 export interface DadosDestinatario {

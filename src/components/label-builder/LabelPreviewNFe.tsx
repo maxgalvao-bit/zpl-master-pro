@@ -23,9 +23,9 @@ export default function LabelPreviewNFe({ dados }: Props) {
     let cancelled = false;
     setLoading(true);
 
-    // Strip ^GFA from ZPL — zpl-renderer-js doesn't support it.
-    // Pass dados without logoZplFragment so the ^GFA block is omitted,
-    // but logoBase64 presence still sets tx=270 (correct text offset).
+    // Strip logoZplFragment — zpl-renderer-js doesn't support ~DGR/^XGR.
+    // logoBase64 presence still sets tx=270 (correct text offset);
+    // the logo is overlaid as an HTML <img> below.
     const dadosParaRender: DadosEnvioNFe = {
       ...dados,
       remetente: { ...dados.remetente, logoZplFragment: undefined },

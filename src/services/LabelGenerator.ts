@@ -22,7 +22,7 @@ export function gerarZplVolume(dados: DadosEtiqueta, volume: DadosVolume): strin
   const peso = dados.pesoIgualParaTodos ? dados.pesoGlobal : volume.peso;
   const dest = dados.destinatario;
   const rem = dados.remetente;
-  const hasLogoGraphic = Boolean(rem.logoZplFragment?.trim());
+  const hasLogoGraphic = Boolean(rem.logoZplFragment);
   const hasLogoInForm = Boolean(rem.logoBase64 || hasLogoGraphic);
   const tx = hasLogoInForm ? 270 : 20;
 
@@ -46,9 +46,10 @@ ${linhasIndicadores}
 `
       : '';
 
-  const logoBlock = hasLogoGraphic ? `${rem.logoZplFragment}\n` : '';
+  const logoDownload = hasLogoGraphic ? `${rem.logoZplFragment!.downloadCmd}\n` : '';
+  const logoRender = hasLogoGraphic ? `${rem.logoZplFragment!.renderCmd}\n` : '';
 
-  return `^XA
+  return `${logoDownload}^XA
 ^CI28
 ^PW812
 ^LL1218
@@ -56,7 +57,7 @@ ${linhasIndicadores}
 
 ^FO20,20^GB772,0,3^FS
 
-${logoBlock}^FO${tx},30^CF0,24^FD${sanitizeFd(rem.empresa)}^FS
+${logoRender}^FO${tx},30^CF0,24^FD${sanitizeFd(rem.empresa)}^FS
 ^FO${tx},62^CF0,20^FDCNPJ: ${sanitizeFd(rem.cnpj)}^FS
 ^FO${tx},88^CF0,18^FD${sanitizeFd(rem.endereco)}^FS
 

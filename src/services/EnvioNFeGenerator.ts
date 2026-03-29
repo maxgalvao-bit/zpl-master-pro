@@ -15,10 +15,11 @@ export function gerarZplEnvioNFe(dados: DadosEnvioNFe): string {
   const rem = dados.remetente;
   const dest = dados.destinatario;
   const nfe = dados.nfe;
-  const hasLogoGraphic = Boolean(rem.logoZplFragment?.trim());
+  const hasLogoGraphic = Boolean(rem.logoZplFragment);
   const hasLogoInForm = Boolean(rem.logoBase64 || hasLogoGraphic);
   const tx = hasLogoInForm ? 270 : 20;
-  const logoBlock = hasLogoGraphic ? `${rem.logoZplFragment}\n` : '';
+  const logoDownload = hasLogoGraphic ? `${rem.logoZplFragment!.downloadCmd}\n` : '';
+  const logoRender = hasLogoGraphic ? `${rem.logoZplFragment!.renderCmd}\n` : '';
 
   const blocoNFe = (nfe.numero || nfe.chaveAcesso) ? `
 ^FO20,640^GB772,0,2^FS
@@ -32,7 +33,7 @@ ${nfe.chaveAcesso ? `
 ` : ''}
 ` : '';
 
-  return `^XA
+  return `${logoDownload}^XA
 ^CI28
 ^PW812
 ^LL1260
@@ -40,7 +41,7 @@ ${nfe.chaveAcesso ? `
 
 ^FO20,20^GB772,0,3^FS
 
-${logoBlock}^FO${tx},30^CF0,24^FD${sanitizeFd(rem.empresa)}^FS
+${logoRender}^FO${tx},30^CF0,24^FD${sanitizeFd(rem.empresa)}^FS
 ^FO${tx},62^CF0,20^FDCNPJ: ${sanitizeFd(rem.cnpj)}^FS
 ^FO${tx},88^CF0,18^FD${sanitizeFd(rem.endereco)}^FS
 

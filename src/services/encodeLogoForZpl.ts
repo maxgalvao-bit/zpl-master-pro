@@ -1,8 +1,13 @@
 /**
- * Converte imagem (data URL) em fragmento ZPL ^GFA para impressão monocromática.
+ * Converte imagem (data URL) em fragmento ZPL via ~DGR + ^XGR para impressão monocromática.
  * Executar apenas no browser (usa canvas).
+ * Retorna { downloadCmd, renderCmd } onde:
+ *   downloadCmd = ~DGR:LOGO.GRF,... (deve ficar ANTES do ^XA)
+ *   renderCmd   = ^FO22,25^XGR:LOGO.GRF,1,1^FS (dentro do label body)
  */
-export async function encodeLogoForZpl(dataUrl: string): Promise<string | null> {
+export async function encodeLogoForZpl(
+  dataUrl: string
+): Promise<{ downloadCmd: string; renderCmd: string } | null> {
   if (typeof document === "undefined") return null;
 
   return new Promise((resolve) => {
@@ -32,8 +37,7 @@ export async function encodeLogoForZpl(dataUrl: string): Promise<string | null> 
         ctx.drawImage(img, 0, 0, w, h);
         const imageData = ctx.getImageData(0, 0, w, h);
         const bytesPerRow = w / 8;
-        const totalRows = h;
-        const totalBytes = bytesPerRow * totalRows;
+        const totalBytes = bytesPerRow * h;
         const bytes = new Uint8Array(totalBytes);
 
         for (let row = 0; row < h; row++) {
@@ -57,8 +61,10 @@ export async function encodeLogoForZpl(dataUrl: string): Promise<string | null> 
           hex += bytes[i].toString(16).padStart(2, "0").toUpperCase();
         }
 
-        const fragment = `^FO22,25^GFA,${totalBytes},${totalBytes},${bytesPerRow},${hex}^FS`;
-        resolve(fragment);
+        resolve({
+          downloadCmd: `~DGR:LOGO.GRF,${totalBytes},${bytesPerRow},${hex}`,
+          renderCmd: `^FO22,25^XGR:LOGO.GRF,1,1^FS`,
+        });
       } catch {
         resolve(null);
       }
