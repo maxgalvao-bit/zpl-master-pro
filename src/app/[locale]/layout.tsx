@@ -4,6 +4,11 @@ import "../globals.css";
 export const metadata: Metadata = {
   title: "ZPLMaster Pro",
   description: "Advanced Client-Side ZPL Renderer",
+  verification: {
+    other: {
+      'msvalidate.01': '3DD959BB6601B0F531F05E679087B226',
+    },
+  },
 };
 
 import { NextIntlClientProvider } from 'next-intl';
