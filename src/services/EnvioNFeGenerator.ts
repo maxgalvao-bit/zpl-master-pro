@@ -28,14 +28,14 @@ ${nfe.numero ? `^FO20,685^CF0,24^FDNF-e N: ${sanitizeFd(nfe.numero)}^FS` : ''}
 ${nfe.chaveAcesso ? `
 ^FO20,720^CF0,18^FDChave de Acesso:^FS
 ^FO20,745^CF0,16^FD${sanitizeFd(formatarChaveNFe(nfe.chaveAcesso))}^FS
-^FO20,775^BY1,3,50^BCN,,N,N,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
+^FT120,840,0^BY2,3,0^BCN,80,Y,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
 ` : ''}
 ` : '';
 
   return `^XA
 ^CI28
 ^PW812
-^LL1218
+^LL1260
 ^CF0,30
 
 ^FO20,20^GB772,0,3^FS
@@ -57,10 +57,10 @@ ${logoBlock}^FO${tx},30^CF0,24^FD${sanitizeFd(rem.empresa)}^FS
 ^FO20,305^CF0,20^FDDOCUMENTO^FS
 ^FO20,335^CF0,28^FD${sanitizeFd(dest.cpfCnpj)}^FS
 ${blocoNFe}
-^FO20,890^GB772,0,3^FS
+^FO20,940^GB772,0,3^FS
 
-^FO20,902^CF0,18^FD${sanitizeFd(rem.empresa)} — CNPJ: ${sanitizeFd(rem.cnpj)}^FS
-^FO20,924^CF0,18^FD${sanitizeFd(rem.endereco)}^FS
+^FO20,952^CF0,18^FD${sanitizeFd(rem.empresa)} — CNPJ: ${sanitizeFd(rem.cnpj)}^FS
+^FO20,974^CF0,18^FD${sanitizeFd(rem.endereco)}^FS
 
 ^XZ`;
 }
