@@ -19,10 +19,11 @@ export async function generateMetadata(
       canonical: `${BASE_URL}/${locale}`,
       languages: {
         'pt-BR': `${BASE_URL}/pt-br`,
+        'pt': `${BASE_URL}/pt-br`,
         'en': `${BASE_URL}/en`,
         'es': `${BASE_URL}/es`,
         'zh': `${BASE_URL}/zh`,
-        'x-default': `${BASE_URL}/pt-br`,
+        'x-default': `${BASE_URL}/`,
       },
     },
   };

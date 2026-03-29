@@ -20,10 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `${BASE_URL}/${locale}${SLUG}`,
       languages: {
         'pt-BR': `${BASE_URL}/pt-br${SLUG}`,
+        'pt': `${BASE_URL}/pt-br${SLUG}`,
         'en': `${BASE_URL}/en${SLUG}`,
         'es': `${BASE_URL}/es${SLUG}`,
         'zh': `${BASE_URL}/zh${SLUG}`,
-        'x-default': `${BASE_URL}/pt-br${SLUG}`,
+        'x-default': `${BASE_URL}/`,
       },
     },
   };
