@@ -29,7 +29,7 @@ ${nfe.numero ? `^FO20,685^CF0,24^FDNF-e N: ${sanitizeFd(nfe.numero)}^FS` : ''}
 ${nfe.chaveAcesso ? `
 ^FO20,720^CF0,18^FDChave de Acesso:^FS
 ^FO20,745^CF0,16^FD${sanitizeFd(formatarChaveNFe(nfe.chaveAcesso))}^FS
-^FT120,840,0^BY2,3,0^BCN,80,N,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
+^FO20,800^BY2,3,0^BCN,80,N,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
 ` : ''}
 ` : '';
 
