@@ -27,8 +27,8 @@ export function gerarZplEnvioNFe(dados: DadosEnvioNFe): string {
 ^FO20,655^CF0,26^FDDADOS FISCAIS^FS
 ${nfe.numero ? `^FO20,685^CF0,30^FDNF-e N: ${sanitizeFd(nfe.numero)}^FS` : ''}
 ${nfe.chaveAcesso ? `
-^FO20,720^CF0,30^FDChave de Acesso:^FS
-^FO20,745^CF0,26^FD${sanitizeFd(formatarChaveNFe(nfe.chaveAcesso))}^FS
+^FO20,720^CF0,24^FDChave de Acesso:^FS
+^FO20,745^CF0,20^FD${sanitizeFd(formatarChaveNFe(nfe.chaveAcesso))}^FS
 ^FO20,800^BY1,3,0^BCN,100,N,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
 ` : ''}
 ` : '';
@@ -43,7 +43,7 @@ ${nfe.chaveAcesso ? `
 
 ${logoRender}^FO${tx},30^CF0,30^FD${sanitizeFd(rem.empresa)}^FS
 ^FO${tx},62^CF0,26^FDCNPJ: ${sanitizeFd(rem.cnpj)}^FS
-^FO${tx},88^CF0,30^FD${sanitizeFd(rem.endereco)}^FS
+^FO${tx},88^CF0,24^FD${sanitizeFd(rem.endereco)}^FS
 
 ^FO20,120^GB772,0,2^FS
 
@@ -60,8 +60,8 @@ ${logoRender}^FO${tx},30^CF0,30^FD${sanitizeFd(rem.empresa)}^FS
 ${blocoNFe}
 ^FO20,940^GB772,0,3^FS
 
-^FO20,952^CF0,30^FD${sanitizeFd(rem.empresa)} — CNPJ: ${sanitizeFd(rem.cnpj)}^FS
-^FO20,974^CF0,30^FD${sanitizeFd(rem.endereco)}^FS
+^FO20,952^CF0,24^FD${sanitizeFd(rem.empresa)} — CNPJ: ${sanitizeFd(rem.cnpj)}^FS
+^FO20,974^CF0,24^FD${sanitizeFd(rem.endereco)}^FS
 
 ^XZ`;
 }
