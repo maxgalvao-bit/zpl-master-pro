@@ -16,7 +16,7 @@ export async function encodeLogoForZpl(
     img.onload = () => {
       try {
         const maxW = 240;
-        const maxH = 120;
+        const maxH = 90; // Y=25 + 90 = 115 < separador em Y=120
         let w = img.naturalWidth;
         let h = img.naturalHeight;
         const scale = Math.min(maxW / w, maxH / h, 1);
