@@ -59,6 +59,33 @@ Só crie novo arquivo se não houver equivalente. Scripts novos vão em `tools/`
 - Paywall freemium (LemonSqueezy ou Stripe + Supabase)
 - Donations layer (Ko-fi)
 
+### Label Builder
+✅ Template transporte-mercadoria — completo
+✅ Template envio-nfe — completo
+   - PDF: jsPDF + bwip-js (alta qualidade, logo + barcode)
+   - Logo: encodeLogoForZpl retorna {downloadCmd, renderCmd}
+   - ZPL: ~DGR antes ^XA, ^XGR dentro do body
+   - Barcode NF-e: ^BCN no ZPL, bwip-js no PDF
+   - Preview: ZplEngine PNG + overlay HTML logo
+   - Limitação aceita: barcode no preview via ZplEngine
+     não renderiza (zpl-renderer-js não suporta ^BCN)
+   - Limitação aceita: logo não aparece no Conversor
+     (zpl-renderer-js não suporta ~DGR/^XGR)
+⏳ Botão Impressão Térmica (PRIORITÁRIO)
+🔒 Etiquetas de Produto 1 coluna 63×40mm
+🔒 Etiquetas de Produto 2 colunas 91×25mm
+🔒 Lote múltiplo (grade de SKUs)
+🔒 Stripe para monetização Premium
+
+### Infraestrutura atual (develop)
+- encodeLogoForZpl.ts → retorna objeto {downloadCmd, renderCmd}
+- LabelBuilderPdf.ts → jsPDF + bwip-js
+- ZplEngine density=8 (203 DPI), height=157.5mm
+- canvas height 157.5mm × 8 = 1260px = ^LL1260
+- label_builder_users tabela no Supabase SP
+- Brevo Lista #6 via xkeysib API key
+- reCAPTCHA v3 invisível no cadastro
+
 ---
 
 ## 4. SKILLS (contexto especializado por domínio)
@@ -285,15 +312,9 @@ Deve aparecer em TODOS os templates atuais e futuros.
 ---
 
 ## 9. PRÓXIMA AÇÃO IMEDIATA
-
-A próxima tarefa na fila é **concluir a Ferramenta 2 (Shopee Image Fix)**:
-
-1. Leia `directives/` para verificar se existe uma directive para o Shopee Fixer
-2. Se não existir, crie `directives/03_shopee_fixer.md` antes de codificar
-3. Implemente a lógica de detecção usando a SKILL: shopee-fix deste documento
-4. O DPI é selecionado pelo usuário (dropdown 203/300) — não detectar automaticamente
-5. Valide via browser agent com um ZPL real de etiqueta Shopee
-6. Ao concluir, marque `[ ] Action: Fix & Heurística ZPL` como `[x]` no `task_plan.txt`
+Botão "Impressão Térmica" no Label Builder.
+Igual ao botão já existente no Conversor ZPL→PDF.
+Deve aparecer em todos os templates atuais e futuros.
 
 ---
 
