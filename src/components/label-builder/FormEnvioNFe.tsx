@@ -6,6 +6,7 @@ import { useCpfCnpjMask } from "../../hooks/useCpfCnpjMask";
 import { encodeLogoForZpl } from "../../services/encodeLogoForZpl";
 import type { DadosEnvioNFe } from "../../types/label.types";
 
+
 interface Props {
   dados: DadosEnvioNFe;
   onChange: (dados: DadosEnvioNFe) => void;
@@ -29,6 +30,7 @@ export default function FormEnvioNFe({ dados, onChange }: Props) {
   const t = useTranslations("labelBuilder.form");
   const { handleChange } = useCpfCnpjMask();
   const [showFiscal, setShowFiscal] = useState(false);
+  const [logoLoading, setLogoLoading] = useState(false);
 
   const { remetente, destinatario, nfe } = dados;
 
@@ -56,8 +58,10 @@ export default function FormEnvioNFe({ dados, onChange }: Props) {
     const reader = new FileReader();
     reader.onload = async () => {
       const dataUrl = reader.result as string;
+      setLogoLoading(true);
       const zpl = await encodeLogoForZpl(dataUrl);
       setRemetente({ logoBase64: dataUrl, logoZplFragment: zpl ?? undefined });
+      setLogoLoading(false);
     };
     reader.readAsDataURL(file);
     e.target.value = "";
@@ -81,7 +85,10 @@ export default function FormEnvioNFe({ dados, onChange }: Props) {
                 onChange={handleLogoChange}
                 className="text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-700 file:px-4 file:py-2 file:text-xs file:font-bold file:text-amber-400"
               />
-              {remetente.logoBase64 ? (
+              {logoLoading && (
+                <span className="text-xs text-yellow-500">Processando logo...</span>
+              )}
+              {remetente.logoBase64 && !logoLoading ? (
                 <button
                   type="button"
                   onClick={clearLogo}

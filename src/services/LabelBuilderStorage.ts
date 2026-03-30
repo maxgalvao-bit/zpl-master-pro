@@ -9,7 +9,18 @@ export interface StorageDraft {
 }
 
 export function salvarRascunho(draft: StorageDraft) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+  const dadosSem: StorageDraft = {
+    ...draft,
+    dados: {
+      ...draft.dados,
+      remetente: { ...draft.dados.remetente, logoZplFragment: undefined },
+    },
+    dadosNFe: {
+      ...draft.dadosNFe,
+      remetente: { ...draft.dadosNFe.remetente, logoZplFragment: undefined },
+    },
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(dadosSem));
 }
 
 export function carregarRascunho(): StorageDraft | null {

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import type { DadosEtiqueta, DadosVolume, DadosEnvioNFe, Indicador, TemplateId } from "../../../../types/label.types";
 import { carregarRascunho, salvarRascunho } from "../../../../services/LabelBuilderStorage";
+import { encodeLogoForZpl } from "../../../../services/encodeLogoForZpl";
 import { gerarZplCompleto } from "../../../../services/LabelGenerator";
 import { generateLabelBuilderPdf, generateEnvioNFePdf } from "../../../../services/LabelBuilderPdf";
 import { gerarZplEnvioNFe } from "../../../../services/EnvioNFeGenerator";
@@ -80,6 +81,33 @@ export default function LabelBuilderWrapper() {
     const timer = setTimeout(() => salvarRascunho({ templateId, dados, dadosNFe }), 500);
     return () => clearTimeout(timer);
   }, [templateId, dados, dadosNFe]);
+
+  // Regenera logoZplFragment após carregar rascunho (não é salvo no localStorage)
+  useEffect(() => {
+    if (dados.remetente.logoBase64 && !dados.remetente.logoZplFragment) {
+      encodeLogoForZpl(dados.remetente.logoBase64).then((zpl) => {
+        if (zpl) {
+          setDados((prev) => ({
+            ...prev,
+            remetente: { ...prev.remetente, logoZplFragment: zpl },
+          }));
+        }
+      });
+    }
+  }, [dados.remetente.logoBase64]);
+
+  useEffect(() => {
+    if (dadosNFe.remetente.logoBase64 && !dadosNFe.remetente.logoZplFragment) {
+      encodeLogoForZpl(dadosNFe.remetente.logoBase64).then((zpl) => {
+        if (zpl) {
+          setDadosNFe((prev) => ({
+            ...prev,
+            remetente: { ...prev.remetente, logoZplFragment: zpl },
+          }));
+        }
+      });
+    }
+  }, [dadosNFe.remetente.logoBase64]);
 
   const handleTemplateChange = (id: string) => {
     setTemplateId(id as TemplateId);
