@@ -25,7 +25,7 @@ export class ZplEngine {
    * Renderiza O ZPL cru de forma 100% Client-Side.
    */
   static async render(rawZpl: string, config: ZplConfig = {}): Promise<ZplProcessResult> {
-    const { density = 8, width = 101.6, height = 152.4 } = config; // 8 = 203 DPI → canvas 812×1218px
+    const { density = 8, width = 101.6, height = 157.5 } = config; // 8 = 203 DPI → canvas 812×1260px (^LL1260)
 
     const cleanZpl = rawZpl.trim();
 
