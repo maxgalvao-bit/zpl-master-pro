@@ -48,15 +48,13 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <head>
+      <body className="antialiased font-sans bg-background text-foreground transition-colors duration-300 flex flex-col min-h-screen">
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5267254636032578"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-      </head>
-      <body className="antialiased font-sans bg-background text-foreground transition-colors duration-300 flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <GoogleAnalytics />
           <Header />
