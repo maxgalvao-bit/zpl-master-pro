@@ -256,7 +256,35 @@ Quando algo quebra, execute nesta ordem:
 
 ---
 
-## 8. PRÓXIMA AÇÃO IMEDIATA
+## 8. PENDÊNCIAS LABEL BUILDER
+
+### Botão Impressão Térmica (PRIORITÁRIO)
+Adicionar botão "Imprimir" no Label Builder que abre o PDF diretamente para impressão,
+igual ao que existe no Conversor ZPL→PDF (`ExportEngine.printThermal`).
+Deve aparecer em TODOS os templates atuais e futuros.
+
+### Etiquetas Premium (próxima sessão)
+- Produto 1 coluna: 63×40mm, Code128, SKU+EAN+Nome+Variação
+- Produto 2 colunas: 91×25mm, mesmo conteúdo
+- Lote múltiplo: grade de SKUs com quantidades
+- **Requer Stripe implementado antes de liberar**
+
+### Correções estéticas aceitas (não urgente)
+- Preview NF-e: barcode desalinhado no preview
+  (`zpl-renderer-js` não suporta `^BCN` — limitação conhecida)
+- Conversor PDF: leve espaço após rodapé
+  (canvas 157.5mm vs label real — aceitável)
+
+### Arquitetura Label Builder (referência rápida)
+- `encodeLogoForZpl` → retorna `{ downloadCmd, renderCmd }`, maxH=90 dots
+- `LabelBuilderPdf.ts` → jsPDF + bwip-js (alta qualidade, não passa pelo ZplEngine)
+- `ZplEngine` → density=8 (203 DPI), canvas 812×1260px
+- `logoZplFragment` → excluído do localStorage, regenerado via useEffect no Wrapper
+- Templates ativos: `transporte-mercadoria`, `envio-nfe`
+
+---
+
+## 9. PRÓXIMA AÇÃO IMEDIATA
 
 A próxima tarefa na fila é **concluir a Ferramenta 2 (Shopee Image Fix)**:
 
