@@ -33,7 +33,8 @@ export default function LabelPreviewNFe({ dados }: Props) {
     };
 
     const zpl = gerarZplEnvioNFe(dadosParaRender);
-    ZplEngine.render(zpl).then((result) => {
+    // density=8 (203 DPI) para coincidir com ^PW812 ^LL1260 do ZPL gerado
+    ZplEngine.render(zpl, { density: 8 }).then((result) => {
       if (cancelled) return;
       setPngUrl(
         result.status === "success" && result.labels?.[0]

@@ -157,41 +157,43 @@ export default function LabelBuilderWrapper() {
       </div>
 
       {/* Coluna direita — preview */}
-      <div className="flex flex-col gap-6 sticky top-6">
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
-            {t("layout.resultLabel")}
-          </label>
+      <div className="flex flex-col gap-4 sticky top-6">
+        <div className="bg-slate-800 rounded-2xl border border-slate-700/50 p-6 flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              {t("layout.resultLabel")}
+            </label>
+            {templateId === "transporte-mercadoria" && hasVolumes && (
+              <div className="flex items-center gap-2">
+                <label className="text-xs text-slate-400">{t("form.volume")}:</label>
+                <select
+                  value={previewVolumeIndex}
+                  onChange={(e) => setPreviewVolumeIndex(parseInt(e.target.value))}
+                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-slate-200"
+                >
+                  {dados.volumes.map((v, i) => (
+                    <option key={v.id} value={i}>
+                      {v.id} / {dados.totalVolumes}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
 
-          {templateId === "transporte-mercadoria" ? (
-            <>
-              {hasVolumes && (
-                <div className="flex gap-2 mb-3">
-                  <label className="text-xs text-slate-400">{t("form.volume")}:</label>
-                  <select
-                    value={previewVolumeIndex}
-                    onChange={(e) => setPreviewVolumeIndex(parseInt(e.target.value))}
-                    className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-slate-200"
-                  >
-                    {dados.volumes.map((v, i) => (
-                      <option key={v.id} value={i}>
-                        {v.id} / {dados.totalVolumes}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-              {canPreview ? (
+          <div className="flex justify-center">
+            {templateId === "transporte-mercadoria" ? (
+              canPreview ? (
                 <LabelPreview dados={dados} volumeIndex={previewVolumeIndex} />
               ) : (
                 <div className="w-full max-w-[340px] aspect-[100/150] rounded-xl border-2 border-dashed border-slate-700 flex items-center justify-center text-slate-500 text-sm">
                   {t("previewEmpty")}
                 </div>
-              )}
-            </>
-          ) : (
-            <LabelPreviewNFe dados={dadosNFe} />
-          )}
+              )
+            ) : (
+              <LabelPreviewNFe dados={dadosNFe} />
+            )}
+          </div>
         </div>
       </div>
     </div>
