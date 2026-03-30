@@ -1,7 +1,7 @@
 import { zplToBase64MultipleAsync } from "zpl-renderer-js";
 
 export interface ZplConfig {
-  density?: number; // DPI em dots-per-mm, default 12 (300dpi)
+  density?: number; // DPI em dots-per-mm, default 8 (203dpi)
   width?: number; // Largura em mm
   height?: number; // Altura em mm
   paper_format?: "A4" | "Letter";
@@ -25,7 +25,7 @@ export class ZplEngine {
    * Renderiza O ZPL cru de forma 100% Client-Side.
    */
   static async render(rawZpl: string, config: ZplConfig = {}): Promise<ZplProcessResult> {
-    const { density = 12, width = 101.6, height = 152.4 } = config; // 12 = 300 DPI → canvas 1200×1800px
+    const { density = 8, width = 101.6, height = 152.4 } = config; // 8 = 203 DPI → canvas 812×1218px
 
     const cleanZpl = rawZpl.trim();
 

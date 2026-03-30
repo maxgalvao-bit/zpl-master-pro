@@ -24,12 +24,12 @@ export function gerarZplEnvioNFe(dados: DadosEnvioNFe): string {
   const blocoNFe = (nfe.numero || nfe.chaveAcesso) ? `
 ^FO20,640^GB772,0,2^FS
 
-^FO20,655^CF0,20^FDDADOS FISCAIS^FS
-${nfe.numero ? `^FO20,685^CF0,24^FDNF-e N: ${sanitizeFd(nfe.numero)}^FS` : ''}
+^FO20,655^CF0,26^FDDADOS FISCAIS^FS
+${nfe.numero ? `^FO20,685^CF0,30^FDNF-e N: ${sanitizeFd(nfe.numero)}^FS` : ''}
 ${nfe.chaveAcesso ? `
-^FO20,720^CF0,18^FDChave de Acesso:^FS
-^FO20,745^CF0,16^FD${sanitizeFd(formatarChaveNFe(nfe.chaveAcesso))}^FS
-^FO20,800^BY1,3,0^BCN,60,N,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
+^FO20,720^CF0,30^FDChave de Acesso:^FS
+^FO20,745^CF0,26^FD${sanitizeFd(formatarChaveNFe(nfe.chaveAcesso))}^FS
+^FO20,800^BY1,3,0^BCN,100,N,N^FD${nfe.chaveAcesso.replace(/\D/g, '').substring(0, 44)}^FS
 ` : ''}
 ` : '';
 
@@ -41,27 +41,27 @@ ${nfe.chaveAcesso ? `
 
 ^FO20,20^GB772,0,3^FS
 
-${logoRender}^FO${tx},30^CF0,24^FD${sanitizeFd(rem.empresa)}^FS
-^FO${tx},62^CF0,20^FDCNPJ: ${sanitizeFd(rem.cnpj)}^FS
-^FO${tx},88^CF0,18^FD${sanitizeFd(rem.endereco)}^FS
+${logoRender}^FO${tx},30^CF0,30^FD${sanitizeFd(rem.empresa)}^FS
+^FO${tx},62^CF0,26^FDCNPJ: ${sanitizeFd(rem.cnpj)}^FS
+^FO${tx},88^CF0,30^FD${sanitizeFd(rem.endereco)}^FS
 
 ^FO20,120^GB772,0,2^FS
 
-^FO20,135^CF0,20^FDDESTINATARIO^FS
-^FO20,165^CF0,32^FD${sanitizeFd(dest.nome)}^FS
-^FO20,205^CF0,20^FD${sanitizeFd(dest.endereco)}^FS
-^FO20,232^CF0,20^FD${sanitizeFd(dest.cidade)} - ${sanitizeFd(dest.uf)}^FS
-^FO20,258^CF0,20^FDCEP: ${sanitizeFd(dest.cep)}^FS
+^FO20,135^CF0,26^FDDESTINATARIO^FS
+^FO20,165^CF0,38^FD${sanitizeFd(dest.nome)}^FS
+^FO20,205^CF0,26^FD${sanitizeFd(dest.endereco)}^FS
+^FO20,232^CF0,26^FD${sanitizeFd(dest.cidade)} - ${sanitizeFd(dest.uf)}^FS
+^FO20,258^CF0,26^FDCEP: ${sanitizeFd(dest.cep)}^FS
 
 ^FO20,290^GB772,0,2^FS
 
-^FO20,305^CF0,20^FDDOCUMENTO^FS
-^FO20,335^CF0,28^FD${sanitizeFd(dest.cpfCnpj)}^FS
+^FO20,305^CF0,26^FDDOCUMENTO^FS
+^FO20,335^CF0,34^FD${sanitizeFd(dest.cpfCnpj)}^FS
 ${blocoNFe}
 ^FO20,940^GB772,0,3^FS
 
-^FO20,952^CF0,18^FD${sanitizeFd(rem.empresa)} — CNPJ: ${sanitizeFd(rem.cnpj)}^FS
-^FO20,974^CF0,18^FD${sanitizeFd(rem.endereco)}^FS
+^FO20,952^CF0,30^FD${sanitizeFd(rem.empresa)} — CNPJ: ${sanitizeFd(rem.cnpj)}^FS
+^FO20,974^CF0,30^FD${sanitizeFd(rem.endereco)}^FS
 
 ^XZ`;
 }
