@@ -54,6 +54,12 @@ export const routing = defineRouting({
       es: '/sobre',
       zh: '/about'
     },
+    '/contato': {
+      'pt-br': '/contato',
+      en: '/contact',
+      es: '/contacto',
+      zh: '/contact'
+    },
     '/premium': {
       'pt-br': '/premium',
       en: '/premium',

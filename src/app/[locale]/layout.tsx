@@ -35,6 +35,7 @@ import Script from 'next/script';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { GoogleAnalytics } from '../../components/GoogleAnalytics';
+import { CrispChat } from '../../components/CrispChat';
 
 export default async function RootLayout({
   children,
@@ -60,6 +61,7 @@ export default async function RootLayout({
           <Header />
           {children}
           <Footer />
+          <CrispChat />
         </NextIntlClientProvider>
       </body>
     </html>
