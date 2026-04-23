@@ -48,6 +48,12 @@ export const routing = defineRouting({
       es: '/terminos',
       zh: '/terms'
     },
+    '/sobre': {
+      'pt-br': '/sobre',
+      en: '/about',
+      es: '/sobre',
+      zh: '/about'
+    },
     '/premium': {
       'pt-br': '/premium',
       en: '/premium',
