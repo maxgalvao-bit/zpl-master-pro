@@ -12,3 +12,9 @@ token.json
 # Next.js / TypeScript
 .next/
 tsconfig.tsbuildinfo
+# Env locais (NUNCA versionar — contem segredos)
+.env*.local
+!.env.example
+
+# Lixeira temporaria de sessao
+_to_delete/

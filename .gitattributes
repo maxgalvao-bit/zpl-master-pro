@@ -1,0 +1,4 @@
+# Normaliza fim de linha: LF no repositorio, CRLF no Windows
+* text=auto
+*.ps1 text eol=crlf
+*.bat text eol=crlf
